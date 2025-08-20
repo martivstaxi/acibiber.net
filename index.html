@@ -863,7 +863,9 @@
                 showToast(type === 'safe' ? '✅ Güvenilir olarak işaretlendi' : '⚠️ Şüpheli olarak işaretlendi');
                 
             } catch (error) {
-                console.error('Oy verme hatası:', error);
+                console.error('Detaylı hata bilgisi:', error);
+                console.error('Hata mesajı:', error.message);
+                console.error('Hata kodu:', error.code);
                 showToast('❌ Bir hata oluştu, lütfen tekrar deneyin');
                 
                 // Re-enable buttons on error
