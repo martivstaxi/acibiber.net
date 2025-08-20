@@ -572,6 +572,28 @@
             font-weight: 600;
         }
 
+        .vote-invite {
+            text-align: center;
+            font-size: 15px;
+            color: #ef4444;
+            margin-top: 6px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            animation: pulse-text 2s infinite;
+        }
+
+        @keyframes pulse-text {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.9;
+                transform: scale(1.02);
+            }
+        }
+
         /* Vote Buttons */
         .vote-buttons {
             display: grid;
@@ -1134,6 +1156,12 @@
                 margin-top: 8px;
             }
 
+            .vote-invite {
+                font-size: 14px;
+                margin-top: 5px;
+                letter-spacing: 0.3px;
+            }
+
             .vote-buttons {
                 gap: 12px;
             }
@@ -1594,6 +1622,7 @@
                         </div>
                     </div>
                     <div class="vote-count" id="voteCount">0 değerlendirme</div>
+                    <div class="vote-invite">Sen de değerlendir!</div>
                 </div>
 
                 <div class="vote-buttons">
@@ -2006,6 +2035,12 @@
             }, 100);
             
             document.getElementById('voteCount').textContent = `${total} değerlendirme`;
+            
+            // Show or hide invite text based on vote status
+            const inviteElement = document.querySelector('.vote-invite');
+            if (inviteElement) {
+                inviteElement.style.display = hasVoted ? 'none' : 'block';
+            }
         }
 
         // Update vote buttons
