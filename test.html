@@ -50,7 +50,7 @@
         }
 
         .container {
-            max-width: 600px;
+            max-width: 720px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -74,12 +74,12 @@
         }
 
         .logo-icon {
-            font-size: 40px;
+            font-size: 48px;
             filter: drop-shadow(0 2px 4px rgba(255, 0, 0, 0.2));
         }
 
         h1 {
-            font-size: 36px;
+            font-size: 42px;
             font-weight: 700;
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             -webkit-background-clip: text;
@@ -98,19 +98,19 @@
         /* Search Card */
         .search-card {
             background: var(--card-bg);
-            border-radius: 20px;
-            padding: 28px;
+            border-radius: 24px;
+            padding: 32px;
             box-shadow: 0 4px 20px rgba(255, 107, 107, 0.08);
-            margin-bottom: 24px;
+            margin-bottom: 28px;
             border: 1px solid rgba(255, 107, 107, 0.1);
             text-align: center;
         }
 
         .search-label {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 600;
             color: var(--text-secondary);
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             display: block;
             text-align: center;
         }
@@ -122,21 +122,21 @@
 
         .input-prefix {
             position: absolute;
-            left: 20px;
+            left: 22px;
             top: 50%;
             transform: translateY(-50%);
             font-weight: 600;
             color: var(--primary);
-            font-size: 18px;
+            font-size: 20px;
             pointer-events: none;
         }
 
         .phone-input {
             width: 100%;
-            padding: 16px 20px 16px 56px;
+            padding: 18px 22px 18px 60px;
             border: 2px solid #ffe3e3;
-            border-radius: 12px;
-            font-size: 18px;
+            border-radius: 14px;
+            font-size: 20px;
             transition: all 0.2s;
             background: #fffafa;
         }
@@ -157,16 +157,16 @@
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             border: none;
-            padding: 16px 28px;
-            border-radius: 12px;
-            font-size: 18px;
+            padding: 18px 32px;
+            border-radius: 14px;
+            font-size: 20px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
             box-shadow: 0 4px 12px rgba(255, 107, 107, 0.2);
         }
 
@@ -200,10 +200,10 @@
         /* Result Card */
         .result-card {
             background: var(--card-bg);
-            border-radius: 20px;
-            padding: 28px;
+            border-radius: 24px;
+            padding: 32px;
             box-shadow: 0 4px 20px rgba(255, 107, 107, 0.08);
-            margin-bottom: 24px;
+            margin-bottom: 28px;
             display: none;
             animation: slideUp 0.3s ease-out;
             border: 1px solid rgba(255, 107, 107, 0.1);
@@ -236,7 +236,7 @@
         }
 
         .number-text {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 700;
             color: var(--text-primary);
         }
@@ -288,8 +288,8 @@
         }
 
         .score-item {
-            margin-bottom: 16px;
-            max-width: 400px;
+            margin-bottom: 20px;
+            max-width: 480px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -355,24 +355,24 @@
         .vote-buttons {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            max-width: 400px;
+            gap: 16px;
+            max-width: 480px;
             margin: 0 auto;
         }
 
         .vote-btn {
-            padding: 14px 18px;
+            padding: 16px 20px;
             border: 2px solid var(--border);
-            border-radius: 10px;
+            border-radius: 12px;
             background: var(--card-bg);
-            font-size: 16px;
+            font-size: 17px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         .vote-btn:hover:not(:disabled) {
@@ -734,9 +734,14 @@
         <div class="search-card">
             <div style="margin-bottom: 20px;">
                 <label class="search-label" style="margin-bottom: 4px;">Şüpheli numaraları sorgula</label>
-                <p style="font-size: 15px; color: #ef4444; font-weight: 500;">
-                    Dolandırıcı ve güvenilmez kişileri kontrol et
-                </p>
+                <div style="margin-top: 12px; display: flex; gap: 32px; justify-content: center; align-items: center;">
+                    <p style="font-size: 16px; color: #ef4444; font-weight: 600; display: flex; align-items: center; gap: 6px;">
+                        <span>🔴</span> Acı Biber: Şüpheli
+                    </p>
+                    <p style="font-size: 16px; color: #10b981; font-weight: 600; display: flex; align-items: center; gap: 6px;">
+                        <span>🟢</span> Yeşil Biber: Şüphesiz
+                    </p>
+                </div>
             </div>
             <div class="input-group">
                 <span class="input-prefix">+90</span>
@@ -753,10 +758,7 @@
                 <span>🔍</span>
                 <span>Kontrol Et</span>
             </button>
-            <div class="info-badge">
-                <span>ℹ️</span>
-                <span>Ücretsiz ve anonim sorgulama</span>
-            </div>
+
         </div>
 
         <div class="result-card" id="resultCard">
@@ -767,7 +769,7 @@
                 </div>
                 <div class="notice">
                     <span class="notice-icon">ℹ️</span>
-                    <span>Kullanıcı oylamalarına dayalı sonuçlar</span>
+                    <span>Ücretsiz anonim sorgu</span>
                 </div>
             </div>
 
@@ -1260,12 +1262,38 @@
                     value = value.substring(0, 9);
                 }
                 
-                if (value.length === 9) {
-                    const formatted = `${value.slice(0,3)} ${value.slice(3,6)} ${value.slice(6,8)} ${value.slice(8,9)}X`;
-                    e.target.value = formatted;
-                    e.target.setSelectionRange(formatted.length - 1, formatted.length - 1);
-                } else {
-                    e.target.value = value;
+                // Format with spaces from the beginning
+                let formatted = '';
+                if (value.length > 0) {
+                    // First 3 digits
+                    formatted = value.substring(0, 3);
+                    
+                    // Next 3 digits
+                    if (value.length > 3) {
+                        formatted += ' ' + value.substring(3, 6);
+                    }
+                    
+                    // Next 2 digits
+                    if (value.length > 6) {
+                        formatted += ' ' + value.substring(6, 8);
+                    }
+                    
+                    // 9th digit and X
+                    if (value.length === 8) {
+                        // If we have exactly 8 digits, show them with X at the end
+                        formatted += ' X';
+                    } else if (value.length === 9) {
+                        // If we have 9 digits, show the 9th digit then X
+                        formatted += ' ' + value.substring(8, 9) + 'X';
+                    }
+                }
+                
+                e.target.value = formatted;
+                
+                // Keep cursor position correct before X
+                if (value.length >= 8) {
+                    const cursorPos = formatted.length - 1;
+                    e.target.setSelectionRange(cursorPos, cursorPos);
                 }
             });
             
