@@ -547,7 +547,7 @@
                     class="phone-input" 
                     id="phoneInput" 
                     placeholder="532 XXX XX XX" 
-                    maxlength="10"
+                    maxlength="9"
                     autocomplete="tel"
                 >
             </div>
@@ -575,15 +575,15 @@
 
             <div class="trust-section">
                 <h3 class="section-title">
-                    <span>📊</span>
-                    <span>Güvenilirlik Analizi</span>
+                    <span>🌶️</span>
+                    <span>Değerlendirme</span>
                 </h3>
                 
                 <div class="score-item">
                     <div class="score-header">
                         <span class="score-label">
                             <span>✅</span>
-                            <span>Güvenilir</span>
+                            <span>Güvenli</span>
                         </span>
                         <span class="score-value" id="safePercent">0%</span>
                     </div>
@@ -595,8 +595,8 @@
                 <div class="score-item">
                     <div class="score-header">
                         <span class="score-label">
-                            <span>⚠️</span>
-                            <span>Şüpheli</span>
+                            <span>🌶️</span>
+                            <span>Acı Biber</span>
                         </span>
                         <span class="score-value" id="spamPercent">0%</span>
                     </div>
@@ -607,18 +607,18 @@
             </div>
 
             <div class="vote-section">
-                <p class="vote-prompt">Bu numarayı nasıl değerlendirirsiniz?</p>
+                <p class="vote-prompt">Değerlendir</p>
                 <div class="vote-buttons">
                     <button class="vote-btn safe" id="safeBtn" onclick="vote('safe')">
                         <span>✅</span>
-                        <span>Güvenilir</span>
+                        <span>Güvenli</span>
                     </button>
                     <button class="vote-btn spam" id="spamBtn" onclick="vote('spam')">
-                        <span>⚠️</span>
-                        <span>Şüpheli</span>
+                        <span>🌶️</span>
+                        <span>Acı Biber</span>
                     </button>
                 </div>
-                <p class="vote-count" id="voteCount">0 kişi değerlendirdi</p>
+                <p class="vote-count" id="voteCount">0 değerlendirme</p>
             </div>
         </div>
 
@@ -661,16 +661,18 @@
         // Format phone number for display
         function formatPhoneNumber(number) {
             const clean = number.replace(/\D/g, '');
-            if (clean.length === 10) {
-                return `+90 ${clean.slice(0,3)} ${clean.slice(3,6)} ${clean.slice(6,8)} ${clean.slice(8,9)}X`;
+            // Sadece 9 hane al, son haneyi X yap
+            if (clean.length >= 9) {
+                const first9 = clean.substring(0, 9);
+                return `+90 ${first9.slice(0,3)} ${first9.slice(3,6)} ${first9.slice(6,8)} ${first9.slice(8,9)}X`;
             }
-            return '+90 ' + clean;
+            return '+90 ' + clean + 'X';
         }
 
         // Validate Turkish mobile number
         function validatePhoneNumber(number) {
             const clean = number.replace(/\D/g, '');
-            return clean.length === 10 && clean.startsWith('5');
+            return clean.length === 9 && clean.startsWith('5');
         }
 
         // Search number
@@ -687,7 +689,7 @@
             // Disable button during search
             setLoadingState(true);
             
-            currentNumber = number.replace(/\D/g, '');
+            currentNumber = number.replace(/\D/g, '') + '0'; // 9 haneye 0 ekleyerek 10 hane yap
             const displayNumber = formatPhoneNumber(number);
             
             // Show result card
@@ -777,7 +779,7 @@
             document.getElementById('spamPercent').textContent = spamPercent + '%';
             
             // Update vote count
-            document.getElementById('voteCount').textContent = `${total} kişi değerlendirdi`;
+            document.getElementById('voteCount').textContent = `${total} değerlendirme`;
         }
 
         // Vote function
@@ -860,7 +862,7 @@
                 updateVoteButtons();
                 
                 // Show success message
-                showToast(type === 'safe' ? '✅ Güvenilir olarak işaretlendi' : '⚠️ Şüpheli olarak işaretlendi');
+                showToast(type === 'safe' ? '✅ Güvenli olarak işaretlendi' : '🌶️ Acı Biber olarak işaretlendi');
                 
             } catch (error) {
                 console.error('Detaylı hata bilgisi:', error);
@@ -913,9 +915,9 @@
                     value = value.substring(1);
                 }
                 
-                // Maksimum 10 karakter
-                if (value.length > 10) {
-                    value = value.substring(0, 10);
+                // Maksimum 9 karakter (son hane X olacak)
+                if (value.length > 9) {
+                    value = value.substring(0, 9);
                 }
                 
                 e.target.value = value;
