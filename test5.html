@@ -826,31 +826,47 @@
         .footer {
             text-align: center;
             margin-top: 40px;
+            padding-bottom: 20px;
         }
 
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 32px;
-            margin-bottom: 16px;
-        }
-
-        .footer-link {
-            color: #6b7280;
-            text-decoration: none;
-            font-size: 14px;
+        .refresh-btn {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 14px 28px;
+            font-size: 15px;
             font-weight: 600;
-            transition: color 0.2s;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.25);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .footer-link:hover {
-            color: #ef4444;
+        .refresh-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(239, 68, 68, 0.35);
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
         }
 
-        .copyright {
-            font-size: 13px;
-            color: #9ca3af;
-            font-weight: 500;
+        .refresh-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.25);
+        }
+
+        .refresh-icon {
+            font-size: 18px;
+            display: inline-block;
+            transition: transform 0.5s ease;
+        }
+
+        .refresh-btn:hover .refresh-icon {
+            transform: rotate(360deg);
         }
 
         /* Spinner */
@@ -1130,6 +1146,8 @@
             .modal-subtitle {
                 font-size: 13px;
                 margin-bottom: 20px;
+                line-height: 1.4;
+                padding: 10px;
             }
 
             .verify-item {
@@ -1142,9 +1160,10 @@
             }
 
             .verify-code {
-                padding: 3px 10px;
-                font-size: 12px;
+                padding: 4px 10px;
+                font-size: 13px;
                 border-radius: 6px;
+                border-width: 1.5px;
             }
 
             .verify-input {
@@ -1152,6 +1171,10 @@
                 padding-right: 36px;
                 font-size: 14px;
                 border-radius: 8px;
+            }
+
+            .verify-input::placeholder {
+                font-size: 12px;
             }
 
             .verify-check {
@@ -1179,19 +1202,20 @@
                 padding-bottom: 20px;
             }
 
-            .footer-links {
-                gap: 20px;
-                margin-bottom: 12px;
+            .refresh-btn {
+                padding: 12px 24px;
+                font-size: 14px;
+                border-radius: 40px;
+                gap: 8px;
+                box-shadow: 0 6px 20px rgba(239, 68, 68, 0.2);
             }
 
-            .footer-link {
-                font-size: 13px;
-                padding: 5px;
+            .refresh-btn:active {
+                transform: scale(0.98);
             }
 
-            .copyright {
-                font-size: 12px;
-                line-height: 1.4;
+            .refresh-icon {
+                font-size: 16px;
             }
 
             /* Toast mobile position */
@@ -1466,63 +1490,61 @@
 
         <!-- Footer -->
         <div class="footer">
-            <div class="footer-links">
-                <a href="#" class="footer-link">Gizlilik</a>
-                <a href="#" class="footer-link">Hakkında</a>
-                <a href="#" class="footer-link">İletişim</a>
-            </div>
-            <div class="copyright">© 2025 AciBiber.net - Tüm hakları saklıdır.</div>
+            <button class="refresh-btn" onclick="location.reload()">
+                <span class="refresh-icon">🔄</span>
+                <span>Sayfayı Yenile</span>
+            </button>
         </div>
     </div>
 
     <!-- Verification Modal -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal">
-            <div class="modal-title">🔐 Güvenlik Doğrulaması</div>
-            <div class="modal-subtitle">Oyunuzu kaydetmek için aşağıdaki metinleri yazın</div>
+            <div class="modal-title">🔐 Bot Kontrolü</div>
+            <div class="modal-subtitle">Robot olmadığınızı doğrulamak için kutulardaki metinleri büyük-küçük harfe dikkat ederek yazınız</div>
 
             <div class="verify-item">
                 <div class="verify-label">
-                    <span>1. Metin</span>
-                    <span class="verify-code">tr81.tr</span>
+                    <span>1. Görevi tamamlayın</span>
+                    <span class="verify-code">TR</span>
                 </div>
-                <input type="text" class="verify-input" id="v1" data-correct="tr81.tr">
+                <input type="text" class="verify-input" id="v1" data-correct="TR" placeholder="Kutudaki metni yazın">
                 <div class="verify-check" id="c1">✓</div>
             </div>
 
             <div class="verify-item">
                 <div class="verify-label">
-                    <span>2. Metin</span>
+                    <span>2. Görevi tamamlayın</span>
                     <span class="verify-code">TR81.TR</span>
                 </div>
-                <input type="text" class="verify-input" id="v2" data-correct="TR81.TR">
+                <input type="text" class="verify-input" id="v2" data-correct="TR81.TR" placeholder="Kutudaki metni yazın">
                 <div class="verify-check" id="c2">✓</div>
             </div>
 
             <div class="verify-item">
                 <div class="verify-label">
-                    <span>3. Metin</span>
+                    <span>3. Görevi tamamlayın</span>
                     <span class="verify-code">www.TR81.tr</span>
                 </div>
-                <input type="text" class="verify-input" id="v3" data-correct="www.TR81.tr">
+                <input type="text" class="verify-input" id="v3" data-correct="www.TR81.tr" placeholder="Kutudaki metni yazın">
                 <div class="verify-check" id="c3">✓</div>
             </div>
 
             <div class="verify-item">
                 <div class="verify-label">
-                    <span>4. Metin</span>
+                    <span>4. Görevi tamamlayın</span>
                     <span class="verify-code">Tr81.Tr</span>
                 </div>
-                <input type="text" class="verify-input" id="v4" data-correct="Tr81.Tr">
+                <input type="text" class="verify-input" id="v4" data-correct="Tr81.Tr" placeholder="Kutudaki metni yazın">
                 <div class="verify-check" id="c4">✓</div>
             </div>
 
             <div class="verify-item">
                 <div class="verify-label">
-                    <span>5. Metin</span>
+                    <span>5. Görevi tamamlayın</span>
                     <span class="verify-code">tr81.TR</span>
                 </div>
-                <input type="text" class="verify-input" id="v5" data-correct="tr81.TR">
+                <input type="text" class="verify-input" id="v5" data-correct="tr81.TR" placeholder="Kutudaki metni yazın">
                 <div class="verify-check" id="c5">✓</div>
             </div>
 
