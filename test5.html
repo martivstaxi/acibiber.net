@@ -202,6 +202,10 @@
             border-color: #fca5a5;
             transform: translateY(-1px);
         }
+        .country-selector:focus-within {
+             border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+        }
         .country-selector.active .dropdown-arrow {
             transform: rotate(180deg);
         }
@@ -230,7 +234,7 @@
             display: none;
         }
         .country-dropdown.show { display: block; }
-        .country-search { padding: 16px; border-bottom: 1px solid var(--border-extra-light); position: sticky; top: 0; background: white; }
+        .country-search { padding: 16px; border-bottom: 1px solid var(--border-extra-light); position: sticky; top: 0; background: white; z-index: 1; }
         .country-search input {
             width: 100%;
             padding: 10px 16px;
@@ -283,9 +287,10 @@
             display: flex;
             align-items: center;
             background: white;
+            flex-shrink: 0;
         }
         .phone-digits {
-            flex: 1;
+            flex-grow: 1;
             display: flex;
             align-items: center;
             padding: 0 1rem;
@@ -316,8 +321,9 @@
             outline: none;
             border-color: var(--primary-color);
             transform: scale(1.05);
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
         }
-        .digit-input.disabled { background: #f3f4f6; cursor: not-allowed; }
+        .digit-input.disabled { background: #f3f4f6; color: #9ca3af; cursor: not-allowed; border-color: #e5e7eb; }
 
         /* Arama Butonu */
         .search-btn {
@@ -344,7 +350,7 @@
             transform: translateY(-2px);
             box-shadow: 0 15px 40px rgba(239, 68, 68, 0.4);
         }
-        .search-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+        .search-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
         /* Sonuçlar Bölümü */
         .results-section {
@@ -358,7 +364,7 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .result-header { text-align: center; margin-bottom: 36px; }
+        .result-header { text-align: center; margin-bottom: 36px; padding-bottom: 36px; border-bottom: 2px solid var(--border-extra-light); }
         .result-number {
             font-size: clamp(1.25rem, 5vw, 1.625rem);
             font-weight: 700;
@@ -405,7 +411,7 @@
             color: white;
             font-weight: 700;
             font-size: 1.125rem;
-            transition: width 0.8s ease-in-out;
+            transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1);
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
         }
         .score-green { background: linear-gradient(90deg, #16a34a, #22c55e); }
@@ -435,10 +441,10 @@
             letter-spacing: 0.5px;
         }
         .vote-btn.safe { border-color: #bbf7d0; color: var(--green-color); background: #f0fdf4; }
-        .vote-btn.safe:hover:not(:disabled) { background: var(--green-color); color: white; transform: translateY(-2px); }
+        .vote-btn.safe:hover:not(:disabled) { background: var(--green-color); color: white; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(22, 163, 74, 0.3); }
         .vote-btn.spam { border-color: var(--border-light); color: var(--primary-dark); background: var(--bg-light); }
-        .vote-btn.spam:hover:not(:disabled) { background: var(--primary-dark); color: white; transform: translateY(-2px); }
-        .vote-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .vote-btn.spam:hover:not(:disabled) { background: var(--primary-dark); color: white; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(220, 38, 38, 0.3); }
+        .vote-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
 
         /* Modal (Popup) */
         .modal-overlay {
@@ -452,7 +458,8 @@
             z-index: 1000;
             padding: 1rem;
         }
-        .modal-overlay.show { display: flex; }
+        .modal-overlay.show { display: flex; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .modal {
             background: white;
             border-radius: 20px;
@@ -463,27 +470,42 @@
             animation: modalSlide 0.3s ease;
         }
         @keyframes modalSlide {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
+            from { opacity: 0; transform: translateY(10px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
         .modal-title { font-size: 1.375rem; font-weight: 800; color: var(--text-dark); margin-bottom: 8px; text-align: center; }
         .modal-subtitle { font-size: 0.875rem; color: var(--text-light); text-align: center; margin-bottom: 28px; }
-        .verify-item { margin-bottom: 20px; }
+        .verify-item { margin-bottom: 20px; position: relative; }
+        .verify-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 13px; font-weight: 700; color: var(--text-medium); }
+        .verify-code { background: var(--bg-light); color: var(--primary-dark); padding: 4px 12px; border-radius: 8px; font-family: monospace; border: 1px solid var(--border-light); font-weight: 600; }
         .verify-input {
             width: 100%;
             padding: 12px 16px;
+            padding-right: 40px;
             background: var(--bg-light);
             border: 2px solid var(--border-light);
             border-radius: 10px;
             font-size: 15px;
             font-family: monospace;
+            transition: all 0.2s;
         }
         .verify-input:focus { outline: none; border-color: var(--primary-color); background: white; }
+        .verify-input.correct { border-color: var(--green-color); background: #f0fdf4; }
+        .verify-check {
+            position: absolute; right: 12px; bottom: 12px;
+            width: 24px; height: 24px; background: var(--green-color);
+            border-radius: 50%; display: none; align-items: center; justify-content: center;
+            color: white; font-weight: bold; animation: checkPop 0.3s ease;
+        }
+        .verify-check.show { display: flex; }
+        @keyframes checkPop { from { transform: scale(0); } to { transform: scale(1); } }
+
         .modal-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
-        .modal-btn { padding: 12px; border: none; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
-        .modal-btn-cancel { background: #f3f4f6; color: var(--text-light); }
-        .modal-btn-cancel:hover { background: #e5e7eb; }
-        .modal-btn-confirm { background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)); color: white; }
+        .modal-btn { padding: 12px; border: none; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.5px; }
+        .modal-btn-cancel { background: #f3f4f6; color: var(--text-light); border: 2px solid #e5e7eb; }
+        .modal-btn-cancel:hover { background: #e5e7eb; color: #4b5563; }
+        .modal-btn-confirm { background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)); color: white; border: 2px solid transparent; }
+        .modal-btn-confirm:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(239, 68, 68, 0.3); }
         .modal-btn-confirm:disabled { opacity: 0.5; cursor: not-allowed; }
 
         /* Toast (Bildirim) */
@@ -500,7 +522,7 @@
             font-weight: 600;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
             z-index: 2000;
-            transition: transform 0.4s ease;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
         .toast.show { transform: translateX(-50%) translateY(0); }
 
@@ -546,10 +568,12 @@
             .result-header { padding-bottom: 24px; margin-bottom: 24px; }
             .vote-btn { padding: 12px; font-size: 0.875rem; }
             .footer-links { gap: 20px; }
+            .modal-title { font-size: 1.25rem; }
         }
 
         /* Yatay Mod Ayarlamaları */
         @media (max-height: 500px) and (orientation: landscape) {
+            body { align-items: flex-start; padding-top: 1rem; }
             .logo-section { margin-bottom: 20px; }
             .card { padding: 16px; }
             .input-section { margin-bottom: 16px; }
@@ -559,7 +583,7 @@
 </head>
 <body>
     <div class="app-container">
-        <!-- Logo Bölümü -->
+        <!-- Logo Section -->
         <header class="logo-section">
             <div class="logo-wrapper">
                 <span class="logo-icon">🌶️</span>
@@ -578,13 +602,13 @@
             </div>
         </header>
 
-        <!-- Ana Kart -->
+        <!-- Main Card -->
         <main class="card">
-            <!-- Giriş Bölümü -->
+            <!-- Input Section -->
             <section class="input-section">
-                <!-- Ülke Seçimi -->
+                <!-- Country Selector -->
                 <div class="country-container">
-                    <label for="countrySearch" class="input-label">Ülke Seçimi</label>
+                    <label class="input-label" for="countrySearch">Ülke Seçimi</label>
                     <div class="country-selector" id="countrySelector" onclick="toggleCountryDropdown()">
                         <div class="country-info">
                             <span class="country-flag" id="selectedFlag">🇹🇷</span>
@@ -600,25 +624,25 @@
                     </div>
                 </div>
 
-                <!-- Telefon Numarası Girişi -->
+                <!-- Phone Input -->
                 <div class="phone-container">
                     <label class="input-label">Telefon Numarası</label>
                     <div class="phone-input-wrapper" id="phoneWrapper">
                         <div class="country-code" id="countryCode">+90</div>
                         <div class="phone-digits" id="phoneDigits">
-                            <!-- JS ile üretilecek -->
+                            <!-- Digits will be generated by JS -->
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Arama Butonu -->
+            <!-- Search Button -->
             <button class="search-btn" id="searchBtn" onclick="searchNumber()">
                 <span>🔍</span>
                 <span>Kontrol Et</span>
             </button>
 
-            <!-- Sonuçlar Bölümü -->
+            <!-- Results Section -->
             <section class="results-section" id="resultsSection">
                 <div class="result-header">
                     <div class="result-number" id="resultNumber"></div>
@@ -665,17 +689,56 @@
         </footer>
     </div>
 
-    <!-- Doğrulama Modalı -->
+    <!-- Verification Modal -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal">
             <div class="modal-title">🔐 Güvenlik Doğrulaması</div>
             <p class="modal-subtitle">Oyunuzu kaydetmek için aşağıdaki metinleri yazın</p>
-            
+
             <div class="verify-item">
-                 <!-- Verification inputs as before -->
+                <div class="verify-label">
+                    <span>1. Metin</span>
+                    <span class="verify-code">tr81.tr</span>
+                </div>
+                <input type="text" class="verify-input" id="v1" data-correct="tr81.tr">
+                <div class="verify-check" id="c1">✓</div>
             </div>
-            
-            <!-- Diğer doğrulama adımları buraya gelecek -->
+
+            <div class="verify-item">
+                <div class="verify-label">
+                    <span>2. Metin</span>
+                    <span class="verify-code">TR81.TR</span>
+                </div>
+                <input type="text" class="verify-input" id="v2" data-correct="TR81.TR">
+                <div class="verify-check" id="c2">✓</div>
+            </div>
+
+            <div class="verify-item">
+                <div class="verify-label">
+                    <span>3. Metin</span>
+                    <span class="verify-code">www.TR81.tr</span>
+                </div>
+                <input type="text" class="verify-input" id="v3" data-correct="www.TR81.tr">
+                <div class="verify-check" id="c3">✓</div>
+            </div>
+
+            <div class="verify-item">
+                <div class="verify-label">
+                    <span>4. Metin</span>
+                    <span class="verify-code">Tr81.Tr</span>
+                </div>
+                <input type="text" class="verify-input" id="v4" data-correct="Tr81.Tr">
+                <div class="verify-check" id="c4">✓</div>
+            </div>
+
+            <div class="verify-item">
+                <div class="verify-label">
+                    <span>5. Metin</span>
+                    <span class="verify-code">tr81.TR</span>
+                </div>
+                <input type="text" class="verify-input" id="v5" data-correct="tr81.TR">
+                <div class="verify-check" id="c5">✓</div>
+            </div>
 
             <div class="modal-buttons">
                 <button class="modal-btn modal-btn-cancel" onclick="closeModal()">İptal</button>
@@ -683,24 +746,30 @@
             </div>
         </div>
     </div>
-    
+
     <script>
-        // Javascript kodunuzda herhangi bir değişiklik yapılmasına gerek yoktur.
-        // Mevcut haliyle mobil uyumlu tasarımla sorunsuz çalışmaktadır.
-        
         // Supabase Config
         const SUPABASE_URL = 'https://oxwgeetqhkopnwfikdpj.supabase.co';
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im94d2dlZXRxaGtvcG53ZmlrZHBqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU2OTQzODAsImV4cCI6MjA3MTI3MDM4MH0.APLnnqfbTZnF3xdh9805vQoww9ZmuoV3p4YABxretv8';
+        
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        // Countries data
+        // Countries
         const countries = [
-            { name: "Türkiye", code: "+90", flag: "🇹🇷", digits: 10 },
+            { name: "Türkiye", code: "+90", flag: "🇹🇷", digits: 10, startsWith: ["5"] },
             { name: "Amerika", code: "+1", flag: "🇺🇸", digits: 10 },
             { name: "İngiltere", code: "+44", flag: "🇬🇧", digits: 10 },
             { name: "Almanya", code: "+49", flag: "🇩🇪", digits: 11 },
             { name: "Fransa", code: "+33", flag: "🇫🇷", digits: 9 },
-            // ... other countries
+            { name: "İtalya", code: "+39", flag: "🇮🇹", digits: 10 },
+            { name: "İspanya", code: "+34", flag: "🇪🇸", digits: 9 },
+            { name: "Rusya", code: "+7", flag: "🇷🇺", digits: 10 },
+            { name: "Çin", code: "+86", flag: "🇨🇳", digits: 11 },
+            { name: "Japonya", code: "+81", flag: "🇯🇵", digits: 10 },
+            { name: "Hindistan", code: "+91", flag: "🇮🇳", digits: 10 },
+            { name: "Brezilya", code: "+55", flag: "🇧🇷", digits: 11 },
+            { name: "Kanada", code: "+1", flag: "🇨🇦", digits: 10 },
+            { name: "Avustralya", code: "+61", flag: "🇦🇺", digits: 9 }
         ];
 
         let selectedCountry = countries[0];
@@ -709,114 +778,182 @@
         let hasVoted = false;
         let pendingVoteType = '';
 
+        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             initializePhoneInput();
             renderCountries();
+            setupVerification();
         });
 
+        // Initialize phone input
         function initializePhoneInput() {
             const container = document.getElementById('phoneDigits');
             container.innerHTML = '';
             digitInputs = [];
             
+            // Create input for each digit
             for (let i = 0; i < selectedCountry.digits; i++) {
                 const input = document.createElement('input');
                 input.type = 'tel';
                 input.className = 'digit-input';
                 input.maxLength = 1;
                 input.dataset.index = i;
-
+                input.placeholder = '#';
+                
                 if (i === selectedCountry.digits - 1) {
                     input.className += ' disabled';
                     input.value = 'X';
                     input.readOnly = true;
+                    input.placeholder = '';
                 } else {
                     input.addEventListener('input', e => handleDigitInput(e, i));
                     input.addEventListener('keydown', e => handleKeydown(e, i));
                     input.addEventListener('paste', e => handlePaste(e, i));
-                    input.addEventListener('focus', () => document.getElementById('phoneWrapper').classList.add('focused'));
-                    input.addEventListener('blur', () => document.getElementById('phoneWrapper').classList.remove('focused'));
+                    input.addEventListener('focus', () => {
+                        document.getElementById('phoneWrapper').classList.add('focused');
+                        setTimeout(() => {
+                            input.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                        }, 100);
+                    });
+                    input.addEventListener('blur', () => {
+                        document.getElementById('phoneWrapper').classList.remove('focused');
+                    });
                 }
                 
                 container.appendChild(input);
                 digitInputs.push(input);
             }
             
+            // Update country code
             document.getElementById('countryCode').textContent = selectedCountry.code;
+            digitInputs[0].focus();
         }
 
+        // Handle digit input
         function handleDigitInput(e, index) {
             const value = e.target.value;
+            
             if (!/^\d$/.test(value) && value !== '') {
                 e.target.value = '';
                 return;
             }
+            
             if (value && index < selectedCountry.digits - 2) {
-                digitInputs[index + 1].focus();
+                 digitInputs[index + 1].focus();
             }
         }
 
+        // Handle keydown
         function handleKeydown(e, index) {
             if (e.key === 'Backspace' && !e.target.value && index > 0) {
                 e.preventDefault();
                 digitInputs[index - 1].focus();
+                digitInputs[index - 1].value = '';
+            } else if (e.key === 'ArrowLeft' && index > 0) {
+                digitInputs[index - 1].focus();
+            } else if (e.key === 'ArrowRight' && index < selectedCountry.digits - 2) {
+                digitInputs[index + 1].focus();
+            } else if (e.key === 'Enter') {
+                searchNumber();
             }
         }
-        
+
+        // Handle paste
         function handlePaste(e, startIndex) {
             e.preventDefault();
             const data = e.clipboardData.getData('text').replace(/\D/g, '');
+            
             for (let i = 0; i < data.length && startIndex + i < selectedCountry.digits - 1; i++) {
                 digitInputs[startIndex + i].value = data[i];
             }
+            if(digitInputs[startIndex + data.length - 1]) {
+                digitInputs[startIndex + data.length - 1].focus();
+            }
         }
 
+        // Toggle country dropdown
         function toggleCountryDropdown() {
-            document.getElementById('countryDropdown').classList.toggle('show');
-            document.getElementById('countrySelector').classList.toggle('active');
+            const dropdown = document.getElementById('countryDropdown');
+            const selector = document.getElementById('countrySelector');
+            
+            if (dropdown.classList.contains('show')) {
+                dropdown.classList.remove('show');
+                selector.classList.remove('active');
+            } else {
+                dropdown.classList.add('show');
+                selector.classList.add('active');
+                document.getElementById('countrySearch').focus();
+            }
         }
 
+        // Render countries
         function renderCountries() {
             const list = document.getElementById('countryList');
-            list.innerHTML = countries.map(country => `
-                <div class="country-item" onclick='selectCountry(${JSON.stringify(country)})'>
+            list.innerHTML = '';
+            
+            countries.forEach(country => {
+                const item = document.createElement('div');
+                item.className = 'country-item';
+                item.innerHTML = `
                     <span class="country-item-flag">${country.flag}</span>
                     <span class="country-item-name">${country.name}</span>
                     <span class="country-item-code">${country.code}</span>
-                </div>
-            `).join('');
+                `;
+                item.onclick = () => selectCountry(country);
+                list.appendChild(item);
+            });
         }
 
+        // Filter countries
         function filterCountries() {
             const search = document.getElementById('countrySearch').value.toLowerCase();
-            const filtered = countries.filter(c => c.name.toLowerCase().includes(search) || c.code.includes(search));
             const list = document.getElementById('countryList');
-            list.innerHTML = filtered.map(country => `
-                <div class="country-item" onclick='selectCountry(${JSON.stringify(country)})'>
+            const filtered = countries.filter(c => 
+                c.name.toLowerCase().includes(search) || 
+                c.code.includes(search)
+            );
+            
+            list.innerHTML = '';
+            filtered.forEach(country => {
+                const item = document.createElement('div');
+                item.className = 'country-item';
+                item.innerHTML = `
                     <span class="country-item-flag">${country.flag}</span>
                     <span class="country-item-name">${country.name}</span>
                     <span class="country-item-code">${country.code}</span>
-                </div>
-            `).join('');
+                `;
+                item.onclick = () => selectCountry(country);
+                list.appendChild(item);
+            });
         }
-        
+
+        // Select country
         function selectCountry(country) {
             selectedCountry = country;
             document.getElementById('selectedFlag').textContent = country.flag;
             document.getElementById('selectedName').textContent = country.name;
-            toggleCountryDropdown();
+            document.getElementById('countryDropdown').classList.remove('show');
+            document.getElementById('countrySelector').classList.remove('active');
+            document.getElementById('countrySearch').value = '';
+            
             initializePhoneInput();
         }
 
+        // Close dropdown on outside click
         document.addEventListener('click', e => {
             if (!e.target.closest('.country-container')) {
                 document.getElementById('countryDropdown').classList.remove('show');
                 document.getElementById('countrySelector').classList.remove('active');
             }
         });
-        
+
+        // Search number
         async function searchNumber() {
-            let number = digitInputs.slice(0, -1).map(input => input.value).join('');
+            let number = '';
+            for (let i = 0; i < selectedCountry.digits - 1; i++) {
+                number += digitInputs[i].value || '';
+            }
+            
             if (number.length < selectedCountry.digits - 1) {
                 showToast('⚠️ Lütfen tüm rakamları girin');
                 return;
@@ -829,13 +966,13 @@
             document.getElementById('resultNumber').textContent = display;
             
             await loadData();
-            
             document.getElementById('resultsSection').style.display = 'block';
             setLoading(false);
             
             document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
         }
 
+        // Set loading state
         function setLoading(loading) {
             const btn = document.getElementById('searchBtn');
             btn.disabled = loading;
@@ -843,39 +980,178 @@
                 ? '<span class="spinner"></span><span>Kontrol ediliyor...</span>'
                 : '<span>🔍</span><span>Kontrol Et</span>';
         }
-        
-        async function loadData() {
-            // ... Mevcut Supabase veri yükleme kodunuz ...
-            // Örnek skor güncellemesi
-            updateScore({ safe: 75, spam: 25 });
-        }
-        
-        function updateScore(votes) {
-            const total = votes.safe + votes.spam;
-            let safePercent = total > 0 ? Math.round((votes.safe / total) * 100) : 0;
-            let spamPercent = 100 - safePercent;
 
-            document.getElementById('scoreGreen').style.width = `${safePercent}%`;
-            document.getElementById('scoreRed').style.width = `${spamPercent}%`;
-            document.getElementById('percentGreen').textContent = `${safePercent}%`;
-            document.getElementById('percentRed').textContent = `${spamPercent}%`;
+        // Load data
+        async function loadData() {
+            try {
+                const hash = await hashPhone(currentNumber);
+                
+                const { data, error } = await supabase
+                    .from('phone_votes')
+                    .select('*')
+                    .eq('phone_hash', hash)
+                    .single();
+                
+                const votes = data ? { safe: data.total_safe, spam: data.total_spam } : { safe: 0, spam: 0 };
+                updateScore(votes);
+                
+                hasVoted = localStorage.getItem(`voted_${currentNumber}`) === 'true';
+                updateVoteButtons();
+                
+            } catch (error) {
+                console.error('Veri yüklenirken hata oluştu:', error);
+                updateScore({ safe: 0, spam: 0 });
+            }
+        }
+
+        // Update score display
+        function updateScore(votes) {
+            const total = (votes.safe || 0) + (votes.spam || 0);
+            let safePercent = 0;
+            let spamPercent = 0;
+            
+            if (total > 0) {
+                safePercent = Math.round((votes.safe / total) * 100);
+                spamPercent = 100 - safePercent;
+            }
+            
+            const greenEl = document.getElementById('scoreGreen');
+            const redEl = document.getElementById('scoreRed');
+            const percentGreenEl = document.getElementById('percentGreen');
+            const percentRedEl = document.getElementById('percentRed');
+            
+            greenEl.style.width = safePercent + '%';
+            redEl.style.width = spamPercent + '%';
+            percentGreenEl.textContent = safePercent + '%';
+            percentRedEl.textContent = spamPercent + '%';
+
+            percentGreenEl.style.display = safePercent > 10 ? 'block' : 'none';
+            percentRedEl.style.display = spamPercent > 10 ? 'block' : 'none';
+            
             document.getElementById('voteCount').textContent = `${total} değerlendirme`;
         }
-        
-        function showVerify(type) {
-            // ... Mevcut modal gösterme kodunuz ...
-            document.getElementById('modalOverlay').classList.add('show');
+
+        // Update vote buttons
+        function updateVoteButtons() {
+            document.getElementById('btnSafe').disabled = hasVoted;
+            document.getElementById('btnSpam').disabled = hasVoted;
         }
 
+        // Hash phone number
+        async function hashPhone(phone) {
+            const msgBuffer = new TextEncoder().encode(phone);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        // Show verification modal
+        function showVerify(type) {
+            if (hasVoted) {
+                showToast('✓ Bu numara için zaten oy kullandınız');
+                return;
+            }
+            
+            pendingVoteType = type;
+            for (let i = 1; i <= 5; i++) {
+                const input = document.getElementById(`v${i}`);
+                const check = document.getElementById(`c${i}`);
+                input.value = '';
+                input.classList.remove('correct');
+                check.classList.remove('show');
+            }
+            
+            document.getElementById('confirmBtn').disabled = true;
+            document.getElementById('modalOverlay').classList.add('show');
+            document.getElementById('v1').focus();
+        }
+
+        // Close modal
         function closeModal() {
             document.getElementById('modalOverlay').classList.remove('show');
         }
-        
-        function confirmVote() {
-            closeModal();
-            showToast('✅ Oyunuz başarıyla kaydedildi!');
+
+        // Setup verification inputs
+        function setupVerification() {
+            for (let i = 1; i <= 5; i++) {
+                const input = document.getElementById(`v${i}`);
+                input.addEventListener('input', checkVerify);
+                
+                input.addEventListener('keyup', function(e) {
+                    if (this.value === this.getAttribute('data-correct')) {
+                        if (i < 5 && e.key !== 'Backspace') {
+                           setTimeout(() => document.getElementById(`v${i + 1}`).focus(), 100);
+                        }
+                    }
+                });
+            }
         }
 
+        // Check verification
+        function checkVerify() {
+            let allCorrect = true;
+            for (let i = 1; i <= 5; i++) {
+                const input = document.getElementById(`v${i}`);
+                const check = document.getElementById(`c${i}`);
+                const correct = input.getAttribute('data-correct');
+                
+                if (input.value === correct) {
+                    input.classList.add('correct');
+                    check.classList.add('show');
+                } else {
+                    input.classList.remove('correct');
+                    check.classList.remove('show');
+                    allCorrect = false;
+                }
+            }
+            document.getElementById('confirmBtn').disabled = !allCorrect;
+        }
+
+        // Confirm vote
+        async function confirmVote() {
+            closeModal();
+            await vote(pendingVoteType);
+        }
+
+        // Vote function
+        async function vote(type) {
+            if (hasVoted) return;
+            
+            updateVoteButtons(true);
+            
+            try {
+                const hash = await hashPhone(currentNumber);
+                const { data: existing } = await supabase.from('phone_votes').select('total_safe, total_spam').eq('phone_hash', hash).single();
+                
+                let newSafe = existing ? existing.total_safe : 0;
+                let newSpam = existing ? existing.total_spam : 0;
+                
+                if (type === 'safe') newSafe++;
+                else newSpam++;
+                
+                const { data, error } = await supabase.from('phone_votes').upsert({ 
+                    phone_hash: hash, 
+                    total_safe: newSafe, 
+                    total_spam: newSpam 
+                }).select().single();
+                
+                if (error) throw error;
+                
+                localStorage.setItem(`voted_${currentNumber}`, 'true');
+                hasVoted = true;
+                
+                updateScore({ safe: data.total_safe, spam: data.total_spam });
+                updateVoteButtons();
+                showToast(type === 'safe' ? '🟢 Güvenli olarak işaretlendi' : '🔴 Şüpheli olarak işaretlendi');
+                
+            } catch (error) {
+                console.error('Oylama hatası:', error);
+                showToast('❌ Bir hata oluştu');
+                updateVoteButtons();
+            }
+        }
+
+        // Show toast notification
         function showToast(message) {
             const existing = document.querySelector('.toast');
             if (existing) existing.remove();
