@@ -375,8 +375,7 @@
             align-items: center;
             padding: 0 20px;
             gap: 4px;
-            overflow-x: auto;
-            overflow-y: hidden;
+            overflow: hidden;
             scrollbar-width: none;
             -ms-overflow-style: none;
         }
@@ -1604,6 +1603,8 @@
                 input.className = 'digit-input';
                 input.maxLength = 1;
                 input.dataset.index = i;
+                input.inputMode = 'numeric';
+                input.pattern = '[0-9]*';
                 
                 // Adjust width for many digits
                 if (window.innerWidth <= 640 && digitCount > 10) {
@@ -1629,10 +1630,7 @@
                     input.addEventListener('paste', e => handlePaste(e, i));
                     input.addEventListener('focus', () => {
                         document.getElementById('phoneWrapper').classList.add('focused');
-                        // Auto scroll to show focused input
-                        setTimeout(() => {
-                            input.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-                        }, 100);
+                        // Removed scrollIntoView to prevent unwanted scrolling
                     });
                     input.addEventListener('blur', () => {
                         document.getElementById('phoneWrapper').classList.remove('focused');
