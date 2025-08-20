@@ -2,7 +2,10 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#ef4444">
     <title>AcıBiber - Telefon Güvenlik Kontrolü</title>
     
     <!-- Fonts -->
@@ -24,12 +27,15 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #fff5f5 0%, #ffffff 50%, #fff0f0 100%);
             min-height: 100vh;
+            min-height: -webkit-fill-available;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
             position: relative;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         /* Background decoration */
@@ -363,6 +369,9 @@
             font-family: 'SF Mono', 'Monaco', monospace;
             letter-spacing: 2px;
             transition: all 0.2s;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
         }
 
         .digit-input:focus {
@@ -832,30 +841,299 @@
 
         /* Mobile */
         @media (max-width: 640px) {
+            body {
+                padding: 12px;
+            }
+
             .app-container {
                 max-width: 100%;
             }
 
             .card {
-                padding: 24px;
+                padding: 20px;
+                border-radius: 20px;
             }
 
-            .digit-input {
-                width: 32px;
-                height: 32px;
-                font-size: 16px;
-            }
-
+            /* Logo adjustments */
             .logo-wrapper {
-                padding: 12px 24px;
+                padding: 12px 20px;
             }
 
             .logo-text {
-                font-size: 24px;
+                font-size: 22px;
             }
 
             .logo-icon {
                 font-size: 28px;
+            }
+
+            .subtitle {
+                font-size: 14px;
+                margin-bottom: 16px;
+            }
+
+            .badges {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .badge {
+                font-size: 13px;
+                padding: 6px 12px;
+            }
+
+            /* Input sections */
+            .input-label {
+                font-size: 12px;
+            }
+
+            .country-selector {
+                height: 52px;
+                padding: 0 16px;
+            }
+
+            .country-name {
+                font-size: 15px;
+            }
+
+            .country-flag {
+                font-size: 24px;
+            }
+
+            .phone-input-wrapper {
+                height: 52px;
+            }
+
+            .country-code {
+                padding: 0 12px;
+                font-size: 16px;
+            }
+
+            .phone-digits {
+                padding: 0 8px;
+                gap: 2px;
+            }
+
+            .digit-input {
+                width: 28px;
+                height: 32px;
+                font-size: 16px;
+                border-radius: 6px;
+            }
+
+            /* Button adjustments */
+            .search-btn {
+                height: 52px;
+                font-size: 15px;
+                margin-top: 24px;
+            }
+
+            /* Results section */
+            .results-section {
+                margin-top: 32px;
+                padding-top: 32px;
+            }
+
+            .result-header {
+                margin-bottom: 24px;
+                padding-bottom: 24px;
+            }
+
+            .result-number {
+                font-size: 20px;
+                margin-bottom: 16px;
+            }
+
+            .verified-badge {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+
+            .score-bar {
+                height: 40px;
+            }
+
+            .score-green, .score-red {
+                font-size: 16px;
+            }
+
+            .vote-buttons {
+                gap: 12px;
+            }
+
+            .vote-btn {
+                padding: 12px;
+                font-size: 14px;
+            }
+
+            /* Modal adjustments */
+            .modal {
+                padding: 24px;
+                margin: 0 12px;
+            }
+
+            .modal-title {
+                font-size: 18px;
+            }
+
+            .modal-subtitle {
+                font-size: 13px;
+                margin-bottom: 20px;
+            }
+
+            .verify-item {
+                margin-bottom: 16px;
+            }
+
+            .verify-input {
+                padding: 10px 14px;
+                font-size: 14px;
+            }
+
+            .modal-buttons {
+                gap: 12px;
+            }
+
+            .modal-btn {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            /* Footer */
+            .footer {
+                margin-top: 32px;
+            }
+
+            .footer-links {
+                gap: 20px;
+            }
+
+            .footer-link {
+                font-size: 13px;
+            }
+
+            /* Country dropdown mobile */
+            .country-dropdown {
+                max-height: 250px;
+            }
+
+            .country-search {
+                padding: 12px;
+            }
+
+            .country-search input {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+
+            .country-item {
+                padding: 10px 12px;
+            }
+
+            .country-item-flag {
+                font-size: 20px;
+            }
+
+            .country-item-name {
+                font-size: 14px;
+            }
+
+            .country-item-code {
+                font-size: 14px;
+            }
+        }
+
+        /* Tablet adjustments */
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .app-container {
+                max-width: 580px;
+            }
+
+            .digit-input {
+                width: 36px;
+                height: 36px;
+            }
+        }
+
+        /* Large Desktop */
+        @media (min-width: 1440px) {
+            .app-container {
+                max-width: 700px;
+            }
+
+            .card {
+                padding: 40px;
+            }
+
+            .logo-wrapper {
+                padding: 18px 36px;
+            }
+
+            .logo-text {
+                font-size: 32px;
+            }
+
+            .logo-icon {
+                font-size: 40px;
+            }
+
+            .country-selector {
+                height: 60px;
+            }
+
+            .phone-input-wrapper {
+                height: 60px;
+            }
+
+            .digit-input {
+                width: 42px;
+                height: 42px;
+                font-size: 20px;
+            }
+
+            .search-btn {
+                height: 60px;
+                font-size: 18px;
+            }
+        }
+
+        /* Very small phones */
+        @media (max-width: 380px) {
+            .digit-input {
+                width: 24px;
+                height: 30px;
+                font-size: 14px;
+            }
+
+            .phone-digits {
+                gap: 1px;
+            }
+
+            .badges {
+                font-size: 12px;
+            }
+
+            .logo-text {
+                font-size: 20px;
+            }
+        }
+
+        /* Landscape mode adjustments */
+        @media (max-height: 600px) and (orientation: landscape) {
+            body {
+                padding: 8px;
+            }
+
+            .logo-section {
+                margin-bottom: 20px;
+            }
+
+            .card {
+                padding: 16px;
+            }
+
+            .input-section {
+                margin-bottom: 16px;
             }
         }
     </style>
