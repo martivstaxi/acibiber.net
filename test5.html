@@ -2,85 +2,76 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <!-- Mobil uyumluluk için temel viewport ayarı -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    
-    <!-- PWA (Progressive Web App) için meta etiketleri -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#ef4444">
-    
     <title>AcıBiber - Telefon Güvenlik Kontrolü</title>
     
-    <!-- Google Fonts -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Supabase Kütüphanesi -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+        // Re-initialize phone inputs on orientation change or major resize to keep sizes tidy on mobile
+        let _resizeTO;
+        window.addEventListener('resize', () => {
+            clearTimeout(_resizeTO);
+            _resizeTO = setTimeout(() => {
+                initializePhoneInput();
+            }, 200);
+        });
+        window.addEventListener('orientationchange', () => {
+            setTimeout(() => initializePhoneInput(), 250);
+        });
+
+    </script>
     
     <style>
-        /* CSS Değişkenleri ve Temel Ayarlar */
-        :root {
-            --primary-color: #ef4444;
-            --primary-dark: #dc2626;
-            --green-color: #16a34a;
-            --text-dark: #1f2937;
-            --text-medium: #374151;
-            --text-light: #6b7280;
-            --bg-light: #fef2f2;
-            --border-light: #fecaca;
-            --border-extra-light: #fee2e2;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html {
-            /* Daha akıcı kaydırma deneyimi */
-            scroll-behavior: smooth;
-        }
-
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #fff5f5 0%, #ffffff 50%, #fff0f0 100%);
             min-height: 100vh;
-            min-height: -webkit-fill-available; /* iOS Safari için tam ekran */
+            min-height: -webkit-fill-available;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 1rem; /* Göreli birim kullanımı */
+            padding: 20px;
             position: relative;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Arka plan dekorasyonları */
-        body::before, body::after {
+        /* Background decoration */
+        body::before {
             content: '';
             position: absolute;
-            border-radius: 50%;
-            z-index: -1;
-            pointer-events: none;
-        }
-        body::before {
             top: -200px;
             right: -200px;
             width: 400px;
             height: 400px;
             background: radial-gradient(circle, rgba(239, 68, 68, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
         }
+
         body::after {
+            content: '';
+            position: absolute;
             bottom: -150px;
             left: -150px;
             width: 300px;
             height: 300px;
             background: radial-gradient(circle, rgba(239, 68, 68, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
         }
 
         .app-container {
@@ -90,11 +81,12 @@
             z-index: 1;
         }
 
-        /* Logo Bölümü */
+        /* Logo Section */
         .logo-section {
             text-align: center;
             margin-bottom: 40px;
         }
+
         .logo-wrapper {
             display: inline-flex;
             align-items: center;
@@ -102,38 +94,44 @@
             background: white;
             padding: 16px 32px;
             border-radius: 100px;
-            box-shadow: 0 10px 40px rgba(239, 68, 68, 0.15), 0 2px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 40px rgba(239, 68, 68, 0.15),
+                        0 2px 10px rgba(0, 0, 0, 0.05);
             margin-bottom: 20px;
             border: 2px solid rgba(239, 68, 68, 0.1);
         }
+
         .logo-icon {
             font-size: 36px;
             animation: pulse 2s infinite;
         }
+
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.1); }
         }
+
         .logo-text {
-            font-size: clamp(1.5rem, 4vw, 1.75rem); /* Duyarlı font boyutu */
+            font-size: 28px;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            background: linear-gradient(135deg, #ef4444, #dc2626);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+
         .subtitle {
-            color: var(--text-light);
-            font-size: 1rem;
+            color: #6b7280;
+            font-size: 16px;
             margin-bottom: 20px;
             font-weight: 500;
         }
+
         .badges {
             display: flex;
             gap: 24px;
             justify-content: center;
-            flex-wrap: wrap; /* Mobil için sarmalama */
         }
+
         .badge {
             display: flex;
             align-items: center;
@@ -141,35 +139,45 @@
             padding: 8px 16px;
             background: white;
             border-radius: 50px;
-            font-size: 0.875rem;
+            font-size: 14px;
             font-weight: 600;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
         }
+
         .badge.red {
-            color: var(--primary-dark);
+            color: #dc2626;
             border: 1px solid rgba(220, 38, 38, 0.2);
         }
+
         .badge.green {
-            color: var(--green-color);
+            color: #16a34a;
             border: 1px solid rgba(22, 163, 74, 0.2);
         }
 
-        /* Ana Kart */
+        /* Card Container */
         .card {
             background: white;
             border-radius: 24px;
             padding: 32px;
-            box-shadow: 0 20px 60px rgba(239, 68, 68, 0.1), 0 10px 30px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 20px 60px rgba(239, 68, 68, 0.1),
+                        0 10px 30px rgba(0, 0, 0, 0.05);
             margin-bottom: 32px;
         }
 
-        /* Giriş Bölümü */
+        /* Input Section */
         .input-section {
             margin-bottom: 28px;
         }
+
+        /* Country Selector */
+        .country-container {
+            margin-bottom: 24px;
+            position: relative;
+        }
+
         .input-label {
-            color: var(--text-medium);
-            font-size: 0.875rem;
+            color: #374151;
+            font-size: 14px;
             font-weight: 600;
             margin-bottom: 10px;
             display: block;
@@ -177,16 +185,11 @@
             letter-spacing: 0.5px;
         }
 
-        /* Ülke Seçimi */
-        .country-container {
-            margin-bottom: 24px;
-            position: relative;
-        }
         .country-selector {
             width: 100%;
             height: 56px;
-            background: var(--bg-light);
-            border: 2px solid var(--border-light);
+            background: #fef2f2;
+            border: 2px solid #fecaca;
             border-radius: 14px;
             padding: 0 20px;
             display: flex;
@@ -197,35 +200,52 @@
             position: relative;
             z-index: 10;
         }
+
         .country-selector:hover {
-            background: var(--border-extra-light);
+            background: #fee2e2;
             border-color: #fca5a5;
             transform: translateY(-1px);
         }
+
         .country-selector:focus-within {
-             border-color: var(--primary-color);
+            border-color: #ef4444;
             box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
         }
-        .country-selector.active .dropdown-arrow {
-            transform: rotate(180deg);
-        }
+
         .country-info {
             display: flex;
             align-items: center;
             gap: 12px;
         }
-        .country-flag { font-size: 28px; }
-        .country-name { color: var(--text-dark); font-size: 1rem; font-weight: 600; }
-        .dropdown-arrow { color: var(--primary-color); font-size: 24px; transition: transform 0.3s; }
 
-        /* Ülke Listesi */
+        .country-flag {
+            font-size: 28px;
+        }
+
+        .country-name {
+            color: #1f2937;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .dropdown-arrow {
+            color: #ef4444;
+            font-size: 24px;
+            transition: transform 0.3s;
+        }
+
+        .country-selector.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Country Dropdown */
         .country-dropdown {
             position: absolute;
             top: calc(100% + 8px);
             left: 0;
             right: 0;
             background: white;
-            border: 2px solid var(--border-light);
+            border: 2px solid #fecaca;
             border-radius: 16px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
             max-height: 300px;
@@ -233,18 +253,44 @@
             z-index: 1000;
             display: none;
         }
-        .country-dropdown.show { display: block; }
-        .country-search { padding: 16px; border-bottom: 1px solid var(--border-extra-light); position: sticky; top: 0; background: white; z-index: 1; }
+
+        .country-dropdown.show {
+            display: block;
+        }
+
+        .country-search {
+            padding: 16px;
+            border-bottom: 1px solid #fee2e2;
+            position: sticky;
+            top: 0;
+            background: white;
+        }
+
         .country-search input {
             width: 100%;
             padding: 10px 16px;
-            background: var(--bg-light);
-            border: 2px solid var(--border-light);
+            background: #fef2f2;
+            border: 2px solid #fecaca;
             border-radius: 10px;
+            color: #1f2937;
             font-size: 14px;
+            font-weight: 500;
         }
-        .country-search input:focus { outline: none; border-color: var(--primary-color); background: white; }
-        .country-list { padding: 8px; }
+
+        .country-search input::placeholder {
+            color: #9ca3af;
+        }
+
+        .country-search input:focus {
+            outline: none;
+            border-color: #ef4444;
+            background: white;
+        }
+
+        .country-list {
+            padding: 8px;
+        }
+
         .country-item {
             display: flex;
             align-items: center;
@@ -254,86 +300,129 @@
             cursor: pointer;
             transition: background 0.2s;
         }
-        .country-item:hover { background: var(--bg-light); }
-        .country-item-flag { font-size: 24px; }
-        .country-item-name { color: var(--text-dark); flex: 1; font-weight: 500; }
-        .country-item-code { color: var(--primary-color); font-weight: 700; }
 
-        /* Telefon Numarası Girişi */
+        .country-item:hover {
+            background: #fef2f2;
+        }
+
+        .country-item-flag {
+            font-size: 24px;
+        }
+
+        .country-item-name {
+            color: #1f2937;
+            flex: 1;
+            font-weight: 500;
+        }
+
+        .country-item-code {
+            color: #ef4444;
+            font-weight: 700;
+        }
+
+        /* Phone Input */
+        .phone-container {
+            position: relative;
+        }
+
         .phone-input-wrapper {
             position: relative;
             width: 100%;
             height: 56px;
-            background: var(--bg-light);
-            border: 2px solid var(--border-light);
+            background: #fef2f2;
+            border: 2px solid #fecaca;
             border-radius: 14px;
             display: flex;
             align-items: center;
             transition: all 0.3s;
             overflow: hidden;
         }
-        .phone-input-wrapper:hover { transform: translateY(-1px); }
+
+        .phone-input-wrapper:hover {
+            background: #fee2e2;
+            border-color: #fca5a5;
+            transform: translateY(-1px);
+        }
+
         .phone-input-wrapper.focused {
-            border-color: var(--primary-color);
+            border-color: #ef4444;
             box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
         }
+
         .country-code {
             padding: 0 20px;
-            color: var(--primary-color);
-            font-size: 1.125rem;
+            color: #ef4444;
+            font-size: 18px;
             font-weight: 700;
-            border-right: 2px solid var(--border-light);
+            border-right: 2px solid #fecaca;
             height: 100%;
             display: flex;
             align-items: center;
             background: white;
-            flex-shrink: 0;
         }
+
         .phone-digits {
-            flex-grow: 1;
+            flex: 1;
             display: flex;
             align-items: center;
-            padding: 0 1rem;
+            padding: 0 20px;
             gap: 4px;
             overflow-x: auto;
-            -ms-overflow-style: none; /* IE and Edge */
-            scrollbar-width: none; /* Firefox */
+            overflow-y: hidden;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
-        .phone-digits::-webkit-scrollbar { display: none; /* Chrome, Safari, Opera */ }
+
+        .phone-digits::-webkit-scrollbar {
+            display: none;
+        }
+
         .digit-input {
-            flex: 1; /* Esnek büyüme ve küçülme */
-            min-width: 28px; /* Minimum genişlik */
-            max-width: 40px; /* Maksimum genişlik */
-            height: 40px;
+            flex-shrink: 0;
+            width: 38px;
+            height: 38px;
             background: white;
-            border: 1px solid var(--border-light);
+            border: 1px solid #fecaca;
             border-radius: 8px;
-            color: var(--text-dark);
-            font-size: 1.125rem;
+            color: #1f2937;
+            font-size: 18px;
             font-weight: 600;
             text-align: center;
             font-family: 'SF Mono', 'Monaco', monospace;
+            letter-spacing: 2px;
             transition: all 0.2s;
             -webkit-appearance: none;
+            -moz-appearance: none;
             appearance: none;
         }
+
         .digit-input:focus {
             outline: none;
-            border-color: var(--primary-color);
-            transform: scale(1.05);
+            border-color: #ef4444;
+            background: white;
             box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
         }
-        .digit-input.disabled { background: #f3f4f6; color: #9ca3af; cursor: not-allowed; border-color: #e5e7eb; }
 
-        /* Arama Butonu */
+        .digit-input::placeholder {
+            color: #d1d5db;
+        }
+
+        .digit-input.disabled {
+            background: #f3f4f6;
+            color: #9ca3af;
+            cursor: not-allowed;
+            border-color: #e5e7eb;
+        }
+
+        /* Search Button */
         .search-btn {
             width: 100%;
             height: 56px;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            background: linear-gradient(135deg, #ef4444, #dc2626);
             color: white;
             border: none;
             border-radius: 14px;
-            font-size: 1.0625rem;
+            font-size: 17px;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
@@ -346,56 +435,90 @@
             letter-spacing: 0.5px;
             margin-top: 32px;
         }
-        .search-btn:hover:not(:disabled) {
+
+        .search-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 15px 40px rgba(239, 68, 68, 0.4);
         }
-        .search-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
-        /* Sonuçlar Bölümü */
+        .search-btn:active {
+            transform: translateY(0);
+        }
+
+        .search-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Results Section */
         .results-section {
             display: none;
-            animation: slideUp 0.5s ease-out;
+            animation: slideUp 0.4s ease;
             margin-top: 40px;
             padding-top: 40px;
-            border-top: 2px solid var(--border-extra-light);
+            border-top: 2px solid #fee2e2;
         }
+
         @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        .result-header { text-align: center; margin-bottom: 36px; padding-bottom: 36px; border-bottom: 2px solid var(--border-extra-light); }
+
+        .result-header {
+            text-align: center;
+            margin-bottom: 36px;
+            padding-bottom: 36px;
+            border-bottom: 2px solid #fee2e2;
+        }
+
         .result-number {
-            font-size: clamp(1.25rem, 5vw, 1.625rem);
+            font-size: 26px;
             font-weight: 700;
-            color: var(--text-dark);
+            color: #1f2937;
             margin-bottom: 20px;
-            word-break: break-all; /* Uzun numaraların taşmasını engelle */
         }
+
         .verified-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
             background: linear-gradient(135deg, #fef2f2, #fee2e2);
-            color: var(--primary-dark);
+            color: #dc2626;
             padding: 8px 16px;
             border-radius: 100px;
-            font-size: 0.875rem;
+            font-size: 14px;
             font-weight: 700;
-            border: 2px solid var(--border-light);
+            border: 2px solid #fecaca;
         }
 
-        /* Skor Çubuğu */
-        .score-container { margin-bottom: 28px; }
+        /* Score Section */
+        .score-container {
+            margin-bottom: 28px;
+        }
+
         .score-labels {
             display: flex;
             justify-content: space-between;
             margin-bottom: 12px;
-            font-size: 0.875rem;
+            font-size: 14px;
             font-weight: 700;
         }
-        .score-label-green { color: var(--green-color); }
-        .score-label-red { color: var(--primary-dark); }
+
+        .score-label-green {
+            color: #16a34a;
+        }
+
+        .score-label-red {
+            color: #dc2626;
+        }
+
         .score-bar {
             height: 48px;
             background: #f3f4f6;
@@ -404,31 +527,51 @@
             display: flex;
             box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
         }
-        .score-green, .score-red {
+
+        .score-green {
+            background: linear-gradient(90deg, #16a34a, #22c55e);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: 700;
-            font-size: 1.125rem;
-            transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            font-size: 18px;
+            transition: width 0.6s ease;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
         }
-        .score-green { background: linear-gradient(90deg, #16a34a, #22c55e); }
-        .score-red { background: linear-gradient(90deg, #dc2626, #ef4444); }
-        .vote-count { text-align: center; font-size: 0.875rem; color: var(--text-light); margin-top: 10px; font-weight: 600; }
 
-        /* Oy Butonları */
+        .score-red {
+            background: linear-gradient(90deg, #dc2626, #ef4444);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+            transition: width 0.6s ease;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .vote-count {
+            text-align: center;
+            font-size: 14px;
+            color: #6b7280;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        /* Vote Buttons */
         .vote-buttons {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Esnek Grid */
+            grid-template-columns: 1fr 1fr;
             gap: 16px;
         }
+
         .vote-btn {
             padding: 14px;
             border: 2px solid;
             border-radius: 12px;
-            font-size: 0.9375rem;
+            font-size: 15px;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.2s;
@@ -440,26 +583,59 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        .vote-btn.safe { border-color: #bbf7d0; color: var(--green-color); background: #f0fdf4; }
-        .vote-btn.safe:hover:not(:disabled) { background: var(--green-color); color: white; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(22, 163, 74, 0.3); }
-        .vote-btn.spam { border-color: var(--border-light); color: var(--primary-dark); background: var(--bg-light); }
-        .vote-btn.spam:hover:not(:disabled) { background: var(--primary-dark); color: white; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(220, 38, 38, 0.3); }
-        .vote-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
 
-        /* Modal (Popup) */
+        .vote-btn.safe {
+            border-color: #bbf7d0;
+            color: #16a34a;
+            background: #f0fdf4;
+        }
+
+        .vote-btn.safe:hover:not(:disabled) {
+            background: #16a34a;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(22, 163, 74, 0.3);
+        }
+
+        .vote-btn.spam {
+            border-color: #fecaca;
+            color: #dc2626;
+            background: #fef2f2;
+        }
+
+        .vote-btn.spam:hover:not(:disabled) {
+            background: #dc2626;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(220, 38, 38, 0.3);
+        }
+
+        .vote-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* Modal */
         .modal-overlay {
             position: fixed;
-            inset: 0; /* top, left, right, bottom: 0 */
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(8px);
             display: none;
             align-items: center;
             justify-content: center;
             z-index: 1000;
-            padding: 1rem;
+            padding: 20px;
         }
-        .modal-overlay.show { display: flex; animation: fadeIn 0.3s ease; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
         .modal {
             background: white;
             border-radius: 20px;
@@ -469,127 +645,606 @@
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
             animation: modalSlide 0.3s ease;
         }
+
         @keyframes modalSlide {
-            from { opacity: 0; transform: translateY(10px) scale(0.98); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
-        .modal-title { font-size: 1.375rem; font-weight: 800; color: var(--text-dark); margin-bottom: 8px; text-align: center; }
-        .modal-subtitle { font-size: 0.875rem; color: var(--text-light); text-align: center; margin-bottom: 28px; }
-        .verify-item { margin-bottom: 20px; position: relative; }
-        .verify-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 13px; font-weight: 700; color: var(--text-medium); }
-        .verify-code { background: var(--bg-light); color: var(--primary-dark); padding: 4px 12px; border-radius: 8px; font-family: monospace; border: 1px solid var(--border-light); font-weight: 600; }
+
+        .modal-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #1f2937;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .modal-subtitle {
+            font-size: 14px;
+            color: #6b7280;
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .verify-item {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .verify-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #374151;
+        }
+
+        .verify-code {
+            background: #fef2f2;
+            color: #dc2626;
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-family: monospace;
+            border: 1px solid #fecaca;
+            font-weight: 600;
+        }
+
         .verify-input {
             width: 100%;
             padding: 12px 16px;
             padding-right: 40px;
-            background: var(--bg-light);
-            border: 2px solid var(--border-light);
+            background: #fef2f2;
+            border: 2px solid #fecaca;
             border-radius: 10px;
+            color: #1f2937;
             font-size: 15px;
             font-family: monospace;
+            font-weight: 600;
             transition: all 0.2s;
         }
-        .verify-input:focus { outline: none; border-color: var(--primary-color); background: white; }
-        .verify-input.correct { border-color: var(--green-color); background: #f0fdf4; }
-        .verify-check {
-            position: absolute; right: 12px; bottom: 12px;
-            width: 24px; height: 24px; background: var(--green-color);
-            border-radius: 50%; display: none; align-items: center; justify-content: center;
-            color: white; font-weight: bold; animation: checkPop 0.3s ease;
+
+        .verify-input:focus {
+            outline: none;
+            border-color: #ef4444;
+            background: white;
         }
-        .verify-check.show { display: flex; }
-        @keyframes checkPop { from { transform: scale(0); } to { transform: scale(1); } }
 
-        .modal-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
-        .modal-btn { padding: 12px; border: none; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.5px; }
-        .modal-btn-cancel { background: #f3f4f6; color: var(--text-light); border: 2px solid #e5e7eb; }
-        .modal-btn-cancel:hover { background: #e5e7eb; color: #4b5563; }
-        .modal-btn-confirm { background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)); color: white; border: 2px solid transparent; }
-        .modal-btn-confirm:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(239, 68, 68, 0.3); }
-        .modal-btn-confirm:disabled { opacity: 0.5; cursor: not-allowed; }
+        .verify-input.correct {
+            border-color: #16a34a;
+            background: #f0fdf4;
+        }
 
-        /* Toast (Bildirim) */
+        .verify-check {
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            width: 24px;
+            height: 24px;
+            background: #16a34a;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            animation: checkPop 0.3s ease;
+        }
+
+        .verify-check.show {
+            display: flex;
+        }
+
+        @keyframes checkPop {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+
+        .modal-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 28px;
+        }
+
+        .modal-btn {
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .modal-btn-cancel {
+            background: #f3f4f6;
+            color: #6b7280;
+            border: 2px solid #e5e7eb;
+        }
+
+        .modal-btn-cancel:hover {
+            background: #e5e7eb;
+            color: #4b5563;
+        }
+
+        .modal-btn-confirm {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            border: 2px solid transparent;
+        }
+
+        .modal-btn-confirm:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(239, 68, 68, 0.3);
+        }
+
+        .modal-btn-confirm:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Toast */
         .toast {
             position: fixed;
             bottom: 24px;
             left: 50%;
-            transform: translateX(-50%) translateY(120px);
-            background: var(--text-dark);
-            color: white;
+            transform: translateX(-50%) translateY(100px);
+            background: white;
+            border: 2px solid #fecaca;
+            color: #1f2937;
             padding: 16px 24px;
             border-radius: 12px;
-            font-size: 0.9rem;
+            font-size: 14px;
             font-weight: 600;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
             z-index: 2000;
-            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            transition: transform 0.3s ease;
         }
-        .toast.show { transform: translateX(-50%) translateY(0); }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
 
         /* Footer */
-        .footer { text-align: center; margin-top: 40px; }
-        .footer-links { display: flex; justify-content: center; gap: 32px; margin-bottom: 16px; flex-wrap: wrap; }
-        .footer-link { color: var(--text-light); text-decoration: none; font-size: 0.875rem; font-weight: 600; transition: color 0.2s; }
-        .footer-link:hover { color: var(--primary-color); }
-        .copyright { font-size: 0.8125rem; color: #9ca3af; font-weight: 500; }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 16px;
+        }
+
+        .footer-link {
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: #ef4444;
+        }
+
+        .copyright {
+            font-size: 13px;
+            color: #9ca3af;
+            font-weight: 500;
+        }
 
         /* Spinner */
         .spinner {
             display: inline-block;
-            width: 16px; height: 16px;
+            width: 16px;
+            height: 16px;
             border: 3px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             border-top-color: white;
             animation: spin 0.8s linear infinite;
         }
-        @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* MOBİL UYUMLULUK (MEDIA QUERIES) */
-        /* Tablet ve Altı */
-        @media (max-width: 768px) {
-            body { padding: 0.75rem; }
-            .card { padding: 20px; }
-            .logo-wrapper { padding: 12px 24px; }
-            .badges { flex-direction: column; gap: 12px; }
-            .score-bar { height: 40px; }
-            .modal { padding: 24px; }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
-        /* Sadece Mobil */
-        @media (max-width: 480px) {
-            .subtitle { font-size: 0.9rem; }
-            .country-selector, .phone-input-wrapper, .search-btn { height: 52px; }
-            .country-name { font-size: 0.95rem; }
-            .country-flag { font-size: 24px; }
-            .country-code { padding: 0 12px; font-size: 1rem; }
-            .phone-digits { padding: 0 8px; gap: 2px; }
-            .digit-input { height: 36px; font-size: 1rem; }
-            .search-btn { font-size: 0.95rem; }
-            .result-header { padding-bottom: 24px; margin-bottom: 24px; }
-            .vote-btn { padding: 12px; font-size: 0.875rem; }
-            .footer-links { gap: 20px; }
-            .modal-title { font-size: 1.25rem; }
+        /* Mobile */
+        @media (max-width: 640px) {
+            body {
+                padding: 12px;
+            }
+
+            .app-container {
+                max-width: 100%;
+            }
+
+            .card {
+                padding: 20px;
+                border-radius: 20px;
+            }
+
+            /* Logo adjustments */
+            .logo-wrapper {
+                padding: 12px 20px;
+            }
+
+            .logo-text {
+                font-size: 22px;
+            }
+
+            .logo-icon {
+                font-size: 28px;
+            }
+
+            .subtitle {
+                font-size: 14px;
+                margin-bottom: 16px;
+            }
+
+            .badges {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .badge {
+                font-size: 13px;
+                padding: 6px 12px;
+            }
+
+            /* Input sections */
+            .input-label {
+                font-size: 12px;
+            }
+
+            .country-selector {
+                height: 52px;
+                padding: 0 16px;
+            }
+
+            .country-name {
+                font-size: 15px;
+            }
+
+            .country-flag {
+                font-size: 24px;
+            }
+
+            .phone-input-wrapper {
+                height: 52px;
+            }
+
+            .country-code {
+                padding: 0 12px;
+                font-size: 16px;
+            }
+
+            .phone-digits {
+                padding: 0 8px;
+                gap: 2px;
+                min-width: 0;
+                overflow-x: auto;
+            }
+
+            .digit-input {
+                flex-shrink: 0;
+                width: 28px;
+                height: 32px;
+                font-size: 16px;
+                border-radius: 6px;
+            }
+
+            /* Button adjustments */
+            .search-btn {
+                height: 52px;
+                font-size: 15px;
+                margin-top: 24px;
+            }
+
+            /* Results section */
+            .results-section {
+                margin-top: 32px;
+                padding-top: 32px;
+            }
+
+            .result-header {
+                margin-bottom: 24px;
+                padding-bottom: 24px;
+            }
+
+            .result-number {
+                font-size: 20px;
+                margin-bottom: 16px;
+            }
+
+            .verified-badge {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+
+            .score-bar {
+                height: 40px;
+            }
+
+            .score-green, .score-red {
+                font-size: 16px;
+            }
+
+            .vote-buttons {
+                gap: 12px;
+            }
+
+            .vote-btn {
+                padding: 12px;
+                font-size: 14px;
+            }
+
+            /* Modal adjustments */
+            .modal {
+                padding: 24px;
+                margin: 0 12px;
+            }
+
+            .modal-title {
+                font-size: 18px;
+            }
+
+            .modal-subtitle {
+                font-size: 13px;
+                margin-bottom: 20px;
+            }
+
+            .verify-item {
+                margin-bottom: 16px;
+            }
+
+            .verify-input {
+                padding: 10px 14px;
+                font-size: 14px;
+            }
+
+            .modal-buttons {
+                gap: 12px;
+            }
+
+            .modal-btn {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            /* Footer */
+            .footer {
+                margin-top: 32px;
+            }
+
+            .footer-links {
+                gap: 20px;
+            }
+
+            .footer-link {
+                font-size: 13px;
+            }
+
+            /* Country dropdown mobile */
+            .country-dropdown {
+                max-height: 250px;
+            }
+
+            .country-search {
+                padding: 12px;
+            }
+
+            .country-search input {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+
+            .country-item {
+                padding: 10px 12px;
+            }
+
+            .country-item-flag {
+                font-size: 20px;
+            }
+
+            .country-item-name {
+                font-size: 14px;
+            }
+
+            .country-item-code {
+                font-size: 14px;
+            }
         }
 
-        /* Yatay Mod Ayarlamaları */
-        @media (max-height: 500px) and (orientation: landscape) {
-            body { align-items: flex-start; padding-top: 1rem; }
-            .logo-section { margin-bottom: 20px; }
-            .card { padding: 16px; }
-            .input-section { margin-bottom: 16px; }
-            .results-section { margin-top: 20px; padding-top: 20px; }
+        /* Tablet adjustments */
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .app-container {
+                max-width: 580px;
+            }
+
+            .digit-input {
+                width: 36px;
+                height: 36px;
+            }
         }
+
+        /* Large Desktop */
+        @media (min-width: 1440px) {
+            .app-container {
+                max-width: 700px;
+            }
+
+            .card {
+                padding: 40px;
+            }
+
+            .logo-wrapper {
+                padding: 18px 36px;
+            }
+
+            .logo-text {
+                font-size: 32px;
+            }
+
+            .logo-icon {
+                font-size: 40px;
+            }
+
+            .country-selector {
+                height: 60px;
+            }
+
+            .phone-input-wrapper {
+                height: 60px;
+            }
+
+            .digit-input {
+                width: 42px;
+                height: 42px;
+                font-size: 20px;
+            }
+
+            .search-btn {
+                height: 60px;
+                font-size: 18px;
+            }
+        }
+
+        /* Very small phones */
+        @media (max-width: 380px) {
+            .digit-input {
+                flex-shrink: 0;
+                width: 24px;
+                height: 30px;
+                font-size: 14px;
+            }
+
+            .phone-digits {
+                gap: 1px;
+                padding: 0 6px;
+            }
+
+            .badges {
+                font-size: 12px;
+            }
+
+            .logo-text {
+                font-size: 20px;
+            }
+
+            .country-code {
+                padding: 0 10px;
+                font-size: 14px;
+            }
+        }
+
+        /* Landscape mode adjustments */
+        @media (max-height: 600px) and (orientation: landscape) {
+            body {
+                padding: 8px;
+            }
+
+            .logo-section {
+                margin-bottom: 20px;
+            }
+
+            .card {
+                padding: 16px;
+            }
+
+            .input-section {
+                margin-bottom: 16px;
+            }
+        }
+    
+        /* --- Extra Mobile-Friendly Enhancements (non-breaking) --- */
+        :root {
+            --safe-left: env(safe-area-inset-left, 0px);
+            --safe-right: env(safe-area-inset-right, 0px);
+            --safe-top: env(safe-area-inset-top, 0px);
+            --safe-bottom: env(safe-area-inset-bottom, 0px);
+        }
+
+        html, body {
+            height: -webkit-fill-available;
+        }
+
+        body {
+            padding-left: max(12px, var(--safe-left));
+            padding-right: max(12px, var(--safe-right));
+            padding-top: max(12px, var(--safe-top));
+            padding-bottom: max(12px, var(--safe-bottom));
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Better focus visibility (accessibility) */
+        :focus-visible {
+            outline: 3px solid rgba(239, 68, 68, 0.35);
+            outline-offset: 2px;
+        }
+
+        /* Reduce motion for users who prefer it */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        /* Prevent horizontal scroll on small screens */
+        .app-container, .card, .phone-digits {
+            max-width: 100%;
+        }
+
+        /* Compact layout tweaks for very small phones */
+        @media (max-width: 640px) {
+            .phone-digits {
+                flex-wrap: wrap;
+                padding: 6px 8px;
+                gap: 4px;
+            }
+            .digit-input {
+                width: 26px !important;
+                height: 34px !important;
+            }
+            .badge {
+                white-space: nowrap;
+            }
+            .country-dropdown {
+                max-height: 55vh; /* more room for country list */
+            }
+            .modal {
+                max-height: 85vh;
+                overflow: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+
     </style>
 </head>
 <body>
     <div class="app-container">
         <!-- Logo Section -->
-        <header class="logo-section">
+        <div class="logo-section">
             <div class="logo-wrapper">
                 <span class="logo-icon">🌶️</span>
-                <h1 class="logo-text">AciBiber.net</h1>
+                <span class="logo-text">AciBiber.net</span>
             </div>
-            <p class="subtitle">Şüpheli numaraları sorgula, güvende kal</p>
+            <div class="subtitle">Şüpheli numaraları sorgula, güvende kal</div>
             <div class="badges">
                 <div class="badge red">
                     <span>🔴</span>
@@ -600,15 +1255,15 @@
                     <span>Yeşil Biber: Güvenli</span>
                 </div>
             </div>
-        </header>
+        </div>
 
         <!-- Main Card -->
-        <main class="card">
+        <div class="card">
             <!-- Input Section -->
-            <section class="input-section">
+            <div class="input-section">
                 <!-- Country Selector -->
                 <div class="country-container">
-                    <label class="input-label" for="countrySearch">Ülke Seçimi</label>
+                    <label class="input-label">Ülke Seçimi</label>
                     <div class="country-selector" id="countrySelector" onclick="toggleCountryDropdown()">
                         <div class="country-info">
                             <span class="country-flag" id="selectedFlag">🇹🇷</span>
@@ -630,11 +1285,11 @@
                     <div class="phone-input-wrapper" id="phoneWrapper">
                         <div class="country-code" id="countryCode">+90</div>
                         <div class="phone-digits" id="phoneDigits">
-                            <!-- Digits will be generated by JS -->
+                            <!-- Digits will be generated -->
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
 
             <!-- Search Button -->
             <button class="search-btn" id="searchBtn" onclick="searchNumber()">
@@ -643,7 +1298,7 @@
             </button>
 
             <!-- Results Section -->
-            <section class="results-section" id="resultsSection">
+            <div class="results-section" id="resultsSection">
                 <div class="result-header">
                     <div class="result-number" id="resultNumber"></div>
                     <span class="verified-badge">✓ Kontrol Edildi</span>
@@ -675,25 +1330,25 @@
                         <span>Şüpheli</span>
                     </button>
                 </div>
-            </section>
-        </main>
+            </div>
+        </div>
 
         <!-- Footer -->
-        <footer class="footer">
+        <div class="footer">
             <div class="footer-links">
                 <a href="#" class="footer-link">Gizlilik</a>
                 <a href="#" class="footer-link">Hakkında</a>
                 <a href="#" class="footer-link">İletişim</a>
             </div>
             <div class="copyright">© 2025 AciBiber.net - Tüm hakları saklıdır.</div>
-        </footer>
+        </div>
     </div>
 
     <!-- Verification Modal -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal">
             <div class="modal-title">🔐 Güvenlik Doğrulaması</div>
-            <p class="modal-subtitle">Oyunuzu kaydetmek için aşağıdaki metinleri yazın</p>
+            <div class="modal-subtitle">Oyunuzu kaydetmek için aşağıdaki metinleri yazın</div>
 
             <div class="verify-item">
                 <div class="verify-label">
@@ -791,15 +1446,47 @@
             container.innerHTML = '';
             digitInputs = [];
             
+            // Calculate optimal width based on digit count
+            const digitCount = selectedCountry.digits;
+            let digitWidth = 38;
+            
+            // Adjust for more digits
+            if (digitCount > 10) {
+                digitWidth = 32;
+            }
+            
+            // Create placeholder format based on country
+            let placeholder = '';
+            if (selectedCountry.code === '+90') {
+                placeholder = '5XX XXX XX XX';
+            } else if (selectedCountry.code === '+86') {
+                placeholder = '1XX XXXX XXXX';
+            } else {
+                placeholder = '000 000 0000';
+            }
+            
             // Create input for each digit
             for (let i = 0; i < selectedCountry.digits; i++) {
                 const input = document.createElement('input');
                 input.type = 'tel';
                 input.className = 'digit-input';
+                input.setAttribute('inputmode','numeric');
                 input.maxLength = 1;
                 input.dataset.index = i;
-                input.placeholder = '#';
                 
+                // Adjust width for many digits
+                if (window.innerWidth <= 640 && digitCount > 10) {
+                    input.style.width = '26px';
+                } else if (digitCount > 10) {
+                    input.style.width = digitWidth + 'px';
+                }
+                
+                // Set placeholder
+                if (placeholder[i] && placeholder[i] !== ' ') {
+                    input.placeholder = placeholder[i];
+                }
+                
+                // Last digit is always X
                 if (i === selectedCountry.digits - 1) {
                     input.className += ' disabled';
                     input.value = 'X';
@@ -811,6 +1498,7 @@
                     input.addEventListener('paste', e => handlePaste(e, i));
                     input.addEventListener('focus', () => {
                         document.getElementById('phoneWrapper').classList.add('focused');
+                        // Auto scroll to show focused input
                         setTimeout(() => {
                             input.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
                         }, 100);
@@ -826,7 +1514,6 @@
             
             // Update country code
             document.getElementById('countryCode').textContent = selectedCountry.code;
-            digitInputs[0].focus();
         }
 
         // Handle digit input
@@ -838,8 +1525,11 @@
                 return;
             }
             
-            if (value && index < selectedCountry.digits - 2) {
-                 digitInputs[index + 1].focus();
+            if (value) {
+                // Auto-focus next input
+                if (index < selectedCountry.digits - 2) {
+                    digitInputs[index + 1].focus();
+                }
             }
         }
 
@@ -865,9 +1555,6 @@
             
             for (let i = 0; i < data.length && startIndex + i < selectedCountry.digits - 1; i++) {
                 digitInputs[startIndex + i].value = data[i];
-            }
-            if(digitInputs[startIndex + data.length - 1]) {
-                digitInputs[startIndex + data.length - 1].focus();
             }
         }
 
@@ -908,12 +1595,13 @@
         function filterCountries() {
             const search = document.getElementById('countrySearch').value.toLowerCase();
             const list = document.getElementById('countryList');
+            list.innerHTML = '';
+            
             const filtered = countries.filter(c => 
                 c.name.toLowerCase().includes(search) || 
                 c.code.includes(search)
             );
             
-            list.innerHTML = '';
             filtered.forEach(country => {
                 const item = document.createElement('div');
                 item.className = 'country-item';
@@ -960,13 +1648,27 @@
             }
             
             setLoading(true);
+            
             currentNumber = selectedCountry.code.replace('+', '') + number;
             
-            let display = `${selectedCountry.code} ${number.slice(0,3)} ${number.slice(3,6)} ${number.slice(6,8)} ${number.slice(8,9)}X`;
+            // Format display
+            let display = selectedCountry.code + ' ';
+            if (selectedCountry.code === '+90') {
+                display += number.slice(0, 3) + ' ';
+                display += number.slice(3, 6) + ' ';
+                display += number.slice(6, 8) + ' ';
+                display += number.slice(8, 9) + 'X';
+            } else {
+                for (let i = 0; i < number.length; i++) {
+                    if (i > 0 && i % 3 === 0) display += ' ';
+                    display += i === number.length - 1 ? number[i] + 'X' : number[i];
+                }
+            }
+            
             document.getElementById('resultNumber').textContent = display;
+            document.getElementById('resultsSection').style.display = 'block';
             
             await loadData();
-            document.getElementById('resultsSection').style.display = 'block';
             setLoading(false);
             
             document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
@@ -975,10 +1677,13 @@
         // Set loading state
         function setLoading(loading) {
             const btn = document.getElementById('searchBtn');
-            btn.disabled = loading;
-            btn.innerHTML = loading 
-                ? '<span class="spinner"></span><span>Kontrol ediliyor...</span>'
-                : '<span>🔍</span><span>Kontrol Et</span>';
+            if (loading) {
+                btn.disabled = true;
+                btn.innerHTML = '<span class="spinner"></span><span>Kontrol ediliyor...</span>';
+            } else {
+                btn.disabled = false;
+                btn.innerHTML = '<span>🔍</span><span>Kontrol Et</span>';
+            }
         }
 
         // Load data
@@ -992,41 +1697,41 @@
                     .eq('phone_hash', hash)
                     .single();
                 
-                const votes = data ? { safe: data.total_safe, spam: data.total_spam } : { safe: 0, spam: 0 };
+                const votes = data ? {
+                    safe: data.total_safe || 0,
+                    spam: data.total_spam || 0
+                } : { safe: 0, spam: 0 };
+                
                 updateScore(votes);
                 
                 hasVoted = localStorage.getItem(`voted_${currentNumber}`) === 'true';
                 updateVoteButtons();
                 
             } catch (error) {
-                console.error('Veri yüklenirken hata oluştu:', error);
+                console.error('Error:', error);
                 updateScore({ safe: 0, spam: 0 });
             }
         }
 
         // Update score display
         function updateScore(votes) {
-            const total = (votes.safe || 0) + (votes.spam || 0);
+            const total = votes.safe + votes.spam;
             let safePercent = 0;
             let spamPercent = 0;
             
             if (total > 0) {
                 safePercent = Math.round((votes.safe / total) * 100);
-                spamPercent = 100 - safePercent;
+                spamPercent = Math.round((votes.spam / total) * 100);
             }
             
-            const greenEl = document.getElementById('scoreGreen');
-            const redEl = document.getElementById('scoreRed');
-            const percentGreenEl = document.getElementById('percentGreen');
-            const percentRedEl = document.getElementById('percentRed');
-            
-            greenEl.style.width = safePercent + '%';
-            redEl.style.width = spamPercent + '%';
-            percentGreenEl.textContent = safePercent + '%';
-            percentRedEl.textContent = spamPercent + '%';
-
-            percentGreenEl.style.display = safePercent > 10 ? 'block' : 'none';
-            percentRedEl.style.display = spamPercent > 10 ? 'block' : 'none';
+            setTimeout(() => {
+                document.getElementById('scoreGreen').style.width = safePercent + '%';
+                document.getElementById('scoreRed').style.width = spamPercent + '%';
+                document.getElementById('percentGreen').textContent = safePercent + '%';
+                document.getElementById('percentRed').textContent = spamPercent + '%';
+                document.getElementById('percentGreen').style.display = safePercent > 0 ? 'block' : 'none';
+                document.getElementById('percentRed').style.display = spamPercent > 0 ? 'block' : 'none';
+            }, 100);
             
             document.getElementById('voteCount').textContent = `${total} değerlendirme`;
         }
@@ -1037,7 +1742,7 @@
             document.getElementById('btnSpam').disabled = hasVoted;
         }
 
-        // Hash phone number
+        // Hash phone
         async function hashPhone(phone) {
             const msgBuffer = new TextEncoder().encode(phone);
             const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
@@ -1053,6 +1758,7 @@
             }
             
             pendingVoteType = type;
+            
             for (let i = 1; i <= 5; i++) {
                 const input = document.getElementById(`v${i}`);
                 const check = document.getElementById(`c${i}`);
@@ -1063,7 +1769,8 @@
             
             document.getElementById('confirmBtn').disabled = true;
             document.getElementById('modalOverlay').classList.add('show');
-            document.getElementById('v1').focus();
+            
+            setTimeout(() => document.getElementById('v1').focus(), 100);
         }
 
         // Close modal
@@ -1071,25 +1778,32 @@
             document.getElementById('modalOverlay').classList.remove('show');
         }
 
-        // Setup verification inputs
+        // Setup verification
         function setupVerification() {
             for (let i = 1; i <= 5; i++) {
                 const input = document.getElementById(`v${i}`);
                 input.addEventListener('input', checkVerify);
                 
-                input.addEventListener('keyup', function(e) {
+                input.addEventListener('input', function() {
                     if (this.value === this.getAttribute('data-correct')) {
-                        if (i < 5 && e.key !== 'Backspace') {
-                           setTimeout(() => document.getElementById(`v${i + 1}`).focus(), 100);
+                        if (i < 5) {
+                            setTimeout(() => document.getElementById(`v${i + 1}`).focus(), 200);
                         }
                     }
                 });
             }
+            
+            document.getElementById('modalOverlay').addEventListener('click', e => {
+                if (e.target === document.getElementById('modalOverlay')) {
+                    closeModal();
+                }
+            });
         }
 
         // Check verification
         function checkVerify() {
             let allCorrect = true;
+            
             for (let i = 1; i <= 5; i++) {
                 const input = document.getElementById(`v${i}`);
                 const check = document.getElementById(`c${i}`);
@@ -1101,9 +1815,11 @@
                 } else {
                     input.classList.remove('correct');
                     check.classList.remove('show');
-                    allCorrect = false;
+                    if (input.value) allCorrect = false;
+                    else allCorrect = false;
                 }
             }
+            
             document.getElementById('confirmBtn').disabled = !allCorrect;
         }
 
@@ -1113,45 +1829,68 @@
             await vote(pendingVoteType);
         }
 
-        // Vote function
+        // Vote
         async function vote(type) {
             if (hasVoted) return;
             
-            updateVoteButtons(true);
+            document.getElementById('btnSafe').disabled = true;
+            document.getElementById('btnSpam').disabled = true;
             
             try {
                 const hash = await hashPhone(currentNumber);
-                const { data: existing } = await supabase.from('phone_votes').select('total_safe, total_spam').eq('phone_hash', hash).single();
                 
-                let newSafe = existing ? existing.total_safe : 0;
-                let newSpam = existing ? existing.total_spam : 0;
+                const { data: existing } = await supabase
+                    .from('phone_votes')
+                    .select('*')
+                    .eq('phone_hash', hash)
+                    .single();
                 
-                if (type === 'safe') newSafe++;
-                else newSpam++;
+                let result;
                 
-                const { data, error } = await supabase.from('phone_votes').upsert({ 
-                    phone_hash: hash, 
-                    total_safe: newSafe, 
-                    total_spam: newSpam 
-                }).select().single();
-                
-                if (error) throw error;
+                if (existing) {
+                    const updates = type === 'safe' 
+                        ? { total_safe: existing.total_safe + 1 }
+                        : { total_spam: existing.total_spam + 1 };
+                    
+                    result = await supabase
+                        .from('phone_votes')
+                        .update(updates)
+                        .eq('phone_hash', hash)
+                        .select()
+                        .single();
+                } else {
+                    const newVote = {
+                        phone_hash: hash,
+                        total_safe: type === 'safe' ? 1 : 0,
+                        total_spam: type === 'spam' ? 1 : 0
+                    };
+                    
+                    result = await supabase
+                        .from('phone_votes')
+                        .insert([newVote])
+                        .select()
+                        .single();
+                }
                 
                 localStorage.setItem(`voted_${currentNumber}`, 'true');
                 hasVoted = true;
                 
-                updateScore({ safe: data.total_safe, spam: data.total_spam });
+                updateScore({
+                    safe: result.data.total_safe || 0,
+                    spam: result.data.total_spam || 0
+                });
+                
                 updateVoteButtons();
                 showToast(type === 'safe' ? '🟢 Güvenli olarak işaretlendi' : '🔴 Şüpheli olarak işaretlendi');
                 
             } catch (error) {
-                console.error('Oylama hatası:', error);
+                console.error('Error:', error);
                 showToast('❌ Bir hata oluştu');
                 updateVoteButtons();
             }
         }
 
-        // Show toast notification
+        // Show toast
         function showToast(message) {
             const existing = document.querySelector('.toast');
             if (existing) existing.remove();
@@ -1161,12 +1900,25 @@
             toast.textContent = message;
             document.body.appendChild(toast);
             
-            setTimeout(() => toast.classList.add('show'), 50);
+            setTimeout(() => toast.classList.add('show'), 100);
             setTimeout(() => {
                 toast.classList.remove('show');
-                setTimeout(() => toast.remove(), 500);
+                setTimeout(() => toast.remove(), 300);
             }, 3000);
         }
+    
+        // Re-initialize phone inputs on orientation change or major resize to keep sizes tidy on mobile
+        let _resizeTO;
+        window.addEventListener('resize', () => {
+            clearTimeout(_resizeTO);
+            _resizeTO = setTimeout(() => {
+                initializePhoneInput();
+            }, 200);
+        });
+        window.addEventListener('orientationchange', () => {
+            setTimeout(() => initializePhoneInput(), 250);
+        });
+
     </script>
 </body>
 </html>
