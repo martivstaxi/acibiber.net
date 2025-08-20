@@ -2,9 +2,10 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="theme-color" content="#ef4444">
     <title>AcıBiber - Telefon Güvenlik Kontrolü</title>
     
@@ -21,6 +22,16 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow-x: hidden;
+            position: relative;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: none;
         }
 
         body {
@@ -36,6 +47,7 @@
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            touch-action: manipulation;
         }
 
         /* Background decoration */
@@ -66,6 +78,10 @@
             max-width: 600px;
             position: relative;
             z-index: 1;
+            -webkit-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
         }
 
         /* Logo Section */
@@ -117,7 +133,6 @@
             display: flex;
             gap: 24px;
             justify-content: center;
-            flex-wrap: wrap;
         }
 
         .badge {
@@ -150,6 +165,11 @@
             box-shadow: 0 20px 60px rgba(239, 68, 68, 0.1),
                         0 10px 30px rgba(0, 0, 0, 0.05);
             margin-bottom: 32px;
+            -webkit-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            will-change: transform;
         }
 
         /* Input Section */
@@ -849,28 +869,40 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Mobile */
+        /* Mobile - Enhanced Responsiveness */
         @media (max-width: 640px) {
+            html, body {
+                overflow: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
             body {
                 padding: 12px;
+                min-height: 100vh;
+                min-height: -webkit-fill-available;
+                align-items: flex-start;
             }
 
             .app-container {
                 max-width: 100%;
+                margin-top: 20px;
             }
 
             .card {
                 padding: 20px;
                 border-radius: 20px;
+                box-shadow: 0 10px 30px rgba(239, 68, 68, 0.08),
+                            0 5px 15px rgba(0, 0, 0, 0.04);
             }
 
             /* Logo adjustments */
             .logo-wrapper {
                 padding: 12px 20px;
+                margin-bottom: 16px;
             }
 
             .logo-text {
-                font-size: 22px;
+                font-size: clamp(20px, 5.5vw, 24px);
             }
 
             .logo-icon {
@@ -878,59 +910,122 @@
             }
 
             .subtitle {
-                font-size: 14px;
+                font-size: clamp(13px, 3.5vw, 15px);
                 margin-bottom: 16px;
             }
 
             .badges {
-                flex-direction: column;
+                flex-direction: row;
                 gap: 12px;
+                flex-wrap: wrap;
+                justify-content: center;
             }
 
             .badge {
-                font-size: 13px;
+                font-size: 12px;
                 padding: 6px 12px;
+                white-space: nowrap;
             }
 
-            /* Input sections */
+            /* Input sections - Better mobile UX */
             .input-label {
                 font-size: 12px;
+                margin-bottom: 8px;
+            }
+
+            .country-container {
+                margin-bottom: 20px;
             }
 
             .country-selector {
                 height: 52px;
                 padding: 0 16px;
+                border-radius: 12px;
+                -webkit-appearance: none;
+                appearance: none;
             }
 
             .country-name {
-                font-size: 15px;
+                font-size: clamp(14px, 3.8vw, 16px);
             }
 
             .country-flag {
                 font-size: 24px;
             }
 
+            .dropdown-arrow {
+                font-size: 20px;
+            }
+
+            /* Country dropdown mobile optimization */
+            .country-dropdown {
+                max-height: 60vh;
+                border-radius: 14px;
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+            }
+
+            .country-search {
+                padding: 12px;
+                position: sticky;
+                top: 0;
+                background: white;
+                z-index: 10;
+            }
+
+            .country-search input {
+                padding: 10px 14px;
+                font-size: 14px;
+                border-radius: 8px;
+            }
+
+            .country-item {
+                padding: 12px 14px;
+                -webkit-tap-highlight-color: rgba(239, 68, 68, 0.1);
+            }
+
+            .country-item:active {
+                background: #fef2f2;
+            }
+
+            .country-item-flag {
+                font-size: 22px;
+            }
+
+            .country-item-name {
+                font-size: 14px;
+            }
+
+            .country-item-code {
+                font-size: 13px;
+            }
+
+            /* Phone input optimization */
             .phone-input-wrapper {
                 height: 52px;
+                border-radius: 12px;
             }
 
             .country-code {
                 padding: 0 12px;
-                font-size: 16px;
+                font-size: clamp(14px, 3.8vw, 16px);
+                min-width: 50px;
             }
 
             .phone-digits {
-                padding: 0 8px;
+                padding: 0 6px;
                 gap: 2px;
                 min-width: 0;
                 overflow-x: auto;
+                scroll-behavior: smooth;
             }
 
             .digit-input {
                 flex-shrink: 0;
-                width: 28px;
+                width: calc((100vw - 140px) / 11);
+                max-width: 32px;
+                min-width: 24px;
                 height: 32px;
-                font-size: 16px;
+                font-size: clamp(14px, 4vw, 16px);
                 border-radius: 6px;
             }
 
@@ -939,6 +1034,14 @@
                 height: 52px;
                 font-size: 15px;
                 margin-top: 24px;
+                border-radius: 12px;
+                letter-spacing: 0.3px;
+                -webkit-appearance: none;
+                appearance: none;
+            }
+
+            .search-btn:active {
+                transform: scale(0.98);
             }
 
             /* Results section */
@@ -953,8 +1056,9 @@
             }
 
             .result-number {
-                font-size: 20px;
+                font-size: clamp(18px, 5vw, 22px);
                 margin-bottom: 16px;
+                word-break: break-all;
             }
 
             .verified-badge {
@@ -962,12 +1066,28 @@
                 padding: 6px 12px;
             }
 
+            /* Score section optimization */
+            .score-container {
+                margin-bottom: 24px;
+            }
+
+            .score-labels {
+                font-size: 12px;
+                margin-bottom: 10px;
+            }
+
             .score-bar {
                 height: 40px;
+                border-radius: 20px;
             }
 
             .score-green, .score-red {
-                font-size: 16px;
+                font-size: 15px;
+            }
+
+            .vote-count {
+                font-size: 13px;
+                margin-top: 8px;
             }
 
             .vote-buttons {
@@ -976,13 +1096,32 @@
 
             .vote-btn {
                 padding: 12px;
-                font-size: 14px;
+                font-size: 13px;
+                border-radius: 10px;
+                letter-spacing: 0.3px;
+                -webkit-appearance: none;
+                appearance: none;
+            }
+
+            .vote-btn:active {
+                transform: scale(0.98);
             }
 
             /* Modal adjustments */
+            .modal-overlay {
+                padding: 16px;
+                align-items: flex-start;
+                padding-top: 40px;
+            }
+
             .modal {
-                padding: 24px;
-                margin: 0 12px;
+                padding: 24px 20px;
+                margin: 0;
+                width: 100%;
+                max-width: 100%;
+                border-radius: 16px;
+                max-height: calc(100vh - 80px);
+                overflow-y: auto;
             }
 
             .modal-title {
@@ -998,61 +1137,119 @@
                 margin-bottom: 16px;
             }
 
+            .verify-label {
+                font-size: 12px;
+                margin-bottom: 8px;
+            }
+
+            .verify-code {
+                padding: 3px 10px;
+                font-size: 12px;
+                border-radius: 6px;
+            }
+
             .verify-input {
                 padding: 10px 14px;
+                padding-right: 36px;
                 font-size: 14px;
+                border-radius: 8px;
+            }
+
+            .verify-check {
+                right: 10px;
+                bottom: 10px;
+                width: 20px;
+                height: 20px;
             }
 
             .modal-buttons {
                 gap: 12px;
+                margin-top: 20px;
             }
 
             .modal-btn {
-                padding: 10px;
-                font-size: 14px;
+                padding: 11px;
+                font-size: 13px;
+                border-radius: 8px;
+                letter-spacing: 0.3px;
             }
 
-            /* Footer */
+            /* Footer optimization */
             .footer {
                 margin-top: 32px;
+                padding-bottom: 20px;
             }
 
             .footer-links {
                 gap: 20px;
+                margin-bottom: 12px;
             }
 
             .footer-link {
                 font-size: 13px;
+                padding: 5px;
             }
 
-            /* Country dropdown mobile */
-            .country-dropdown {
-                max-height: 250px;
+            .copyright {
+                font-size: 12px;
+                line-height: 1.4;
             }
 
-            .country-search {
-                padding: 12px;
-            }
-
-            .country-search input {
-                padding: 8px 12px;
+            /* Toast mobile position */
+            .toast {
+                bottom: 20px;
+                padding: 14px 18px;
+                border-radius: 10px;
                 font-size: 13px;
+                max-width: calc(100vw - 32px);
+            }
+        }
+
+        /* Very small phones (iPhone SE, etc) */
+        @media (max-width: 380px) {
+            .digit-input {
+                width: calc((100vw - 130px) / 11);
+                max-width: 28px;
+                min-width: 22px;
+                height: 30px;
+                font-size: 14px;
             }
 
-            .country-item {
-                padding: 10px 12px;
+            .phone-digits {
+                gap: 1px;
+                padding: 0 4px;
             }
 
-            .country-item-flag {
+            .badges {
+                font-size: 11px;
+            }
+
+            .badge {
+                padding: 5px 10px;
+                font-size: 11px;
+            }
+
+            .logo-text {
                 font-size: 20px;
             }
 
-            .country-item-name {
+            .logo-icon {
+                font-size: 24px;
+            }
+
+            .country-code {
+                padding: 0 10px;
                 font-size: 14px;
             }
 
-            .country-item-code {
+            .search-btn {
+                height: 48px;
                 font-size: 14px;
+            }
+
+            .vote-btn {
+                font-size: 12px;
+                padding: 11px;
             }
         }
 
@@ -1062,9 +1259,17 @@
                 max-width: 580px;
             }
 
+            .card {
+                padding: 28px;
+            }
+
             .digit-input {
                 width: 36px;
                 height: 36px;
+            }
+
+            .logo-wrapper {
+                padding: 14px 28px;
             }
         }
 
@@ -1108,37 +1313,10 @@
                 height: 60px;
                 font-size: 18px;
             }
-        }
 
-        /* Very small phones */
-        @media (max-width: 380px) {
-            .digit-input {
-                flex-shrink: 0;
-                width: 24px;
-                height: 30px;
-                font-size: 14px;
-            }
-
-            .phone-digits {
-                gap: 1px;
-                padding: 0 6px;
-            }
-
-            .badges {
-                font-size: 12px;
-            }
-
-            .logo-text {
-                font-size: 20px;
-            }
-
-            .country-code {
-                padding: 0 10px;
-                font-size: 14px;
-            }
-            
-            .country-dropdown {
-                max-height: 200px;
+            .vote-btn {
+                padding: 16px;
+                font-size: 16px;
             }
         }
 
@@ -1159,15 +1337,34 @@
             .input-section {
                 margin-bottom: 16px;
             }
-            
-            .country-dropdown {
-                max-height: 180px;
+
+            .search-btn {
+                margin-top: 16px;
             }
-            
-            .modal {
-                max-height: 90vh;
-                overflow-y: auto;
+        }
+
+        /* iOS specific fixes */
+        @supports (-webkit-touch-callout: none) {
+            .digit-input {
+                font-size: 16px !important; /* Prevent zoom on iOS */
             }
+
+            .country-search input,
+            .verify-input {
+                font-size: 16px !important; /* Prevent zoom on iOS */
+            }
+        }
+
+        /* Smooth animations for mobile */
+        @media (prefers-reduced-motion: no-preference) {
+            * {
+                scroll-behavior: smooth;
+            }
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            /* Optional: Add dark mode styles if needed */
         }
     </style>
 </head>
@@ -1373,35 +1570,7 @@
             initializePhoneInput();
             renderCountries();
             setupVerification();
-            
-            // Add touch event listeners for better mobile experience
-            setupTouchEvents();
         });
-
-        // Setup touch events for better mobile experience
-        function setupTouchEvents() {
-            // Prevent zoom on double-tap
-            let lastTouchEnd = 0;
-            document.addEventListener('touchend', function(event) {
-                const now = (new Date()).getTime();
-                if (now - lastTouchEnd <= 300) {
-                    event.preventDefault();
-                }
-                lastTouchEnd = now;
-            }, false);
-            
-            // Better scrolling for dropdowns
-            const dropdowns = document.querySelectorAll('.country-dropdown');
-            dropdowns.forEach(dropdown => {
-                dropdown.addEventListener('touchstart', function(e) {
-                    this.classList.add('scrolling');
-                });
-                
-                dropdown.addEventListener('touchend', function(e) {
-                    this.classList.remove('scrolling');
-                });
-            });
-        }
 
         // Initialize phone input
         function initializePhoneInput() {
@@ -1467,22 +1636,6 @@
                     });
                     input.addEventListener('blur', () => {
                         document.getElementById('phoneWrapper').classList.remove('focused');
-                    });
-                    
-                    // Add touch events for better mobile experience
-                    input.addEventListener('touchstart', function(e) {
-                        this.focus();
-                        // Prevent zoom on focus
-                        if (window.innerWidth <= 640) {
-                            document.querySelector('meta[name=viewport]').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
-                        }
-                    });
-                    
-                    input.addEventListener('touchend', function(e) {
-                        // Restore zoom ability after a delay
-                        setTimeout(() => {
-                            document.querySelector('meta[name=viewport]').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes');
-                        }, 1000);
                     });
                 }
                 
@@ -1649,10 +1802,7 @@
             await loadData();
             setLoading(false);
             
-            // Smooth scroll to results with a slight delay for better mobile experience
-            setTimeout(() => {
-                document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }, 300);
+            document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
         }
 
         // Set loading state
@@ -1771,11 +1921,6 @@
                             setTimeout(() => document.getElementById(`v${i + 1}`).focus(), 200);
                         }
                     }
-                });
-                
-                // Add touch events for better mobile experience
-                input.addEventListener('touchstart', function() {
-                    this.focus();
                 });
             }
             
