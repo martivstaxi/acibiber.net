@@ -14,20 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Supabase -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
-        // Re-initialize phone inputs on orientation change or major resize to keep sizes tidy on mobile
-        let _resizeTO;
-        window.addEventListener('resize', () => {
-            clearTimeout(_resizeTO);
-            _resizeTO = setTimeout(() => {
-                initializePhoneInput();
-            }, 200);
-        });
-        window.addEventListener('orientationchange', () => {
-            setTimeout(() => initializePhoneInput(), 250);
-        });
-
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
     <style>
         * {
@@ -1169,68 +1156,59 @@
             }
         }
     
-        /* --- Extra Mobile-Friendly Enhancements (non-breaking) --- */
-        :root {
-            --safe-left: env(safe-area-inset-left, 0px);
-            --safe-right: env(safe-area-inset-right, 0px);
-            --safe-top: env(safe-area-inset-top, 0px);
-            --safe-bottom: env(safe-area-inset-bottom, 0px);
-        }
-
-        html, body {
-            height: -webkit-fill-available;
-        }
-
+        /* --- Responsive UI Tweaks for Desktop & Mobile --- */
         body {
-            padding-left: max(12px, var(--safe-left));
-            padding-right: max(12px, var(--safe-right));
-            padding-top: max(12px, var(--safe-top));
-            padding-bottom: max(12px, var(--safe-bottom));
-            touch-action: manipulation;
-            -webkit-tap-highlight-color: transparent;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(180deg, #fff, #fff5f5);
+            margin: 0;
+            padding: 0;
         }
 
-        /* Better focus visibility (accessibility) */
-        :focus-visible {
-            outline: 3px solid rgba(239, 68, 68, 0.35);
-            outline-offset: 2px;
+        .app-container {
+            max-width: 520px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
         }
 
-        /* Reduce motion for users who prefer it */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation: none !important;
-                transition: none !important;
-                scroll-behavior: auto !important;
-            }
+        .phone-digits {
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: nowrap;
+            gap: 6px;
+            margin-top: 8px;
         }
 
-        /* Prevent horizontal scroll on small screens */
-        .app-container, .card, .phone-digits {
-            max-width: 100%;
+        .digit-input {
+            width: 36px;
+            height: 44px;
+            font-size: 18px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 8px;
         }
 
-        /* Compact layout tweaks for very small phones */
         @media (max-width: 640px) {
+            .app-container {
+                max-width: 90%;
+                padding: 1rem;
+                margin: 1rem auto;
+            }
             .phone-digits {
                 flex-wrap: wrap;
-                padding: 6px 8px;
+                justify-content: center;
                 gap: 4px;
             }
             .digit-input {
-                width: 26px !important;
-                height: 34px !important;
+                width: 32px;
+                height: 40px;
+                font-size: 16px;
             }
-            .badge {
-                white-space: nowrap;
-            }
-            .country-dropdown {
-                max-height: 55vh; /* more room for country list */
-            }
-            .modal {
-                max-height: 85vh;
-                overflow: auto;
-                -webkit-overflow-scrolling: touch;
+            .control-btn {
+                font-size: 16px;
+                padding: 14px;
             }
         }
 
@@ -1470,7 +1448,6 @@
                 const input = document.createElement('input');
                 input.type = 'tel';
                 input.className = 'digit-input';
-                input.setAttribute('inputmode','numeric');
                 input.maxLength = 1;
                 input.dataset.index = i;
                 
@@ -1906,19 +1883,6 @@
                 setTimeout(() => toast.remove(), 300);
             }, 3000);
         }
-    
-        // Re-initialize phone inputs on orientation change or major resize to keep sizes tidy on mobile
-        let _resizeTO;
-        window.addEventListener('resize', () => {
-            clearTimeout(_resizeTO);
-            _resizeTO = setTimeout(() => {
-                initializePhoneInput();
-            }, 200);
-        });
-        window.addEventListener('orientationchange', () => {
-            setTimeout(() => initializePhoneInput(), 250);
-        });
-
     </script>
 </body>
 </html>
