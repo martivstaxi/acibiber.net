@@ -734,12 +734,12 @@
             }
         }
 
-        // Load and display data from Supabase
+        // Load and display data from Supabase - YENİ VERİMLİ SİSTEM
         async function loadAndDisplayData() {
             try {
                 const phoneHash = await hashPhone(currentNumber);
                 
-                // Veritabanından veriyi çek
+                // Veritabanından veriyi çek - YENİ TABLO YAPISI
                 const { data, error } = await supabase
                     .from('phone_votes')
                     .select('*')
@@ -747,13 +747,13 @@
                     .single();
                 
                 if (error && error.code !== 'PGRST116') {
-                    // PGRST116 = no rows returned, this is normal for new numbers
                     throw error;
                 }
                 
+                // YENİ: total_safe ve total_spam kullan
                 const numberData = data ? {
-                    safe: data.safe_votes || 0,
-                    spam: data.spam_votes || 0
+                    safe: data.total_safe || 0,
+                    spam: data.total_spam || 0
                 } : { safe: 0, spam: 0 };
                 
                 updateDisplay(numberData);
@@ -796,7 +796,7 @@
             document.getElementById('voteCount').textContent = `${total} değerlendirme`;
         }
 
-        // Vote function
+        // Vote function - YENİ VERİMLİ SİSTEM
         async function vote(type) {
             if (hasVoted) {
                 showToast('✓ Bu numara için zaten oy kullandınız');
@@ -827,13 +827,16 @@
                 let result;
                 
                 if (existing) {
-                    // Update existing record
-                    const updates = {};
-                    if (type === 'safe') {
-                        updates.safe_votes = (existing.safe_votes || 0) + 1;
-                    } else {
-                        updates.spam_votes = (existing.spam_votes || 0) + 1;
-                    }
+                    // VAR - Sadece sayıyı artır (VERİMLİ!)
+                    const updates = type === 'safe' 
+                        ? { 
+                            total_safe: existing.total_safe + 1,
+                            last_voted_at: new Date().toISOString()
+                          }
+                        : { 
+                            total_spam: existing.total_spam + 1,
+                            last_voted_at: new Date().toISOString()
+                          };
                     
                     const { data, error } = await supabase
                         .from('phone_votes')
@@ -845,11 +848,11 @@
                     if (error) throw error;
                     result = { data };
                 } else {
-                    // Create new record
+                    // YOK - İlk kez oylanan numara, yeni kayıt oluştur
                     const newVote = {
                         phone_hash: phoneHash,
-                        safe_votes: type === 'safe' ? 1 : 0,
-                        spam_votes: type === 'spam' ? 1 : 0
+                        total_safe: type === 'safe' ? 1 : 0,
+                        total_spam: type === 'spam' ? 1 : 0
                     };
                     
                     const { data, error } = await supabase
@@ -867,10 +870,10 @@
                 localStorage.setItem(`voted_${numberKey}`, 'true');
                 hasVoted = true;
                 
-                // Update display
+                // Update display with new totals
                 updateDisplay({
-                    safe: result.data.safe_votes || 0,
-                    spam: result.data.spam_votes || 0
+                    safe: result.data.total_safe || 0,
+                    spam: result.data.total_spam || 0
                 });
                 
                 updateVoteButtons();
