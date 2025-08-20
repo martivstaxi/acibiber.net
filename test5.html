@@ -117,6 +117,7 @@
             display: flex;
             gap: 24px;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         .badge {
@@ -1135,6 +1136,10 @@
                 padding: 0 10px;
                 font-size: 14px;
             }
+            
+            .country-dropdown {
+                max-height: 200px;
+            }
         }
 
         /* Landscape mode adjustments */
@@ -1154,64 +1159,16 @@
             .input-section {
                 margin-bottom: 16px;
             }
-        }
-    
-        /* --- Responsive UI Tweaks for Desktop & Mobile --- */
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(180deg, #fff, #fff5f5);
-            margin: 0;
-            padding: 0;
-        }
-
-        .app-container {
-            max-width: 520px;
-            margin: 2rem auto;
-            padding: 1.5rem;
-            background: #fff;
-            border-radius: 20px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-        }
-
-        .phone-digits {
-            display: flex;
-            justify-content: flex-start;
-            flex-wrap: nowrap;
-            gap: 6px;
-            margin-top: 8px;
-        }
-
-        .digit-input {
-            width: 36px;
-            height: 44px;
-            font-size: 18px;
-            text-align: center;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-        }
-
-        @media (max-width: 640px) {
-            .app-container {
-                max-width: 90%;
-                padding: 1rem;
-                margin: 1rem auto;
+            
+            .country-dropdown {
+                max-height: 180px;
             }
-            .phone-digits {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 4px;
-            }
-            .digit-input {
-                width: 32px;
-                height: 40px;
-                font-size: 16px;
-            }
-            .control-btn {
-                font-size: 16px;
-                padding: 14px;
+            
+            .modal {
+                max-height: 90vh;
+                overflow-y: auto;
             }
         }
-
     </style>
 </head>
 <body>
@@ -1416,7 +1373,35 @@
             initializePhoneInput();
             renderCountries();
             setupVerification();
+            
+            // Add touch event listeners for better mobile experience
+            setupTouchEvents();
         });
+
+        // Setup touch events for better mobile experience
+        function setupTouchEvents() {
+            // Prevent zoom on double-tap
+            let lastTouchEnd = 0;
+            document.addEventListener('touchend', function(event) {
+                const now = (new Date()).getTime();
+                if (now - lastTouchEnd <= 300) {
+                    event.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, false);
+            
+            // Better scrolling for dropdowns
+            const dropdowns = document.querySelectorAll('.country-dropdown');
+            dropdowns.forEach(dropdown => {
+                dropdown.addEventListener('touchstart', function(e) {
+                    this.classList.add('scrolling');
+                });
+                
+                dropdown.addEventListener('touchend', function(e) {
+                    this.classList.remove('scrolling');
+                });
+            });
+        }
 
         // Initialize phone input
         function initializePhoneInput() {
@@ -1482,6 +1467,22 @@
                     });
                     input.addEventListener('blur', () => {
                         document.getElementById('phoneWrapper').classList.remove('focused');
+                    });
+                    
+                    // Add touch events for better mobile experience
+                    input.addEventListener('touchstart', function(e) {
+                        this.focus();
+                        // Prevent zoom on focus
+                        if (window.innerWidth <= 640) {
+                            document.querySelector('meta[name=viewport]').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+                        }
+                    });
+                    
+                    input.addEventListener('touchend', function(e) {
+                        // Restore zoom ability after a delay
+                        setTimeout(() => {
+                            document.querySelector('meta[name=viewport]').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes');
+                        }, 1000);
                     });
                 }
                 
@@ -1648,7 +1649,10 @@
             await loadData();
             setLoading(false);
             
-            document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+            // Smooth scroll to results with a slight delay for better mobile experience
+            setTimeout(() => {
+                document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 300);
         }
 
         // Set loading state
@@ -1767,6 +1771,11 @@
                             setTimeout(() => document.getElementById(`v${i + 1}`).focus(), 200);
                         }
                     }
+                });
+                
+                // Add touch events for better mobile experience
+                input.addEventListener('touchstart', function() {
+                    this.focus();
                 });
             }
             
