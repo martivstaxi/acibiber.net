@@ -1662,8 +1662,8 @@
                     <span>1. Görevi tamamlayın</span>
                     <span class="verify-code">TR</span>
                 </div>
-                <input type="text" class="verify-input" id="v1" data-correct="TR" placeholder="Kutudaki metni yazın">
-                <div class="verify-check" id="c1">✓</div>
+                <input type="text" class="verify-input correct" id="v1" data-correct="TR" placeholder="Kutudaki metni yazın" value="TR">
+                <div class="verify-check show" id="c1">✓</div>
             </div>
 
             <div class="verify-item">
@@ -2070,7 +2070,14 @@
             
             pendingVoteType = type;
             
-            for (let i = 1; i <= 5; i++) {
+            // First input is pre-filled as example
+            const firstInput = document.getElementById('v1');
+            firstInput.value = 'TR';
+            firstInput.classList.add('correct');
+            document.getElementById('c1').classList.add('show');
+            
+            // Clear other inputs
+            for (let i = 2; i <= 5; i++) {
                 const input = document.getElementById(`v${i}`);
                 const check = document.getElementById(`c${i}`);
                 input.value = '';
@@ -2078,10 +2085,13 @@
                 check.classList.remove('show');
             }
             
-            document.getElementById('confirmBtn').disabled = true;
+            // Check if form is ready
+            checkVerify();
+            
             document.getElementById('modalOverlay').classList.add('show');
             
-            setTimeout(() => document.getElementById('v1').focus(), 100);
+            // Focus on second input since first is pre-filled
+            setTimeout(() => document.getElementById('v2').focus(), 100);
         }
 
         // Close modal
@@ -2091,7 +2101,8 @@
 
         // Setup verification
         function setupVerification() {
-            for (let i = 1; i <= 5; i++) {
+            // First input is pre-filled, start from second
+            for (let i = 2; i <= 5; i++) {
                 const input = document.getElementById(`v${i}`);
                 input.addEventListener('input', checkVerify);
                 
@@ -2103,6 +2114,10 @@
                     }
                 });
             }
+            
+            // First input should also trigger check but not need typing
+            const firstInput = document.getElementById('v1');
+            firstInput.addEventListener('input', checkVerify);
             
             document.getElementById('modalOverlay').addEventListener('click', e => {
                 if (e.target === document.getElementById('modalOverlay')) {
