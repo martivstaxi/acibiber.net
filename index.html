@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AcıBiber - Telefon Güvenlik Kontrolü</title>
+    
+    <!-- Cache önleme meta tagları -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
+    <!-- Supabase bağlantısı için -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
     <style>
         * {
             margin: 0;
@@ -168,6 +177,11 @@
 
         .search-btn:active {
             transform: translateY(0);
+        }
+
+        .search-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
 
         .info-badge {
@@ -400,6 +414,21 @@
             font-weight: 600;
         }
 
+        /* Loading Spinner */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s ease infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         /* Toast Notification */
         .toast {
             position: fixed;
@@ -455,7 +484,6 @@
             color: var(--text-secondary);
         }
 
-        /* Dark mode support - REMOVED */
         /* Mobile optimizations */
         @media (max-width: 480px) {
             .container {
@@ -518,12 +546,12 @@
                     type="tel" 
                     class="phone-input" 
                     id="phoneInput" 
-                    placeholder="5XX XXX XX XX" 
+                    placeholder="532 XXX XX XX" 
                     maxlength="10"
                     autocomplete="tel"
                 >
             </div>
-            <button class="search-btn" onclick="searchNumber()">
+            <button class="search-btn" id="searchBtn" onclick="searchNumber()">
                 <span>🔍</span>
                 <span>Kontrol Et</span>
             </button>
@@ -581,11 +609,11 @@
             <div class="vote-section">
                 <p class="vote-prompt">Bu numarayı nasıl değerlendirirsiniz?</p>
                 <div class="vote-buttons">
-                    <button class="vote-btn safe" onclick="vote('safe')">
+                    <button class="vote-btn safe" id="safeBtn" onclick="vote('safe')">
                         <span>✅</span>
                         <span>Güvenilir</span>
                     </button>
-                    <button class="vote-btn spam" onclick="vote('spam')">
+                    <button class="vote-btn spam" id="spamBtn" onclick="vote('spam')">
                         <span>⚠️</span>
                         <span>Şüpheli</span>
                     </button>
@@ -605,8 +633,30 @@
     </div>
 
     <script>
+        // ⚠️ ÖNEMLİ: AŞAĞIDAKİ İKİ SATIRI KENDİ BİLGİLERİNİZLE DEĞİŞTİRİN!
+        const SUPABASE_URL = 'https://oxwgeetqhkopnwfikdpj.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im94d2dlZXRxaGtvcG53ZmlrZHBqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU2OTQzODAsImV4cCI6MjA3MTI3MDM4MH0.APLnnqfbTZnF3xdh9805vQoww9ZmuoV3p4YABxretv8';
+
+        // Supabase'i başlat
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
         let currentNumber = '';
         let hasVoted = false;
+        let isLoading = false;
+
+        // Telefon numarasını şifrele (hash)
+        async function hashPhone(phoneNumber) {
+            // Son hanesi X ile değiştir
+            const maskedNumber = phoneNumber.substring(0, 9) + 'X';
+            
+            // SHA-256 ile şifrele
+            const msgBuffer = new TextEncoder().encode(maskedNumber);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            
+            return hashHex;
+        }
 
         // Format phone number for display
         function formatPhoneNumber(number) {
@@ -624,14 +674,18 @@
         }
 
         // Search number
-        function searchNumber() {
+        async function searchNumber() {
             const input = document.getElementById('phoneInput');
+            const searchBtn = document.getElementById('searchBtn');
             const number = input.value.trim();
             
             if (!validatePhoneNumber(number)) {
                 showToast('⚠️ Geçerli bir mobil numara girin');
                 return;
             }
+
+            // Disable button during search
+            setLoadingState(true);
             
             currentNumber = number.replace(/\D/g, '');
             const displayNumber = formatPhoneNumber(number);
@@ -642,46 +696,62 @@
             document.getElementById('displayNumber').textContent = displayNumber;
             
             // Load and display data
-            loadAndDisplayData();
+            await loadAndDisplayData();
+            
+            setLoadingState(false);
             
             // Smooth scroll to results
             resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
 
-        // Load and display data
-        function loadAndDisplayData() {
-            const data = loadData();
-            const numberKey = currentNumber.substring(0, 9) + 'X';
-            const numberData = data.numbers[numberKey] || { safe: 0, spam: 0 };
+        // Set loading state
+        function setLoadingState(loading) {
+            isLoading = loading;
+            const searchBtn = document.getElementById('searchBtn');
             
-            updateDisplay(numberData);
-            
-            // Check voting status
-            hasVoted = localStorage.getItem(`voted_${numberKey}`) === 'true';
-            updateVoteButtons();
-        }
-
-        // Load data from localStorage
-        function loadData() {
-            const stored = localStorage.getItem('acibiber_data_v2');
-            if (stored) {
-                try {
-                    return JSON.parse(stored);
-                } catch (e) {
-                    console.error('Data load error:', e);
-                }
+            if (loading) {
+                searchBtn.disabled = true;
+                searchBtn.innerHTML = '<span class="spinner"></span><span>Kontrol ediliyor...</span>';
+            } else {
+                searchBtn.disabled = false;
+                searchBtn.innerHTML = '<span>🔍</span><span>Kontrol Et</span>';
             }
-            return { numbers: {} };
         }
 
-        // Save data to localStorage
-        function saveData(data) {
+        // Load and display data from Supabase
+        async function loadAndDisplayData() {
             try {
-                localStorage.setItem('acibiber_data_v2', JSON.stringify(data));
-                return true;
-            } catch (e) {
-                console.error('Data save error:', e);
-                return false;
+                const phoneHash = await hashPhone(currentNumber);
+                
+                // Veritabanından veriyi çek
+                const { data, error } = await supabase
+                    .from('phone_votes')
+                    .select('*')
+                    .eq('phone_hash', phoneHash)
+                    .single();
+                
+                if (error && error.code !== 'PGRST116') {
+                    // PGRST116 = no rows returned, this is normal for new numbers
+                    throw error;
+                }
+                
+                const numberData = data ? {
+                    safe: data.safe_votes || 0,
+                    spam: data.spam_votes || 0
+                } : { safe: 0, spam: 0 };
+                
+                updateDisplay(numberData);
+                
+                // Check voting status
+                const numberKey = currentNumber.substring(0, 9) + 'X';
+                hasVoted = localStorage.getItem(`voted_${numberKey}`) === 'true';
+                updateVoteButtons();
+                
+            } catch (error) {
+                console.error('Veri yükleme hatası:', error);
+                showToast('⚠️ Veriler yüklenirken hata oluştu');
+                // Show empty data on error
+                updateDisplay({ safe: 0, spam: 0 });
             }
         }
 
@@ -697,11 +767,13 @@
                 spamPercent = Math.round((numberData.spam / total) * 100);
             }
             
-            // Update progress bars
-            document.getElementById('safeBar').style.width = safePercent + '%';
-            document.getElementById('safePercent').textContent = safePercent + '%';
+            // Update progress bars with animation
+            setTimeout(() => {
+                document.getElementById('safeBar').style.width = safePercent + '%';
+                document.getElementById('spamBar').style.width = spamPercent + '%';
+            }, 100);
             
-            document.getElementById('spamBar').style.width = spamPercent + '%';
+            document.getElementById('safePercent').textContent = safePercent + '%';
             document.getElementById('spamPercent').textContent = spamPercent + '%';
             
             // Update vote count
@@ -709,41 +781,103 @@
         }
 
         // Vote function
-        function vote(type) {
+        async function vote(type) {
             if (hasVoted) {
                 showToast('✓ Bu numara için zaten oy kullandınız');
                 return;
             }
             
-            const data = loadData();
-            const numberKey = currentNumber.substring(0, 9) + 'X';
+            if (isLoading) return;
             
-            if (!data.numbers[numberKey]) {
-                data.numbers[numberKey] = { safe: 0, spam: 0 };
-            }
+            // Disable vote buttons
+            document.getElementById('safeBtn').disabled = true;
+            document.getElementById('spamBtn').disabled = true;
             
-            if (type === 'safe') {
-                data.numbers[numberKey].safe++;
-                showToast('✅ Güvenilir olarak işaretlendi');
-            } else {
-                data.numbers[numberKey].spam++;
-                showToast('⚠️ Şüpheli olarak işaretlendi');
-            }
-            
-            if (saveData(data)) {
+            try {
+                // Hash the phone number
+                const phoneHash = await hashPhone(currentNumber);
+                
+                // Check if record exists
+                const { data: existing, error: checkError } = await supabase
+                    .from('phone_votes')
+                    .select('*')
+                    .eq('phone_hash', phoneHash)
+                    .single();
+                
+                if (checkError && checkError.code !== 'PGRST116') {
+                    throw checkError;
+                }
+                
+                let result;
+                
+                if (existing) {
+                    // Update existing record
+                    const updates = {};
+                    if (type === 'safe') {
+                        updates.safe_votes = (existing.safe_votes || 0) + 1;
+                    } else {
+                        updates.spam_votes = (existing.spam_votes || 0) + 1;
+                    }
+                    
+                    const { data, error } = await supabase
+                        .from('phone_votes')
+                        .update(updates)
+                        .eq('phone_hash', phoneHash)
+                        .select()
+                        .single();
+                    
+                    if (error) throw error;
+                    result = { data };
+                } else {
+                    // Create new record
+                    const newVote = {
+                        phone_hash: phoneHash,
+                        safe_votes: type === 'safe' ? 1 : 0,
+                        spam_votes: type === 'spam' ? 1 : 0
+                    };
+                    
+                    const { data, error } = await supabase
+                        .from('phone_votes')
+                        .insert([newVote])
+                        .select()
+                        .single();
+                    
+                    if (error) throw error;
+                    result = { data };
+                }
+                
+                // Mark as voted in localStorage
+                const numberKey = currentNumber.substring(0, 9) + 'X';
                 localStorage.setItem(`voted_${numberKey}`, 'true');
                 hasVoted = true;
-                updateDisplay(data.numbers[numberKey]);
+                
+                // Update display
+                updateDisplay({
+                    safe: result.data.safe_votes || 0,
+                    spam: result.data.spam_votes || 0
+                });
+                
+                updateVoteButtons();
+                
+                // Show success message
+                showToast(type === 'safe' ? '✅ Güvenilir olarak işaretlendi' : '⚠️ Şüpheli olarak işaretlendi');
+                
+            } catch (error) {
+                console.error('Oy verme hatası:', error);
+                showToast('❌ Bir hata oluştu, lütfen tekrar deneyin');
+                
+                // Re-enable buttons on error
                 updateVoteButtons();
             }
         }
 
         // Update vote button states
         function updateVoteButtons() {
-            const buttons = document.querySelectorAll('.vote-btn');
-            buttons.forEach(button => {
-                button.disabled = hasVoted;
-            });
+            const safeBtn = document.getElementById('safeBtn');
+            const spamBtn = document.getElementById('spamBtn');
+            
+            safeBtn.disabled = hasVoted;
+            spamBtn.disabled = hasVoted;
         }
 
         // Show toast notification
@@ -771,9 +905,17 @@
             // Format input as user types
             phoneInput.addEventListener('input', function(e) {
                 let value = e.target.value.replace(/\D/g, '');
+                
+                // 0 ile başlıyorsa kaldır (05XX yerine 5XX olsun)
+                if (value.startsWith('0')) {
+                    value = value.substring(1);
+                }
+                
+                // Maksimum 10 karakter
                 if (value.length > 10) {
                     value = value.substring(0, 10);
                 }
+                
                 e.target.value = value;
             });
             
@@ -783,6 +925,12 @@
                     searchNumber();
                 }
             });
+            
+            // Check Supabase connection
+            if (SUPABASE_URL.includes('BURAYA') || SUPABASE_KEY.includes('BURAYA')) {
+                showToast('⚠️ Lütfen Supabase bilgilerinizi ekleyin!');
+                console.error('SUPABASE_URL ve SUPABASE_KEY değerlerini güncellemeyi unutmayın!');
+            }
         });
     </script>
 </body>
