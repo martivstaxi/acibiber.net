@@ -334,8 +334,8 @@
             background: linear-gradient(90deg, #10b981, #34d399);
         }
 
-        .progress-warning {
-            background: linear-gradient(90deg, #f59e0b, #fbbf24);
+        .progress-danger {
+            background: linear-gradient(90deg, #dc2626, #ef4444);
         }
 
         /* Vote Section */
@@ -391,14 +391,14 @@
         }
 
         .vote-btn.spam {
-            color: var(--warning);
-            border-color: #fed7aa;
-            background: #fffbeb;
+            color: #dc2626;
+            border-color: #fecaca;
+            background: #fef2f2;
         }
 
         .vote-btn.spam:hover:not(:disabled) {
-            border-color: var(--warning);
-            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+            border-color: #dc2626;
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
         }
 
         .vote-btn:disabled {
@@ -569,7 +569,7 @@
                 </div>
                 <div class="notice">
                     <span class="notice-icon">ℹ️</span>
-                    <span>Bu numara farklı kişilere ait olabilir. Değerlendirmeler kullanıcı deneyimlerine dayanmaktadır.</span>
+                    <span>Kullanıcı oylamalarına dayalı sonuçlar</span>
                 </div>
             </div>
 
@@ -582,8 +582,8 @@
                 <div class="score-item">
                     <div class="score-header">
                         <span class="score-label">
-                            <span>✅</span>
-                            <span>Güvenli</span>
+                            <span>🟢</span>
+                            <span>Yeşil Biber</span>
                         </span>
                         <span class="score-value" id="safePercent">0%</span>
                     </div>
@@ -595,13 +595,13 @@
                 <div class="score-item">
                     <div class="score-header">
                         <span class="score-label">
-                            <span>🌶️</span>
+                            <span>🔴</span>
                             <span>Acı Biber</span>
                         </span>
                         <span class="score-value" id="spamPercent">0%</span>
                     </div>
                     <div class="progress-bar">
-                        <div class="progress-fill progress-warning" id="spamBar"></div>
+                        <div class="progress-fill progress-danger" id="spamBar"></div>
                     </div>
                 </div>
             </div>
@@ -610,11 +610,11 @@
                 <p class="vote-prompt">Değerlendir</p>
                 <div class="vote-buttons">
                     <button class="vote-btn safe" id="safeBtn" onclick="vote('safe')">
-                        <span>✅</span>
-                        <span>Güvenli</span>
+                        <span>🟢</span>
+                        <span>Yeşil Biber</span>
                     </button>
                     <button class="vote-btn spam" id="spamBtn" onclick="vote('spam')">
-                        <span>🌶️</span>
+                        <span>🔴</span>
                         <span>Acı Biber</span>
                     </button>
                 </div>
@@ -876,7 +876,7 @@
                 updateVoteButtons();
                 
                 // Show success message
-                showToast(type === 'safe' ? '✅ Güvenli olarak işaretlendi' : '🌶️ Acı Biber olarak işaretlendi');
+                showToast(type === 'safe' ? '🟢 Yeşil Biber olarak işaretlendi' : '🔴 Acı Biber olarak işaretlendi');
                 
             } catch (error) {
                 console.error('Detaylı hata bilgisi:', error);
