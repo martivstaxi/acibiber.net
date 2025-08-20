@@ -546,8 +546,8 @@
                     type="tel" 
                     class="phone-input" 
                     id="phoneInput" 
-                    placeholder="532 XXX XX XX" 
-                    maxlength="9"
+                    placeholder="532 123 45 6X" 
+                    maxlength="10"
                     autocomplete="tel"
                 >
             </div>
@@ -679,9 +679,19 @@
         async function searchNumber() {
             const input = document.getElementById('phoneInput');
             const searchBtn = document.getElementById('searchBtn');
-            const number = input.value.trim();
+            let number = input.value.trim();
             
-            if (!validatePhoneNumber(number)) {
+            // Sadece 9 hane al (10. haneyi yoksay)
+            const clean = number.replace(/\D/g, '');
+            if (clean.length < 9) {
+                showToast('⚠️ Lütfen 9 haneli numara girin');
+                return;
+            }
+            
+            // 9 hane al, fazlasını at
+            const first9 = clean.substring(0, 9);
+            
+            if (!first9.startsWith('5')) {
                 showToast('⚠️ Geçerli bir mobil numara girin');
                 return;
             }
@@ -689,8 +699,11 @@
             // Disable button during search
             setLoadingState(true);
             
-            currentNumber = number.replace(/\D/g, '') + '0'; // 9 haneye 0 ekleyerek 10 hane yap
-            const displayNumber = formatPhoneNumber(number);
+            // Veritabanı için 10 haneye tamamla (son hane 0)
+            currentNumber = first9 + '0';
+            
+            // Görüntü için format (son hane X)
+            const displayNumber = `+90 ${first9.slice(0,3)} ${first9.slice(3,6)} ${first9.slice(6,8)} ${first9.slice(8,9)}X`;
             
             // Show result card
             const resultCard = document.getElementById('resultCard');
@@ -915,9 +928,9 @@
                     value = value.substring(1);
                 }
                 
-                // Maksimum 9 karakter (son hane X olacak)
-                if (value.length > 9) {
-                    value = value.substring(0, 9);
+                // Maksimum 10 karakter ama kullanıcı görsün
+                if (value.length > 10) {
+                    value = value.substring(0, 10);
                 }
                 
                 e.target.value = value;
