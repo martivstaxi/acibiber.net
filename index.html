@@ -1927,7 +1927,22 @@
             line-height: 1.5;
         }
 
-        /* Modal */
+        /* Blinking animation for input focus hint */
+        @keyframes blinkBorder {
+            0%, 100% {
+                border-color: #ef4444;
+                box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+            }
+            50% {
+                border-color: #fca5a5;
+                box-shadow: 0 0 0 5px rgba(239, 68, 68, 0.1);
+            }
+        }
+
+        .verify-input.blink-hint {
+            animation: blinkBorder 1s ease-in-out infinite;
+            background: #fff5f5;
+        }
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -3914,13 +3929,35 @@
             
             document.getElementById('modalOverlay').classList.add('show');
             
-            // Focus on second input since first is pre-filled
-            setTimeout(() => document.getElementById('v2').focus(), 100);
+            // Instead of auto-focus, add blinking animation to second input
+            setTimeout(() => {
+                const secondInput = document.getElementById('v2');
+                secondInput.classList.add('blink-hint');
+                
+                // Remove blinking when clicked
+                secondInput.addEventListener('click', function() {
+                    this.classList.remove('blink-hint');
+                    this.focus();
+                }, { once: true });
+                
+                // Also remove blinking on focus
+                secondInput.addEventListener('focus', function() {
+                    this.classList.remove('blink-hint');
+                }, { once: true });
+            }, 300);
         }
 
         // Close modal
         function closeModal() {
             document.getElementById('modalOverlay').classList.remove('show');
+            
+            // Remove all blinking hints when closing
+            for (let i = 2; i <= 4; i++) {
+                const input = document.getElementById(`v${i}`);
+                if (input) {
+                    input.classList.remove('blink-hint');
+                }
+            }
         }
 
         // Setup verification
@@ -3931,9 +3968,27 @@
                 input.addEventListener('input', checkVerify);
                 
                 input.addEventListener('input', function() {
+                    // Remove blinking from current input when typing
+                    this.classList.remove('blink-hint');
+                    
                     if (this.value === this.getAttribute('data-correct')) {
                         if (i < 4) {
-                            setTimeout(() => document.getElementById(`v${i + 1}`).focus(), 200);
+                            // Add blinking to next input instead of auto-focus
+                            setTimeout(() => {
+                                const nextInput = document.getElementById(`v${i + 1}`);
+                                nextInput.classList.add('blink-hint');
+                                
+                                // Remove blinking when clicked
+                                nextInput.addEventListener('click', function() {
+                                    this.classList.remove('blink-hint');
+                                    this.focus();
+                                }, { once: true });
+                                
+                                // Also remove blinking on focus
+                                nextInput.addEventListener('focus', function() {
+                                    this.classList.remove('blink-hint');
+                                }, { once: true });
+                            }, 200);
                         }
                     }
                 });
