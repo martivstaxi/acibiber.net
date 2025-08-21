@@ -1,0 +1,79 @@
+# AciBiber Robots.txt
+# https://acibiber.net
+
+# Allow all search engines
+User-agent: *
+Allow: /
+Crawl-delay: 0
+
+# Google Bot
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Google Mobile Bot
+User-agent: Googlebot-Mobile
+Allow: /
+
+# Google Image Bot
+User-agent: Googlebot-Image
+Allow: /
+
+# Bing Bot
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+# Yandex Bot
+User-agent: Yandex
+Allow: /
+Crawl-delay: 1
+
+# DuckDuckGo Bot
+User-agent: DuckDuckBot
+Allow: /
+
+# Baidu Bot
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 1
+
+# Facebook Bot (for social sharing)
+User-agent: facebookexternalhit
+Allow: /
+
+# Twitter Bot (for social cards)
+User-agent: Twitterbot
+Allow: /
+
+# WhatsApp Bot
+User-agent: WhatsApp
+Allow: /
+
+# LinkedIn Bot
+User-agent: LinkedInBot
+Allow: /
+
+# Telegram Bot
+User-agent: TelegramBot
+Allow: /
+
+# Apple Bot (for Siri and Spotlight)
+User-agent: Applebot
+Allow: /
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Sitemap location
+Sitemap: https://acibiber.net/sitemap.xml
