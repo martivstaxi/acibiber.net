@@ -2033,6 +2033,12 @@
                 max-height: 60vh;
                 border-radius: 14px;
                 box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+                position: fixed;
+                top: 80px;
+                left: 10px;
+                right: 10px;
+                max-width: calc(100% - 20px);
+                z-index: 1001;
             }
 
             .country-search {
@@ -2963,6 +2969,17 @@
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
+            // Load saved country preference
+            const savedCountryCode = localStorage.getItem('selectedCountryCode');
+            if (savedCountryCode) {
+                const savedCountry = countries.find(c => c.code === savedCountryCode);
+                if (savedCountry) {
+                    selectedCountry = savedCountry;
+                    document.getElementById('selectedFlag').textContent = savedCountry.flag;
+                    document.getElementById('selectedName').textContent = savedCountry.name;
+                }
+            }
+            
             // Apply translations
             applyTranslations();
             
@@ -3153,6 +3170,7 @@
         function toggleCountryDropdown() {
             const dropdown = document.getElementById('countryDropdown');
             const selector = document.getElementById('countrySelector');
+            const searchInput = document.getElementById('countrySearch');
             
             if (dropdown.classList.contains('show')) {
                 dropdown.classList.remove('show');
@@ -3160,7 +3178,20 @@
             } else {
                 dropdown.classList.add('show');
                 selector.classList.add('active');
-                document.getElementById('countrySearch').focus();
+                
+                // Pre-fill search with "+" for easy country code search
+                searchInput.value = '+';
+                searchInput.focus();
+                
+                // Move cursor to end of input
+                searchInput.setSelectionRange(1, 1);
+                
+                // On mobile, scroll the dropdown to top for better visibility
+                if (window.innerWidth <= 640) {
+                    setTimeout(() => {
+                        dropdown.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                }
             }
         }
 
@@ -3214,6 +3245,12 @@
             document.getElementById('countryDropdown').classList.remove('show');
             document.getElementById('countrySelector').classList.remove('active');
             document.getElementById('countrySearch').value = '';
+            
+            // Save selected country to localStorage
+            localStorage.setItem('selectedCountryCode', country.code);
+            localStorage.setItem('selectedCountryName', country.name);
+            localStorage.setItem('selectedCountryFlag', country.flag);
+            localStorage.setItem('selectedCountryDigits', country.digits);
             
             initializePhoneInput();
         }
