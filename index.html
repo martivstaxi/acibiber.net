@@ -9,17 +9,52 @@
     <meta name="theme-color" content="#ef4444">
     <title>AcıBiber - Telefon Güvenlik Kontrolü</title>
     
-    <!-- Language Detection -->
+    <!-- Language Detection and Translations -->
     <script>
     (function() {
         // Detect browser language
         const browserLang = navigator.language || navigator.userLanguage;
         const langCode = browserLang.toLowerCase().split('-')[0];
         
-        // Set language to Turkish if browser is Turkish, otherwise English
-        window.userLang = (langCode === 'tr') ? 'tr' : 'en';
+        // Supported languages mapping
+        const supportedLangs = {
+            'en': 'en', // English
+            'zh': 'zh', // Mandarin Chinese
+            'hi': 'hi', // Hindi
+            'es': 'es', // Spanish
+            'ar': 'ar', // Arabic
+            'fr': 'fr', // French
+            'pt': 'pt', // Portuguese
+            'bn': 'bn', // Bengali
+            'ru': 'ru', // Russian
+            'id': 'id', // Indonesian
+            'de': 'de', // German
+            'ja': 'ja', // Japanese
+            'pa': 'pa', // Punjabi
+            'tr': 'tr', // Turkish
+            'vi': 'vi', // Vietnamese
+            'ko': 'ko', // Korean
+            'fa': 'fa', // Persian/Farsi
+            'it': 'it', // Italian
+            'ur': 'ur', // Urdu
+            'th': 'th', // Thai
+            'pl': 'pl', // Polish
+            'nl': 'nl', // Dutch
+            'ro': 'ro', // Romanian
+            'sv': 'sv', // Swedish
+            'yue': 'yue' // Cantonese
+        };
         
-        // Translations
+        // Check for Cantonese
+        if (browserLang.toLowerCase().includes('zh-hk') || browserLang.toLowerCase().includes('zh-tw')) {
+            window.userLang = 'yue';
+        } else if (supportedLangs[langCode]) {
+            window.userLang = supportedLangs[langCode];
+        } else {
+            window.userLang = 'en'; // Default to English
+        }
+        
+        // Full translations for all 25 languages
         window.translations = {
             tr: {
                 title: "AcıBiber - Telefon Güvenlik Kontrolü",
@@ -51,7 +86,10 @@
                 alreadyVoted: "✓ Bu numara için zaten oy kullandınız",
                 votedSafe: "🟢 Güvenli olarak işaretlendi",
                 votedSpam: "🔴 Şüpheli olarak işaretlendi",
-                error: "❌ Bir hata oluştu"
+                error: "❌ Bir hata oluştu",
+                otherProjects: "Bizim Diğer Projelerimiz",
+                scenicLocations: "Güzel manzaralı yerlerin konum bilgileri",
+                travelTools: "Seyahat araçları"
             },
             en: {
                 title: "AciBiber - Phone Security Check",
@@ -83,13 +121,821 @@
                 alreadyVoted: "✓ You have already voted for this number",
                 votedSafe: "🟢 Marked as safe",
                 votedSpam: "🔴 Marked as suspicious",
-                error: "❌ An error occurred"
+                error: "❌ An error occurred",
+                otherProjects: "Our Other Projects",
+                scenicLocations: "Location information of scenic places",
+                travelTools: "Travel tools"
+            },
+            zh: {
+                title: "AciBiber - 电话安全检查",
+                subtitle: "检查可疑号码，保持安全",
+                redBadge: "红辣椒：可疑",
+                greenBadge: "绿辣椒：安全",
+                countrySelect: "国家选择",
+                phoneNumber: "电话号码",
+                searchBtn: "检查",
+                searchingBtn: "检查中...",
+                warning: "⚠️ 这是一个虚构的号码。它不属于任何人。作为社区，我们评估以X结尾的号码。",
+                verified: "✓ 已验证",
+                communityRating: "社区评分 🏆",
+                greenPepper: "🟢 绿辣椒",
+                redPepper: "红辣椒 🔴",
+                totalVotes: "共 {count} 条评价",
+                voteInvite: "您也来评价！",
+                safeBtn: "安全",
+                spamBtn: "可疑",
+                refreshBtn: "刷新页面",
+                botCheck: "🔐 机器人检查",
+                botCheckDesc: "为了验证您不是机器人，请注意大小写字母输入框中的文本",
+                completeTask: "完成任务",
+                typeText: "输入框中的文本",
+                cancel: "取消",
+                vote: "投票",
+                countrySearch: "搜索国家...",
+                enterAllDigits: "⚠️ 请输入所有数字",
+                alreadyVoted: "✓ 您已经为此号码投票",
+                votedSafe: "🟢 标记为安全",
+                votedSpam: "🔴 标记为可疑",
+                error: "❌ 发生错误",
+                otherProjects: "我们的其他项目",
+                scenicLocations: "风景名胜的位置信息",
+                travelTools: "旅行工具"
+            },
+            hi: {
+                title: "AciBiber - फोन सुरक्षा जांच",
+                subtitle: "संदिग्ध नंबरों की जांच करें, सुरक्षित रहें",
+                redBadge: "लाल मिर्च: संदिग्ध",
+                greenBadge: "हरी मिर्च: सुरक्षित",
+                countrySelect: "देश चयन",
+                phoneNumber: "फोन नंबर",
+                searchBtn: "जांच करें",
+                searchingBtn: "जांच हो रही है...",
+                warning: "⚠️ यह एक काल्पनिक नंबर है। यह किसी का नहीं है। समुदाय के रूप में, हम X से समाप्त होने वाले नंबरों का मूल्यांकन करते हैं।",
+                verified: "✓ सत्यापित",
+                communityRating: "समुदाय रेटिंग 🏆",
+                greenPepper: "🟢 हरी मिर्च",
+                redPepper: "लाल मिर्च 🔴",
+                totalVotes: "कुल {count} समीक्षाएं",
+                voteInvite: "आप भी रेट करें!",
+                safeBtn: "सुरक्षित",
+                spamBtn: "संदिग्ध",
+                refreshBtn: "पेज रीफ्रेश करें",
+                botCheck: "🔐 बॉट जांच",
+                botCheckDesc: "यह सत्यापित करने के लिए कि आप रोबोट नहीं हैं, बॉक्स में टेक्स्ट टाइप करें",
+                completeTask: "कार्य पूरा करें",
+                typeText: "बॉक्स में टेक्स्ट टाइप करें",
+                cancel: "रद्द करें",
+                vote: "वोट",
+                countrySearch: "देश खोजें...",
+                enterAllDigits: "⚠️ कृपया सभी अंक दर्ज करें",
+                alreadyVoted: "✓ आपने इस नंबर के लिए पहले ही वोट कर दिया है",
+                votedSafe: "🟢 सुरक्षित के रूप में चिह्नित",
+                votedSpam: "🔴 संदिग्ध के रूप में चिह्नित",
+                error: "❌ एक त्रुटि हुई",
+                otherProjects: "हमारे अन्य प्रोजेक्ट",
+                scenicLocations: "सुंदर स्थानों की स्थान जानकारी",
+                travelTools: "यात्रा उपकरण"
+            },
+            es: {
+                title: "AciBiber - Control de Seguridad Telefónica",
+                subtitle: "Verifica números sospechosos, mantente seguro",
+                redBadge: "Pimiento Picante: Sospechoso",
+                greenBadge: "Pimiento Verde: Seguro",
+                countrySelect: "Selección de País",
+                phoneNumber: "Número de Teléfono",
+                searchBtn: "Verificar",
+                searchingBtn: "Verificando...",
+                warning: "⚠️ Este es un número ficticio. No pertenece a nadie. Como comunidad, evaluamos números que terminan en X.",
+                verified: "✓ Verificado",
+                communityRating: "Calificación de la Comunidad 🏆",
+                greenPepper: "🟢 Pimiento Verde",
+                redPepper: "Pimiento Picante 🔴",
+                totalVotes: "Total {count} reseñas",
+                voteInvite: "¡Califícalo tú también!",
+                safeBtn: "Seguro",
+                spamBtn: "Sospechoso",
+                refreshBtn: "Actualizar Página",
+                botCheck: "🔐 Verificación de Bot",
+                botCheckDesc: "Para verificar que no eres un robot, escribe los textos en las casillas",
+                completeTask: "Completa la tarea",
+                typeText: "Escribe el texto en la casilla",
+                cancel: "Cancelar",
+                vote: "Votar",
+                countrySearch: "Buscar país...",
+                enterAllDigits: "⚠️ Por favor ingrese todos los dígitos",
+                alreadyVoted: "✓ Ya has votado por este número",
+                votedSafe: "🟢 Marcado como seguro",
+                votedSpam: "🔴 Marcado como sospechoso",
+                error: "❌ Ocurrió un error",
+                otherProjects: "Nuestros Otros Proyectos",
+                scenicLocations: "Información de ubicación de lugares pintorescos",
+                travelTools: "Herramientas de viaje"
+            },
+            ar: {
+                title: "AciBiber - فحص أمان الهاتف",
+                subtitle: "تحقق من الأرقام المشبوهة، ابق آمناً",
+                redBadge: "فلفل حار: مشبوه",
+                greenBadge: "فلفل أخضر: آمن",
+                countrySelect: "اختيار الدولة",
+                phoneNumber: "رقم الهاتف",
+                searchBtn: "فحص",
+                searchingBtn: "جاري الفحص...",
+                warning: "⚠️ هذا رقم وهمي. لا ينتمي لأحد. كمجتمع، نقيم الأرقام المنتهية بـ X.",
+                verified: "✓ تم التحقق",
+                communityRating: "تقييم المجتمع 🏆",
+                greenPepper: "🟢 فلفل أخضر",
+                redPepper: "فلفل حار 🔴",
+                totalVotes: "إجمالي {count} تقييمات",
+                voteInvite: "قيّم أنت أيضاً!",
+                safeBtn: "آمن",
+                spamBtn: "مشبوه",
+                refreshBtn: "تحديث الصفحة",
+                botCheck: "🔐 فحص البوت",
+                botCheckDesc: "للتحقق من أنك لست روبوت، اكتب النصوص في المربعات",
+                completeTask: "أكمل المهمة",
+                typeText: "اكتب النص في المربع",
+                cancel: "إلغاء",
+                vote: "تصويت",
+                countrySearch: "البحث عن دولة...",
+                enterAllDigits: "⚠️ الرجاء إدخال جميع الأرقام",
+                alreadyVoted: "✓ لقد صوتت بالفعل لهذا الرقم",
+                votedSafe: "🟢 تم وضع علامة آمن",
+                votedSpam: "🔴 تم وضع علامة مشبوه",
+                error: "❌ حدث خطأ",
+                otherProjects: "مشاريعنا الأخرى",
+                scenicLocations: "معلومات موقع الأماكن الخلابة",
+                travelTools: "أدوات السفر"
+            },
+            fr: {
+                title: "AciBiber - Vérification de Sécurité Téléphonique",
+                subtitle: "Vérifiez les numéros suspects, restez en sécurité",
+                redBadge: "Piment Rouge: Suspect",
+                greenBadge: "Piment Vert: Sûr",
+                countrySelect: "Sélection du Pays",
+                phoneNumber: "Numéro de Téléphone",
+                searchBtn: "Vérifier",
+                searchingBtn: "Vérification...",
+                warning: "⚠️ Ceci est un numéro fictif. Il n'appartient à personne. En tant que communauté, nous évaluons les numéros se terminant par X.",
+                verified: "✓ Vérifié",
+                communityRating: "Évaluation de la Communauté 🏆",
+                greenPepper: "🟢 Piment Vert",
+                redPepper: "Piment Rouge 🔴",
+                totalVotes: "Total {count} avis",
+                voteInvite: "Évaluez aussi!",
+                safeBtn: "Sûr",
+                spamBtn: "Suspect",
+                refreshBtn: "Actualiser la Page",
+                botCheck: "🔐 Vérification Anti-Bot",
+                botCheckDesc: "Pour vérifier que vous n'êtes pas un robot, tapez les textes dans les cases",
+                completeTask: "Terminez la tâche",
+                typeText: "Tapez le texte dans la case",
+                cancel: "Annuler",
+                vote: "Voter",
+                countrySearch: "Rechercher un pays...",
+                enterAllDigits: "⚠️ Veuillez entrer tous les chiffres",
+                alreadyVoted: "✓ Vous avez déjà voté pour ce numéro",
+                votedSafe: "🟢 Marqué comme sûr",
+                votedSpam: "🔴 Marqué comme suspect",
+                error: "❌ Une erreur s'est produite",
+                otherProjects: "Nos Autres Projets",
+                scenicLocations: "Informations de localisation des lieux pittoresques",
+                travelTools: "Outils de voyage"
+            },
+            pt: {
+                title: "AciBiber - Verificação de Segurança Telefônica",
+                subtitle: "Verifique números suspeitos, fique seguro",
+                redBadge: "Pimenta Vermelha: Suspeito",
+                greenBadge: "Pimenta Verde: Seguro",
+                countrySelect: "Seleção de País",
+                phoneNumber: "Número de Telefone",
+                searchBtn: "Verificar",
+                searchingBtn: "Verificando...",
+                warning: "⚠️ Este é um número fictício. Não pertence a ninguém. Como comunidade, avaliamos números terminados em X.",
+                verified: "✓ Verificado",
+                communityRating: "Avaliação da Comunidade 🏆",
+                greenPepper: "🟢 Pimenta Verde",
+                redPepper: "Pimenta Vermelha 🔴",
+                totalVotes: "Total {count} avaliações",
+                voteInvite: "Avalie você também!",
+                safeBtn: "Seguro",
+                spamBtn: "Suspeito",
+                refreshBtn: "Atualizar Página",
+                botCheck: "🔐 Verificação de Bot",
+                botCheckDesc: "Para verificar que você não é um robô, digite os textos nas caixas",
+                completeTask: "Complete a tarefa",
+                typeText: "Digite o texto na caixa",
+                cancel: "Cancelar",
+                vote: "Votar",
+                countrySearch: "Buscar país...",
+                enterAllDigits: "⚠️ Por favor, insira todos os dígitos",
+                alreadyVoted: "✓ Você já votou neste número",
+                votedSafe: "🟢 Marcado como seguro",
+                votedSpam: "🔴 Marcado como suspeito",
+                error: "❌ Ocorreu um erro",
+                otherProjects: "Nossos Outros Projetos",
+                scenicLocations: "Informações de localização de lugares pitorescos",
+                travelTools: "Ferramentas de viagem"
+            },
+            bn: {
+                title: "AciBiber - ফোন নিরাপত্তা পরীক্ষা",
+                subtitle: "সন্দেহজনক নম্বর পরীক্ষা করুন, নিরাপদ থাকুন",
+                redBadge: "লাল মরিচ: সন্দেহজনক",
+                greenBadge: "সবুজ মরিচ: নিরাপদ",
+                countrySelect: "দেশ নির্বাচন",
+                phoneNumber: "ফোন নম্বর",
+                searchBtn: "পরীক্ষা করুন",
+                searchingBtn: "পরীক্ষা করা হচ্ছে...",
+                warning: "⚠️ এটি একটি কাল্পনিক নম্বর। এটি কারও নয়। সম্প্রদায় হিসাবে, আমরা X দিয়ে শেষ হওয়া নম্বরগুলি মূল্যায়ন করি।",
+                verified: "✓ যাচাইকৃত",
+                communityRating: "সম্প্রদায় রেটিং 🏆",
+                greenPepper: "🟢 সবুজ মরিচ",
+                redPepper: "লাল মরিচ 🔴",
+                totalVotes: "মোট {count} পর্যালোচনা",
+                voteInvite: "আপনিও রেট করুন!",
+                safeBtn: "নিরাপদ",
+                spamBtn: "সন্দেহজনক",
+                refreshBtn: "পৃষ্ঠা রিফ্রেশ করুন",
+                botCheck: "🔐 বট পরীক্ষা",
+                botCheckDesc: "আপনি রোবট নন তা যাচাই করতে, বক্সে পাঠ্য টাইপ করুন",
+                completeTask: "কাজটি সম্পূর্ণ করুন",
+                typeText: "বক্সে পাঠ্য টাইপ করুন",
+                cancel: "বাতিল",
+                vote: "ভোট",
+                countrySearch: "দেশ খুঁজুন...",
+                enterAllDigits: "⚠️ সব অঙ্ক লিখুন",
+                alreadyVoted: "✓ আপনি ইতিমধ্যে এই নম্বরের জন্য ভোট দিয়েছেন",
+                votedSafe: "🟢 নিরাপদ হিসাবে চিহ্নিত",
+                votedSpam: "🔴 সন্দেহজনক হিসাবে চিহ্নিত",
+                error: "❌ একটি ত্রুটি ঘটেছে",
+                otherProjects: "আমাদের অন্যান্য প্রকল্প",
+                scenicLocations: "সুন্দর স্থানের অবস্থান তথ্য",
+                travelTools: "ভ্রমণ সরঞ্জাম"
+            },
+            ru: {
+                title: "AciBiber - Проверка безопасности телефона",
+                subtitle: "Проверяйте подозрительные номера, будьте в безопасности",
+                redBadge: "Красный перец: Подозрительный",
+                greenBadge: "Зеленый перец: Безопасный",
+                countrySelect: "Выбор страны",
+                phoneNumber: "Номер телефона",
+                searchBtn: "Проверить",
+                searchingBtn: "Проверка...",
+                warning: "⚠️ Это вымышленный номер. Он никому не принадлежит. Как сообщество, мы оцениваем номера, заканчивающиеся на X.",
+                verified: "✓ Проверено",
+                communityRating: "Рейтинг сообщества 🏆",
+                greenPepper: "🟢 Зеленый перец",
+                redPepper: "Красный перец 🔴",
+                totalVotes: "Всего {count} отзывов",
+                voteInvite: "Оцените тоже!",
+                safeBtn: "Безопасный",
+                spamBtn: "Подозрительный",
+                refreshBtn: "Обновить страницу",
+                botCheck: "🔐 Проверка на бота",
+                botCheckDesc: "Чтобы подтвердить, что вы не робот, введите тексты в поля",
+                completeTask: "Выполните задание",
+                typeText: "Введите текст в поле",
+                cancel: "Отмена",
+                vote: "Голосовать",
+                countrySearch: "Поиск страны...",
+                enterAllDigits: "⚠️ Пожалуйста, введите все цифры",
+                alreadyVoted: "✓ Вы уже проголосовали за этот номер",
+                votedSafe: "🟢 Отмечен как безопасный",
+                votedSpam: "🔴 Отмечен как подозрительный",
+                error: "❌ Произошла ошибка",
+                otherProjects: "Наши Другие Проекты",
+                scenicLocations: "Информация о местоположении живописных мест",
+                travelTools: "Инструменты для путешествий"
+            },
+            id: {
+                title: "AciBiber - Pemeriksaan Keamanan Telepon",
+                subtitle: "Periksa nomor mencurigakan, tetap aman",
+                redBadge: "Cabai Merah: Mencurigakan",
+                greenBadge: "Cabai Hijau: Aman",
+                countrySelect: "Pilihan Negara",
+                phoneNumber: "Nomor Telepon",
+                searchBtn: "Periksa",
+                searchingBtn: "Memeriksa...",
+                warning: "⚠️ Ini adalah nomor fiktif. Bukan milik siapa pun. Sebagai komunitas, kami mengevaluasi nomor yang berakhir dengan X.",
+                verified: "✓ Terverifikasi",
+                communityRating: "Peringkat Komunitas 🏆",
+                greenPepper: "🟢 Cabai Hijau",
+                redPepper: "Cabai Merah 🔴",
+                totalVotes: "Total {count} ulasan",
+                voteInvite: "Beri nilai juga!",
+                safeBtn: "Aman",
+                spamBtn: "Mencurigakan",
+                refreshBtn: "Segarkan Halaman",
+                botCheck: "🔐 Pemeriksaan Bot",
+                botCheckDesc: "Untuk memverifikasi Anda bukan robot, ketik teks di kotak",
+                completeTask: "Selesaikan tugas",
+                typeText: "Ketik teks di kotak",
+                cancel: "Batal",
+                vote: "Pilih",
+                countrySearch: "Cari negara...",
+                enterAllDigits: "⚠️ Silakan masukkan semua digit",
+                alreadyVoted: "✓ Anda sudah memilih untuk nomor ini",
+                votedSafe: "🟢 Ditandai sebagai aman",
+                votedSpam: "🔴 Ditandai sebagai mencurigakan",
+                error: "❌ Terjadi kesalahan",
+                otherProjects: "Proyek Kami Lainnya",
+                scenicLocations: "Informasi lokasi tempat indah",
+                travelTools: "Alat perjalanan"
+            },
+            de: {
+                title: "AciBiber - Telefon-Sicherheitsprüfung",
+                subtitle: "Verdächtige Nummern prüfen, sicher bleiben",
+                redBadge: "Rote Paprika: Verdächtig",
+                greenBadge: "Grüne Paprika: Sicher",
+                countrySelect: "Länderauswahl",
+                phoneNumber: "Telefonnummer",
+                searchBtn: "Prüfen",
+                searchingBtn: "Prüfung läuft...",
+                warning: "⚠️ Dies ist eine fiktive Nummer. Sie gehört niemandem. Als Gemeinschaft bewerten wir Nummern, die mit X enden.",
+                verified: "✓ Verifiziert",
+                communityRating: "Community-Bewertung 🏆",
+                greenPepper: "🟢 Grüne Paprika",
+                redPepper: "Rote Paprika 🔴",
+                totalVotes: "Gesamt {count} Bewertungen",
+                voteInvite: "Bewerten Sie auch!",
+                safeBtn: "Sicher",
+                spamBtn: "Verdächtig",
+                refreshBtn: "Seite aktualisieren",
+                botCheck: "🔐 Bot-Prüfung",
+                botCheckDesc: "Um zu bestätigen, dass Sie kein Roboter sind, geben Sie die Texte in die Felder ein",
+                completeTask: "Aufgabe abschließen",
+                typeText: "Text im Feld eingeben",
+                cancel: "Abbrechen",
+                vote: "Abstimmen",
+                countrySearch: "Land suchen...",
+                enterAllDigits: "⚠️ Bitte alle Ziffern eingeben",
+                alreadyVoted: "✓ Sie haben bereits für diese Nummer abgestimmt",
+                votedSafe: "🟢 Als sicher markiert",
+                votedSpam: "🔴 Als verdächtig markiert",
+                error: "❌ Ein Fehler ist aufgetreten",
+                otherProjects: "Unsere Anderen Projekte",
+                scenicLocations: "Standortinformationen malerischer Orte",
+                travelTools: "Reisewerkzeuge"
+            },
+            ja: {
+                title: "AciBiber - 電話セキュリティチェック",
+                subtitle: "疑わしい番号をチェック、安全を保つ",
+                redBadge: "赤唐辛子：疑わしい",
+                greenBadge: "緑唐辛子：安全",
+                countrySelect: "国選択",
+                phoneNumber: "電話番号",
+                searchBtn: "チェック",
+                searchingBtn: "チェック中...",
+                warning: "⚠️ これは架空の番号です。誰のものでもありません。コミュニティとして、Xで終わる番号を評価しています。",
+                verified: "✓ 確認済み",
+                communityRating: "コミュニティ評価 🏆",
+                greenPepper: "🟢 緑唐辛子",
+                redPepper: "赤唐辛子 🔴",
+                totalVotes: "合計 {count} レビュー",
+                voteInvite: "あなたも評価してください！",
+                safeBtn: "安全",
+                spamBtn: "疑わしい",
+                refreshBtn: "ページを更新",
+                botCheck: "🔐 ボットチェック",
+                botCheckDesc: "ロボットでないことを確認するため、ボックスにテキストを入力してください",
+                completeTask: "タスクを完了",
+                typeText: "ボックスにテキストを入力",
+                cancel: "キャンセル",
+                vote: "投票",
+                countrySearch: "国を検索...",
+                enterAllDigits: "⚠️ すべての数字を入力してください",
+                alreadyVoted: "✓ この番号にすでに投票しています",
+                votedSafe: "🟢 安全としてマーク",
+                votedSpam: "🔴 疑わしいとしてマーク",
+                error: "❌ エラーが発生しました",
+                otherProjects: "私たちの他のプロジェクト",
+                scenicLocations: "絶景スポットの位置情報",
+                travelTools: "旅行ツール"
+            },
+            pa: {
+                title: "AciBiber - ਫੋਨ ਸੁਰੱਖਿਆ ਜਾਂਚ",
+                subtitle: "ਸ਼ੱਕੀ ਨੰਬਰਾਂ ਦੀ ਜਾਂਚ ਕਰੋ, ਸੁਰੱਖਿਅਤ ਰਹੋ",
+                redBadge: "ਲਾਲ ਮਿਰਚ: ਸ਼ੱਕੀ",
+                greenBadge: "ਹਰੀ ਮਿਰਚ: ਸੁਰੱਖਿਅਤ",
+                countrySelect: "ਦੇਸ਼ ਚੋਣ",
+                phoneNumber: "ਫੋਨ ਨੰਬਰ",
+                searchBtn: "ਜਾਂਚ ਕਰੋ",
+                searchingBtn: "ਜਾਂਚ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ...",
+                warning: "⚠️ ਇਹ ਇੱਕ ਕਾਲਪਨਿਕ ਨੰਬਰ ਹੈ। ਇਹ ਕਿਸੇ ਦਾ ਨਹੀਂ ਹੈ। ਭਾਈਚਾਰੇ ਵਜੋਂ, ਅਸੀਂ X ਨਾਲ ਖਤਮ ਹੋਣ ਵਾਲੇ ਨੰਬਰਾਂ ਦਾ ਮੁਲਾਂਕਣ ਕਰਦੇ ਹਾਂ।",
+                verified: "✓ ਪ੍ਰਮਾਣਿਤ",
+                communityRating: "ਭਾਈਚਾਰਾ ਰੇਟਿੰਗ 🏆",
+                greenPepper: "🟢 ਹਰੀ ਮਿਰਚ",
+                redPepper: "ਲਾਲ ਮਿਰਚ 🔴",
+                totalVotes: "ਕੁੱਲ {count} ਸਮੀਖਿਆਵਾਂ",
+                voteInvite: "ਤੁਸੀਂ ਵੀ ਰੇਟ ਕਰੋ!",
+                safeBtn: "ਸੁਰੱਖਿਅਤ",
+                spamBtn: "ਸ਼ੱਕੀ",
+                refreshBtn: "ਪੇਜ ਰੀਫ੍ਰੈਸ਼ ਕਰੋ",
+                botCheck: "🔐 ਬੋਟ ਜਾਂਚ",
+                botCheckDesc: "ਇਹ ਪੁਸ਼ਟੀ ਕਰਨ ਲਈ ਕਿ ਤੁਸੀਂ ਰੋਬੋਟ ਨਹੀਂ ਹੋ, ਬਕਸਿਆਂ ਵਿੱਚ ਟੈਕਸਟ ਟਾਈਪ ਕਰੋ",
+                completeTask: "ਕਾਰਜ ਪੂਰਾ ਕਰੋ",
+                typeText: "ਬਕਸੇ ਵਿੱਚ ਟੈਕਸਟ ਟਾਈਪ ਕਰੋ",
+                cancel: "ਰੱਦ ਕਰੋ",
+                vote: "ਵੋਟ",
+                countrySearch: "ਦੇਸ਼ ਖੋਜੋ...",
+                enterAllDigits: "⚠️ ਕਿਰਪਾ ਕਰਕੇ ਸਾਰੇ ਅੰਕ ਦਾਖਲ ਕਰੋ",
+                alreadyVoted: "✓ ਤੁਸੀਂ ਇਸ ਨੰਬਰ ਲਈ ਪਹਿਲਾਂ ਹੀ ਵੋਟ ਕਰ ਚੁੱਕੇ ਹੋ",
+                votedSafe: "🟢 ਸੁਰੱਖਿਅਤ ਵਜੋਂ ਚਿੰਨ੍ਹਿਤ",
+                votedSpam: "🔴 ਸ਼ੱਕੀ ਵਜੋਂ ਚਿੰਨ੍ਹਿਤ",
+                error: "❌ ਇੱਕ ਗਲਤੀ ਹੋਈ",
+                otherProjects: "ਸਾਡੇ ਹੋਰ ਪ੍ਰੋਜੈਕਟ",
+                scenicLocations: "ਸੁੰਦਰ ਸਥਾਨਾਂ ਦੀ ਸਥਿਤੀ ਜਾਣਕਾਰੀ",
+                travelTools: "ਯਾਤਰਾ ਸੰਦ"
+            },
+            vi: {
+                title: "AciBiber - Kiểm tra An toàn Điện thoại",
+                subtitle: "Kiểm tra số đáng ngờ, giữ an toàn",
+                redBadge: "Ớt Đỏ: Đáng ngờ",
+                greenBadge: "Ớt Xanh: An toàn",
+                countrySelect: "Chọn Quốc gia",
+                phoneNumber: "Số Điện thoại",
+                searchBtn: "Kiểm tra",
+                searchingBtn: "Đang kiểm tra...",
+                warning: "⚠️ Đây là số giả tưởng. Không thuộc về ai. Là cộng đồng, chúng tôi đánh giá các số kết thúc bằng X.",
+                verified: "✓ Đã xác minh",
+                communityRating: "Đánh giá Cộng đồng 🏆",
+                greenPepper: "🟢 Ớt Xanh",
+                redPepper: "Ớt Đỏ 🔴",
+                totalVotes: "Tổng cộng {count} đánh giá",
+                voteInvite: "Bạn cũng đánh giá nhé!",
+                safeBtn: "An toàn",
+                spamBtn: "Đáng ngờ",
+                refreshBtn: "Làm mới Trang",
+                botCheck: "🔐 Kiểm tra Bot",
+                botCheckDesc: "Để xác minh bạn không phải robot, nhập văn bản vào ô",
+                completeTask: "Hoàn thành nhiệm vụ",
+                typeText: "Nhập văn bản vào ô",
+                cancel: "Hủy",
+                vote: "Bình chọn",
+                countrySearch: "Tìm quốc gia...",
+                enterAllDigits: "⚠️ Vui lòng nhập tất cả các chữ số",
+                alreadyVoted: "✓ Bạn đã bình chọn cho số này",
+                votedSafe: "🟢 Đã đánh dấu an toàn",
+                votedSpam: "🔴 Đã đánh dấu đáng ngờ",
+                error: "❌ Đã xảy ra lỗi",
+                otherProjects: "Các Dự Án Khác Của Chúng Tôi",
+                scenicLocations: "Thông tin vị trí các địa điểm đẹp",
+                travelTools: "Công cụ du lịch"
+            },
+            ko: {
+                title: "AciBiber - 전화 보안 확인",
+                subtitle: "의심스러운 번호 확인, 안전 유지",
+                redBadge: "빨간 고추: 의심스러움",
+                greenBadge: "녹색 고추: 안전",
+                countrySelect: "국가 선택",
+                phoneNumber: "전화번호",
+                searchBtn: "확인",
+                searchingBtn: "확인 중...",
+                warning: "⚠️ 이것은 가상의 번호입니다. 누구의 것도 아닙니다. 커뮤니티로서 X로 끝나는 번호를 평가합니다.",
+                verified: "✓ 확인됨",
+                communityRating: "커뮤니티 평가 🏆",
+                greenPepper: "🟢 녹색 고추",
+                redPepper: "빨간 고추 🔴",
+                totalVotes: "총 {count}개 리뷰",
+                voteInvite: "당신도 평가하세요!",
+                safeBtn: "안전",
+                spamBtn: "의심스러움",
+                refreshBtn: "페이지 새로고침",
+                botCheck: "🔐 봇 확인",
+                botCheckDesc: "로봇이 아님을 확인하려면 상자에 텍스트를 입력하세요",
+                completeTask: "작업 완료",
+                typeText: "상자에 텍스트 입력",
+                cancel: "취소",
+                vote: "투표",
+                countrySearch: "국가 검색...",
+                enterAllDigits: "⚠️ 모든 숫자를 입력하세요",
+                alreadyVoted: "✓ 이미 이 번호에 투표했습니다",
+                votedSafe: "🟢 안전으로 표시됨",
+                votedSpam: "🔴 의심스러움으로 표시됨",
+                error: "❌ 오류가 발생했습니다",
+                otherProjects: "우리의 다른 프로젝트",
+                scenicLocations: "경치 좋은 장소의 위치 정보",
+                travelTools: "여행 도구"
+            },
+            fa: {
+                title: "AciBiber - بررسی امنیت تلفن",
+                subtitle: "شماره‌های مشکوک را بررسی کنید، ایمن بمانید",
+                redBadge: "فلفل قرمز: مشکوک",
+                greenBadge: "فلفل سبز: ایمن",
+                countrySelect: "انتخاب کشور",
+                phoneNumber: "شماره تلفن",
+                searchBtn: "بررسی",
+                searchingBtn: "در حال بررسی...",
+                warning: "⚠️ این یک شماره خیالی است. متعلق به کسی نیست. به عنوان جامعه، ما شماره‌هایی که با X تمام می‌شوند را ارزیابی می‌کنیم.",
+                verified: "✓ تایید شده",
+                communityRating: "رتبه‌بندی جامعه 🏆",
+                greenPepper: "🟢 فلفل سبز",
+                redPepper: "فلفل قرمز 🔴",
+                totalVotes: "مجموع {count} بررسی",
+                voteInvite: "شما هم امتیاز دهید!",
+                safeBtn: "ایمن",
+                spamBtn: "مشکوک",
+                refreshBtn: "بازخوانی صفحه",
+                botCheck: "🔐 بررسی ربات",
+                botCheckDesc: "برای تایید اینکه ربات نیستید، متن‌ها را در جعبه‌ها تایپ کنید",
+                completeTask: "کار را کامل کنید",
+                typeText: "متن را در جعبه تایپ کنید",
+                cancel: "لغو",
+                vote: "رای",
+                countrySearch: "جستجوی کشور...",
+                enterAllDigits: "⚠️ لطفا همه ارقام را وارد کنید",
+                alreadyVoted: "✓ شما قبلا به این شماره رای داده‌اید",
+                votedSafe: "🟢 به عنوان ایمن علامت‌گذاری شد",
+                votedSpam: "🔴 به عنوان مشکوک علامت‌گذاری شد",
+                error: "❌ خطایی رخ داد",
+                otherProjects: "پروژه‌های دیگر ما",
+                scenicLocations: "اطلاعات مکان مناظر زیبا",
+                travelTools: "ابزارهای سفر"
+            },
+            it: {
+                title: "AciBiber - Controllo Sicurezza Telefono",
+                subtitle: "Controlla numeri sospetti, resta al sicuro",
+                redBadge: "Peperoncino Rosso: Sospetto",
+                greenBadge: "Peperoncino Verde: Sicuro",
+                countrySelect: "Selezione Paese",
+                phoneNumber: "Numero di Telefono",
+                searchBtn: "Controlla",
+                searchingBtn: "Controllo in corso...",
+                warning: "⚠️ Questo è un numero fittizio. Non appartiene a nessuno. Come comunità, valutiamo i numeri che terminano con X.",
+                verified: "✓ Verificato",
+                communityRating: "Valutazione della Comunità 🏆",
+                greenPepper: "🟢 Peperoncino Verde",
+                redPepper: "Peperoncino Rosso 🔴",
+                totalVotes: "Totale {count} recensioni",
+                voteInvite: "Vota anche tu!",
+                safeBtn: "Sicuro",
+                spamBtn: "Sospetto",
+                refreshBtn: "Aggiorna Pagina",
+                botCheck: "🔐 Controllo Bot",
+                botCheckDesc: "Per verificare che non sei un robot, digita i testi nelle caselle",
+                completeTask: "Completa l'attività",
+                typeText: "Digita il testo nella casella",
+                cancel: "Annulla",
+                vote: "Vota",
+                countrySearch: "Cerca paese...",
+                enterAllDigits: "⚠️ Inserisci tutte le cifre",
+                alreadyVoted: "✓ Hai già votato per questo numero",
+                votedSafe: "🟢 Segnato come sicuro",
+                votedSpam: "🔴 Segnato come sospetto",
+                error: "❌ Si è verificato un errore",
+                otherProjects: "I Nostri Altri Progetti",
+                scenicLocations: "Informazioni sulla posizione di luoghi panoramici",
+                travelTools: "Strumenti di viaggio"
+            },
+            ur: {
+                title: "AciBiber - فون سیکیورٹی چیک",
+                subtitle: "مشکوک نمبرز چیک کریں، محفوظ رہیں",
+                redBadge: "لال مرچ: مشکوک",
+                greenBadge: "سبز مرچ: محفوظ",
+                countrySelect: "ملک کا انتخاب",
+                phoneNumber: "فون نمبر",
+                searchBtn: "چیک کریں",
+                searchingBtn: "چیک ہو رہا ہے...",
+                warning: "⚠️ یہ ایک فرضی نمبر ہے۔ یہ کسی کا نہیں ہے۔ کمیونٹی کے طور پر، ہم X پر ختم ہونے والے نمبروں کا جائزہ لیتے ہیں۔",
+                verified: "✓ تصدیق شدہ",
+                communityRating: "کمیونٹی ریٹنگ 🏆",
+                greenPepper: "🟢 سبز مرچ",
+                redPepper: "لال مرچ 🔴",
+                totalVotes: "کل {count} جائزے",
+                voteInvite: "آپ بھی ریٹ کریں!",
+                safeBtn: "محفوظ",
+                spamBtn: "مشکوک",
+                refreshBtn: "صفحہ ریفریش کریں",
+                botCheck: "🔐 بوٹ چیک",
+                botCheckDesc: "یہ تصدیق کرنے کے لیے کہ آپ روبوٹ نہیں ہیں، باکسز میں ٹیکسٹ ٹائپ کریں",
+                completeTask: "کام مکمل کریں",
+                typeText: "باکس میں ٹیکسٹ ٹائپ کریں",
+                cancel: "منسوخ",
+                vote: "ووٹ",
+                countrySearch: "ملک تلاش کریں...",
+                enterAllDigits: "⚠️ تمام ہندسے درج کریں",
+                alreadyVoted: "✓ آپ نے پہلے ہی اس نمبر کے لیے ووٹ دیا ہے",
+                votedSafe: "🟢 محفوظ کے طور پر نشان زد",
+                votedSpam: "🔴 مشکوک کے طور پر نشان زد",
+                error: "❌ ایک خرابی پیش آئی",
+                otherProjects: "ہمارے دیگر پروجیکٹس",
+                scenicLocations: "خوبصورت مقامات کی جگہ کی معلومات",
+                travelTools: "سفری آلات"
+            },
+            th: {
+                title: "AciBiber - ตรวจสอบความปลอดภัยโทรศัพท์",
+                subtitle: "ตรวจสอบหมายเลขที่น่าสงสัย รักษาความปลอดภัย",
+                redBadge: "พริกแดง: น่าสงสัย",
+                greenBadge: "พริกเขียว: ปลอดภัย",
+                countrySelect: "เลือกประเทศ",
+                phoneNumber: "หมายเลขโทรศัพท์",
+                searchBtn: "ตรวจสอบ",
+                searchingBtn: "กำลังตรวจสอบ...",
+                warning: "⚠️ นี่เป็นหมายเลขสมมติ ไม่ได้เป็นของใคร ในฐานะชุมชน เราประเมินหมายเลขที่ลงท้ายด้วย X",
+                verified: "✓ ตรวจสอบแล้ว",
+                communityRating: "การให้คะแนนชุมชน 🏆",
+                greenPepper: "🟢 พริกเขียว",
+                redPepper: "พริกแดง 🔴",
+                totalVotes: "รวม {count} รีวิว",
+                voteInvite: "คุณก็ให้คะแนนได้!",
+                safeBtn: "ปลอดภัย",
+                spamBtn: "น่าสงสัย",
+                refreshBtn: "รีเฟรชหน้า",
+                botCheck: "🔐 ตรวจสอบบอท",
+                botCheckDesc: "เพื่อยืนยันว่าคุณไม่ใช่หุ่นยนต์ พิมพ์ข้อความในกล่อง",
+                completeTask: "ทำภารกิจให้เสร็จ",
+                typeText: "พิมพ์ข้อความในกล่อง",
+                cancel: "ยกเลิก",
+                vote: "โหวต",
+                countrySearch: "ค้นหาประเทศ...",
+                enterAllDigits: "⚠️ กรุณาใส่ตัวเลขทั้งหมด",
+                alreadyVoted: "✓ คุณได้โหวตสำหรับหมายเลขนี้แล้ว",
+                votedSafe: "🟢 ทำเครื่องหมายว่าปลอดภัย",
+                votedSpam: "🔴 ทำเครื่องหมายว่าน่าสงสัย",
+                error: "❌ เกิดข้อผิดพลาด",
+                otherProjects: "โครงการอื่นๆ ของเรา",
+                scenicLocations: "ข้อมูลสถานที่ของสถานที่สวยงาม",
+                travelTools: "เครื่องมือการเดินทาง"
+            },
+            pl: {
+                title: "AciBiber - Sprawdzanie Bezpieczeństwa Telefonu",
+                subtitle: "Sprawdź podejrzane numery, bądź bezpieczny",
+                redBadge: "Czerwona Papryka: Podejrzany",
+                greenBadge: "Zielona Papryka: Bezpieczny",
+                countrySelect: "Wybór Kraju",
+                phoneNumber: "Numer Telefonu",
+                searchBtn: "Sprawdź",
+                searchingBtn: "Sprawdzanie...",
+                warning: "⚠️ To fikcyjny numer. Nie należy do nikogo. Jako społeczność oceniamy numery kończące się na X.",
+                verified: "✓ Zweryfikowano",
+                communityRating: "Ocena Społeczności 🏆",
+                greenPepper: "🟢 Zielona Papryka",
+                redPepper: "Czerwona Papryka 🔴",
+                totalVotes: "Łącznie {count} opinii",
+                voteInvite: "Oceń również!",
+                safeBtn: "Bezpieczny",
+                spamBtn: "Podejrzany",
+                refreshBtn: "Odśwież Stronę",
+                botCheck: "🔐 Sprawdzanie Bota",
+                botCheckDesc: "Aby potwierdzić, że nie jesteś robotem, wpisz teksty w polach",
+                completeTask: "Ukończ zadanie",
+                typeText: "Wpisz tekst w polu",
+                cancel: "Anuluj",
+                vote: "Głosuj",
+                countrySearch: "Szukaj kraju...",
+                enterAllDigits: "⚠️ Proszę wprowadzić wszystkie cyfry",
+                alreadyVoted: "✓ Już głosowałeś na ten numer",
+                votedSafe: "🟢 Oznaczono jako bezpieczny",
+                votedSpam: "🔴 Oznaczono jako podejrzany",
+                error: "❌ Wystąpił błąd",
+                otherProjects: "Nasze Inne Projekty",
+                scenicLocations: "Informacje o lokalizacji malowniczych miejsc",
+                travelTools: "Narzędzia podróżnicze"
+            },
+            nl: {
+                title: "AciBiber - Telefoon Veiligheidscontrole",
+                subtitle: "Controleer verdachte nummers, blijf veilig",
+                redBadge: "Rode Peper: Verdacht",
+                greenBadge: "Groene Peper: Veilig",
+                countrySelect: "Land Selectie",
+                phoneNumber: "Telefoonnummer",
+                searchBtn: "Controleren",
+                searchingBtn: "Controleren...",
+                warning: "⚠️ Dit is een fictief nummer. Het is van niemand. Als gemeenschap evalueren we nummers die eindigen op X.",
+                verified: "✓ Geverifieerd",
+                communityRating: "Community Beoordeling 🏆",
+                greenPepper: "🟢 Groene Peper",
+                redPepper: "Rode Peper 🔴",
+                totalVotes: "Totaal {count} beoordelingen",
+                voteInvite: "Beoordeel ook!",
+                safeBtn: "Veilig",
+                spamBtn: "Verdacht",
+                refreshBtn: "Pagina Vernieuwen",
+                botCheck: "🔐 Bot Controle",
+                botCheckDesc: "Om te verifiëren dat u geen robot bent, typ de teksten in de vakken",
+                completeTask: "Voltooi de taak",
+                typeText: "Typ de tekst in het vak",
+                cancel: "Annuleren",
+                vote: "Stem",
+                countrySearch: "Zoek land...",
+                enterAllDigits: "⚠️ Voer alle cijfers in",
+                alreadyVoted: "✓ U heeft al gestemd voor dit nummer",
+                votedSafe: "🟢 Gemarkeerd als veilig",
+                votedSpam: "🔴 Gemarkeerd als verdacht",
+                error: "❌ Er is een fout opgetreden",
+                otherProjects: "Onze Andere Projecten",
+                scenicLocations: "Locatie-informatie van schilderachtige plaatsen",
+                travelTools: "Reisgereedschap"
+            },
+            ro: {
+                title: "AciBiber - Verificare Securitate Telefon",
+                subtitle: "Verifică numerele suspecte, rămâi în siguranță",
+                redBadge: "Ardei Roșu: Suspect",
+                greenBadge: "Ardei Verde: Sigur",
+                countrySelect: "Selectare Țară",
+                phoneNumber: "Număr de Telefon",
+                searchBtn: "Verifică",
+                searchingBtn: "Se verifică...",
+                warning: "⚠️ Acesta este un număr fictiv. Nu aparține nimănui. Ca și comunitate, evaluăm numerele care se termină cu X.",
+                verified: "✓ Verificat",
+                communityRating: "Evaluare Comunitate 🏆",
+                greenPepper: "🟢 Ardei Verde",
+                redPepper: "Ardei Roșu 🔴",
+                totalVotes: "Total {count} recenzii",
+                voteInvite: "Evaluează și tu!",
+                safeBtn: "Sigur",
+                spamBtn: "Suspect",
+                refreshBtn: "Reîmprospătează Pagina",
+                botCheck: "🔐 Verificare Bot",
+                botCheckDesc: "Pentru a verifica că nu ești un robot, tastează textele în căsuțe",
+                completeTask: "Finalizează sarcina",
+                typeText: "Tastează textul în căsuță",
+                cancel: "Anulează",
+                vote: "Votează",
+                countrySearch: "Caută țară...",
+                enterAllDigits: "⚠️ Te rog introdu toate cifrele",
+                alreadyVoted: "✓ Ai votat deja pentru acest număr",
+                votedSafe: "🟢 Marcat ca sigur",
+                votedSpam: "🔴 Marcat ca suspect",
+                error: "❌ A apărut o eroare",
+                otherProjects: "Celelalte Proiecte ale Noastre",
+                scenicLocations: "Informații despre locații pitorești",
+                travelTools: "Instrumente de călătorie"
+            },
+            sv: {
+                title: "AciBiber - Telefonsäkerhetskontroll",
+                subtitle: "Kontrollera misstänkta nummer, håll dig säker",
+                redBadge: "Röd Peppar: Misstänkt",
+                greenBadge: "Grön Peppar: Säker",
+                countrySelect: "Välj Land",
+                phoneNumber: "Telefonnummer",
+                searchBtn: "Kontrollera",
+                searchingBtn: "Kontrollerar...",
+                warning: "⚠️ Detta är ett fiktivt nummer. Det tillhör ingen. Som gemenskap utvärderar vi nummer som slutar med X.",
+                verified: "✓ Verifierad",
+                communityRating: "Gemenskapsbetyg 🏆",
+                greenPepper: "🟢 Grön Peppar",
+                redPepper: "Röd Peppar 🔴",
+                totalVotes: "Totalt {count} recensioner",
+                voteInvite: "Betygsätt också!",
+                safeBtn: "Säker",
+                spamBtn: "Misstänkt",
+                refreshBtn: "Uppdatera Sida",
+                botCheck: "🔐 Botkontroll",
+                botCheckDesc: "För att verifiera att du inte är en robot, skriv texterna i rutorna",
+                completeTask: "Slutför uppgiften",
+                typeText: "Skriv texten i rutan",
+                cancel: "Avbryt",
+                vote: "Rösta",
+                countrySearch: "Sök land...",
+                enterAllDigits: "⚠️ Vänligen ange alla siffror",
+                alreadyVoted: "✓ Du har redan röstat för detta nummer",
+                votedSafe: "🟢 Markerad som säker",
+                votedSpam: "🔴 Markerad som misstänkt",
+                error: "❌ Ett fel uppstod",
+                otherProjects: "Våra Andra Projekt",
+                scenicLocations: "Platsinformation för natursköna platser",
+                travelTools: "Reseverktyg"
+            },
+            yue: {
+                title: "AciBiber - 電話安全檢查",
+                subtitle: "檢查可疑號碼，保持安全",
+                redBadge: "紅辣椒：可疑",
+                greenBadge: "綠辣椒：安全",
+                countrySelect: "國家選擇",
+                phoneNumber: "電話號碼",
+                searchBtn: "檢查",
+                searchingBtn: "檢查緊...",
+                warning: "⚠️ 呢個係虛構嘅號碼。唔屬於任何人。作為社區，我哋評估以X結尾嘅號碼。",
+                verified: "✓ 已驗證",
+                communityRating: "社區評分 🏆",
+                greenPepper: "🟢 綠辣椒",
+                redPepper: "紅辣椒 🔴",
+                totalVotes: "共 {count} 條評價",
+                voteInvite: "你都嚟評價啦！",
+                safeBtn: "安全",
+                spamBtn: "可疑",
+                refreshBtn: "刷新頁面",
+                botCheck: "🔐 機械人檢查",
+                botCheckDesc: "為咗驗證你唔係機械人，請注意大細楷輸入框入面嘅文字",
+                completeTask: "完成任務",
+                typeText: "輸入框入面嘅文字",
+                cancel: "取消",
+                vote: "投票",
+                countrySearch: "搵國家...",
+                enterAllDigits: "⚠️ 請輸入所有數字",
+                alreadyVoted: "✓ 你已經為呢個號碼投票",
+                votedSafe: "🟢 標記為安全",
+                votedSpam: "🔴 標記為可疑",
+                error: "❌ 發生錯誤",
+                otherProjects: "我哋嘅其他項目",
+                scenicLocations: "風景名勝嘅位置信息",
+                travelTools: "旅行工具"
             }
         };
         
         // Get translation
         window.t = function(key) {
-            return window.translations[window.userLang][key] || key;
+            return window.translations[window.userLang][key] || window.translations['en'][key] || key;
         };
         
         // Update document title
@@ -740,6 +1586,72 @@
             transform: none !important;
         }
 
+        /* Other Projects Section */
+        .other-projects {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 20px 60px rgba(239, 68, 68, 0.1),
+                        0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+
+        .other-projects-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #1f2937;
+            text-align: center;
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .project-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, #fef2f2, #ffffff);
+            border: 2px solid #fecaca;
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: block;
+        }
+
+        .project-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(239, 68, 68, 0.2);
+            border-color: #ef4444;
+        }
+
+        .project-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .project-icon {
+            font-size: 32px;
+        }
+
+        .project-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .project-desc {
+            color: #6b7280;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
         /* Modal */
         .modal-overlay {
             position: fixed;
@@ -1293,6 +2205,33 @@
                 color: white;
             }
 
+            /* Other Projects mobile */
+            .other-projects {
+                padding: 24px 18px;
+                margin-top: 32px;
+            }
+
+            .other-projects-title {
+                font-size: 18px;
+                margin-bottom: 20px;
+            }
+
+            .project-card {
+                padding: 16px;
+            }
+
+            .project-icon {
+                font-size: 28px;
+            }
+
+            .project-name {
+                font-size: 16px;
+            }
+
+            .project-desc {
+                font-size: 13px;
+            }
+
             /* Modal adjustments */
             .modal-overlay {
                 padding: 10px;
@@ -1768,6 +2707,33 @@
                 <span id="refreshBtnText">Sayfayı Yenile</span>
             </button>
         </div>
+
+        <!-- Separator Line -->
+        <div style="border-top: 2px solid #fee2e2; margin-top: 40px; margin-bottom: 60px;"></div>
+
+        <!-- Other Projects Section -->
+        <div class="other-projects">
+            <h2 class="other-projects-title">
+                <span>🚀</span>
+                <span id="otherProjectsTitle">Bizim Diğer Projelerimiz</span>
+            </h2>
+            <div class="project-grid">
+                <a href="https://www.tr81.tr" target="_blank" class="project-card">
+                    <div class="project-header">
+                        <span class="project-icon">🏔️</span>
+                        <span class="project-name">TR81.tr</span>
+                    </div>
+                    <div class="project-desc" id="scenicDesc">Güzel manzaralı yerlerin konum bilgileri</div>
+                </a>
+                <a href="https://duflat.com" target="_blank" class="project-card">
+                    <div class="project-header">
+                        <span class="project-icon">✈️</span>
+                        <span class="project-name">Seyahat</span>
+                    </div>
+                    <div class="project-desc" id="travelDesc">Seyahat araçları</div>
+                </a>
+            </div>
+        </div>
     </div>
 
     <!-- Verification Modal -->
@@ -2030,6 +2996,11 @@
             document.getElementById('voteInvite').textContent = t('voteInvite');
             document.getElementById('safeBtnText').textContent = t('safeBtn');
             document.getElementById('spamBtnText').textContent = t('spamBtn');
+            
+            // Other Projects
+            document.getElementById('otherProjectsTitle').textContent = t('otherProjects');
+            document.getElementById('scenicDesc').textContent = t('scenicLocations');
+            document.getElementById('travelDesc').textContent = t('travelTools');
             
             // Modal
             document.getElementById('modalTitle').textContent = t('botCheck');
@@ -2327,9 +3298,24 @@
                 hasVoted = localStorage.getItem(`voted_${currentNumber}`) === 'true';
                 updateVoteButtons();
                 
+                // Show or hide invite text based on vote status
+                const inviteElement = document.getElementById('voteInvite');
+                if (inviteElement) {
+                    inviteElement.style.display = hasVoted ? 'none' : 'block';
+                }
+                
             } catch (error) {
                 console.error('Error:', error);
                 updateScore({ safe: 0, spam: 0 });
+                
+                // Check vote status even on error
+                hasVoted = localStorage.getItem(`voted_${currentNumber}`) === 'true';
+                updateVoteButtons();
+                
+                const inviteElement = document.getElementById('voteInvite');
+                if (inviteElement) {
+                    inviteElement.style.display = hasVoted ? 'none' : 'block';
+                }
             }
         }
 
@@ -2354,12 +3340,6 @@
             }, 100);
             
             document.getElementById('voteCount').textContent = t('totalVotes').replace('{count}', total);
-            
-            // Show or hide invite text based on vote status
-            const inviteElement = document.querySelector('.vote-invite');
-            if (inviteElement) {
-                inviteElement.style.display = hasVoted ? 'none' : 'block';
-            }
         }
 
         // Update vote buttons
@@ -2522,6 +3502,13 @@
                 });
                 
                 updateVoteButtons();
+                
+                // Hide invite text after voting
+                const inviteElement = document.getElementById('voteInvite');
+                if (inviteElement) {
+                    inviteElement.style.display = 'none';
+                }
+                
                 showToast(type === 'safe' ? t('votedSafe') : t('votedSpam'));
                 
             } catch (error) {
