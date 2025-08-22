@@ -1,1 +1,4123 @@
-asasa
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#ef4444">
+    
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="AcıBiber - Phone Security Check | Telefon Güvenlik Kontrolü">
+    <meta name="description" content="Check suspicious phone numbers worldwide. Community-based spam detection. Şüpheli telefon numaralarını kontrol edin. Topluluk tabanlı spam tespiti.">
+    <meta name="keywords" content="phone security, spam check, telefon güvenliği, spam kontrolü, numéro suspect, verificación de teléfono, 电话安全检查, проверка телефона, phone spam, caller id, acibiber, yeşil biber, green pepper, hot pepper, phone verification, telefon doğrulama, vérification téléphone, verificación llamadas, 垃圾电话检测, spam anrufe, chiamate spam, スパム電話チェック, 스팸 전화 확인, bu numara kime ait, kim arıyor, who called me, quien me llama, qui m'appelle, wer ruft an, chi mi chiama, кто звонит, 谁在打电话, من يتصل, unknown number, bilinmeyen numara, número desconocido, numéro inconnu, неизвестный номер, arayan numara sorgulama, telefon numarası sorgulama, reverse phone lookup, búsqueda inversa de teléfono, recherche inversée, rückwärtssuche, ricerca inversa, обратный поиск, 电话反查, البحث العكسي">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Multiple">
+    <meta name="author" content="AcıBiber Security">
+    <meta name="distribution" content="global">
+    <meta name="rating" content="general">
+    
+    <!-- Multi-language Meta Descriptions for Common Queries -->
+    <meta name="description" lang="tr" content="Bu numara kime ait? Kim arıyor? Şüpheli telefon numaralarını sorgulayın. Bilinmeyen numara sorgulama. Acı biber spam, yeşil biber güvenli.">
+    <meta name="description" lang="en" content="Who called me? Unknown number lookup. Check suspicious phone numbers. Reverse phone lookup. Hot pepper means spam, green pepper means safe.">
+    <meta name="description" lang="es" content="¿Quién me llama? ¿De quién es este número? Verifica números desconocidos. Búsqueda inversa de teléfono. Pimiento rojo es spam, verde es seguro.">
+    <meta name="description" lang="fr" content="Qui m'appelle? À qui appartient ce numéro? Vérifiez les numéros inconnus. Recherche inversée. Piment rouge spam, vert sécurisé.">
+    <meta name="description" lang="de" content="Wer ruft an? Wem gehört diese Nummer? Unbekannte Nummern prüfen. Rückwärtssuche. Rote Paprika Spam, grüne sicher.">
+    <meta name="description" lang="it" content="Chi mi chiama? Di chi è questo numero? Controlla numeri sconosciuti. Ricerca inversa. Peperoncino rosso spam, verde sicuro.">
+    <meta name="description" lang="pt" content="Quem me ligou? De quem é este número? Verifique números desconhecidos. Pesquisa reversa. Pimenta vermelha spam, verde seguro.">
+    <meta name="description" lang="ru" content="Кто звонит? Чей это номер? Проверка неизвестных номеров. Обратный поиск. Красный перец спам, зеленый безопасный.">
+    <meta name="description" lang="ja" content="誰からの電話？この番号は誰？不明な番号を確認。逆引き検索。赤唐辛子はスパム、緑は安全。">
+    <meta name="description" lang="ko" content="누가 전화했나요? 이 번호는 누구? 모르는 번호 확인. 역방향 검색. 빨간 고추는 스팸, 녹색은 안전.">
+    <meta name="description" lang="zh" content="谁在打电话？这是谁的号码？查询未知号码。反向查找。红辣椒是垃圾，绿色安全。">
+    <meta name="description" lang="ar" content="من يتصل؟ لمن هذا الرقم؟ تحقق من الأرقام المجهولة. البحث العكسي. الفلفل الأحمر بريد عشوائي، الأخضر آمن.">
+    <meta name="description" lang="hi" content="किसने कॉल किया? यह नंबर किसका है? अज्ञात नंबर जांचें। रिवर्स फोन लुकअप। लाल मिर्च स्पैम, हरी सुरक्षित।">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://acibiber.net/">
+    <meta property="og:title" content="AcıBiber - Global Phone Security Check">
+    <meta property="og:description" content="Check suspicious phone numbers worldwide. Community-based spam detection in 25 languages.">
+    <meta property="og:image" content="https://acibiber.net/og-image.jpg">
+    <meta property="og:locale" content="tr_TR">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="pt_PT">
+    <meta property="og:locale:alternate" content="ru_RU">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="ko_KR">
+    <meta property="og:locale:alternate" content="zh_CN">
+    <meta property="og:locale:alternate" content="ar_AR">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://acibiber.net/">
+    <meta property="twitter:title" content="AcıBiber - Phone Security Check">
+    <meta property="twitter:description" content="Check suspicious phone numbers worldwide. Community-based spam detection.">
+    <meta property="twitter:image" content="https://acibiber.net/twitter-image.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://acibiber.net/">
+    
+    <!-- Alternate Language Links -->
+    <link rel="alternate" hreflang="tr" href="https://acibiber.net/">
+    <link rel="alternate" hreflang="en" href="https://acibiber.net/">
+    <link rel="alternate" hreflang="es" href="https://acibiber.net/">
+    <link rel="alternate" hreflang="fr" href="https://acibiber.net/">
+    <link rel="alternate" hreflang="de" href="https://acibiber.net/">
+    <link rel="alternate" hreflang="it" href="https://acibiber.net/">
+    <link rel="alternate" hreflang="pt" href="https://acibiber.net/">
+    <link rel="alternate" hreflang="ru" href="https://acibiber.net/">
+    <link rel="alternate" hreflang="ja" href="https://acibiber.net/">
+    <link rel="alternate" hreflang="ko" href="https://acibiber.net/">
+    <link rel="alternate" hreflang="zh" href="https://acibiber.net/">
+    <link rel="alternate" hreflang="ar" href="https://acibiber.net/">
+    <link rel="alternate" hreflang="x-default" href="https://acibiber.net/">
+    
+    <!-- Schema.org Structured Data with FAQ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "AcıBiber",
+        "url": "https://acibiber.net",
+        "description": "Global phone number security checker with community-based spam detection",
+        "applicationCategory": "SecurityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "15420",
+            "bestRating": "5"
+        },
+        "availableLanguage": [
+            "Turkish", "English", "Chinese", "Hindi", "Spanish", "Arabic", "French", 
+            "Portuguese", "Bengali", "Russian", "Indonesian", "German", "Japanese", 
+            "Punjabi", "Vietnamese", "Korean", "Persian", "Italian", "Urdu", "Thai", 
+            "Polish", "Dutch", "Romanian", "Swedish", "Cantonese"
+        ],
+        "creator": {
+            "@type": "Organization",
+            "name": "AcıBiber Security",
+            "url": "https://acibiber.net"
+        }
+    }
+    </script>
+    
+    <!-- FAQ Schema for Common Search Queries -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Bu numara kime ait?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "AcıBiber ile telefon numaralarının güvenlik durumunu kontrol edebilirsiniz. Topluluk tabanlı değerlendirmelerle spam ve güvenli numaraları ayırt edin."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Kim arıyor?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Bilinmeyen numaralardan gelen aramaları AcıBiber'de sorgulayın. Acı biber (spam) veya yeşil biber (güvenli) değerlendirmelerini görün."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Who called me?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Check unknown phone numbers on AciBiber. See community ratings for spam (hot pepper) or safe (green pepper) calls."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Telefon numarası sorgulama nasıl yapılır?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "AcıBiber'de ülke kodunu seçin, telefon numarasını girin ve 'Kontrol Et' butonuna tıklayın. Topluluk değerlendirmelerini anında görün."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Bilinmeyen numara kim?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Bilinmeyen numaraları AcıBiber'de kontrol edin. 150+ ülkede telefon numarası güvenlik kontrolü yapabilirsiniz."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Arayan numara sorgulama",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Size gelen aramaların güvenli olup olmadığını AcıBiber ile sorgulayın. Topluluk oylamasıyla spam numaraları tespit edin."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Spam aramalar nasıl engellenir?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "AcıBiber'de numarayı kontrol edin. Acı biber (kırmızı) alan numaralar spam olarak işaretlenmiştir, bu numaraları engelleyebilirsiniz."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is this number spam?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Enter the phone number on AciBiber to check community ratings. Red pepper means spam, green pepper means safe."
+                }
+            }
+        ]
+    }
+    </script>
+    
+    <!-- HowTo Schema for Phone Number Check -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Telefon numarası güvenlik kontrolü nasıl yapılır?",
+        "description": "Bilinmeyen numaraları kontrol etmek için adım adım kılavuz",
+        "image": "https://acibiber.net/how-to-check.jpg",
+        "totalTime": "PT1M",
+        "supply": {
+            "@type": "HowToSupply",
+            "name": "Telefon numarası"
+        },
+        "step": [
+            {
+                "@type": "HowToStep",
+                "name": "Ülke seçimi",
+                "text": "Kontrol etmek istediğiniz numaranın ülke kodunu seçin",
+                "url": "https://acibiber.net#step1"
+            },
+            {
+                "@type": "HowToStep",
+                "name": "Numara girişi",
+                "text": "Telefon numarasını girin (son rakam otomatik X olur)",
+                "url": "https://acibiber.net#step2"
+            },
+            {
+                "@type": "HowToStep",
+                "name": "Kontrol",
+                "text": "Kontrol Et butonuna tıklayın",
+                "url": "https://acibiber.net#step3"
+            },
+            {
+                "@type": "HowToStep",
+                "name": "Sonuçları görüntüleme",
+                "text": "Topluluk değerlendirmelerini görün (Acı biber: spam, Yeşil biber: güvenli)",
+                "url": "https://acibiber.net#step4"
+            }
+        ]
+    }
+    </script>
+    
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Ana Sayfa",
+                "item": "https://acibiber.net"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Telefon Numarası Sorgulama",
+                "item": "https://acibiber.net/sorgula"
+            }
+        ]
+    }
+    </script>
+    
+    <!-- Additional SEO Tags -->
+    <meta name="revisit-after" content="7 days">
+    <meta name="coverage" content="Worldwide">
+    <meta name="target" content="all">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-title" content="AcıBiber">
+    <meta name="application-name" content="AcıBiber">
+    <meta name="msapplication-TileColor" content="#ef4444">
+    <meta name="msapplication-config" content="/browserconfig.xml">
+    
+    <!-- Geo Tags -->
+    <meta name="geo.region" content="TR">
+    <meta name="geo.placename" content="Global">
+    <meta name="geo.position" content="41.0082;28.9784">
+    <meta name="ICBM" content="41.0082, 28.9784">
+    
+    <!-- Dublin Core -->
+    <meta name="DC.title" content="AcıBiber Phone Security">
+    <meta name="DC.creator" content="AcıBiber Security">
+    <meta name="DC.subject" content="Phone Security, Spam Detection">
+    <meta name="DC.description" content="Global phone number security checker">
+    <meta name="DC.publisher" content="AcıBiber">
+    <meta name="DC.contributor" content="Community">
+    <meta name="DC.date" content="2025-01-18">
+    <meta name="DC.type" content="Interactive Resource">
+    <meta name="DC.format" content="text/html">
+    <meta name="DC.identifier" content="https://acibiber.net/">
+    <meta name="DC.language" content="multiple">
+    <meta name="DC.coverage" content="Global">
+    <meta name="DC.rights" content="All rights reserved">
+    
+    <title>AcıBiber - Telefon Güvenlik Kontrolü</title>
+    
+    <!-- Language Detection and Translations -->
+    <script>
+    (function() {
+        // Detect browser language
+        const browserLang = navigator.language || navigator.userLanguage;
+        const langCode = browserLang.toLowerCase().split('-')[0];
+        
+        // Supported languages mapping
+        const supportedLangs = {
+            'en': 'en', // English
+            'zh': 'zh', // Mandarin Chinese
+            'hi': 'hi', // Hindi
+            'es': 'es', // Spanish
+            'ar': 'ar', // Arabic
+            'fr': 'fr', // French
+            'pt': 'pt', // Portuguese
+            'bn': 'bn', // Bengali
+            'ru': 'ru', // Russian
+            'id': 'id', // Indonesian
+            'de': 'de', // German
+            'ja': 'ja', // Japanese
+            'pa': 'pa', // Punjabi
+            'tr': 'tr', // Turkish
+            'vi': 'vi', // Vietnamese
+            'ko': 'ko', // Korean
+            'fa': 'fa', // Persian/Farsi
+            'it': 'it', // Italian
+            'ur': 'ur', // Urdu
+            'th': 'th', // Thai
+            'pl': 'pl', // Polish
+            'nl': 'nl', // Dutch
+            'ro': 'ro', // Romanian
+            'sv': 'sv', // Swedish
+            'yue': 'yue' // Cantonese
+        };
+        
+        // Check for Cantonese
+        if (browserLang.toLowerCase().includes('zh-hk') || browserLang.toLowerCase().includes('zh-tw')) {
+            window.userLang = 'yue';
+        } else if (supportedLangs[langCode]) {
+            window.userLang = supportedLangs[langCode];
+        } else {
+            window.userLang = 'en'; // Default to English
+        }
+        
+        // Full translations for all 25 languages
+        window.translations = {
+            tr: {
+                title: "AcıBiber - Telefon Güvenlik Kontrolü",
+                subtitle: "Şüpheli numaraları sorgula, güvende kal",
+                redBadge: "Acı Biber: Şüpheli",
+                greenBadge: "Yeşil Biber: Güvenli",
+                countrySelect: "Ülke Seçimi",
+                phoneNumber: "Telefon Numarası",
+                searchBtn: "Kontrol Et",
+                searchingBtn: "Kontrol ediliyor...",
+                warning: "⚠️ Bu bir hayali numaradır. Kimseye ait değildir. Topluluk olarak X ile biten numaraları değerlendiriyoruz.",
+                verified: "✓ Kontrol Edildi",
+                communityRating: "Topluluk değerlendirmesi 🏆",
+                greenPepper: "🟢 Yeşil Biber",
+                redPepper: "Acı Biber 🔴",
+                totalVotes: "Toplam {count} değerlendirme",
+                voteInvite: "Sen de değerlendir!",
+                safeBtn: "Güvenli",
+                spamBtn: "Şüpheli",
+                refreshBtn: "Sayfayı Yenile",
+                botCheck: "🔐 Bot Kontrolü",
+                botCheckDesc: "Robot olmadığınızı doğrulamak için kutulardaki metinleri büyük-küçük harfe dikkat ederek yazınız",
+                completeTask: "Görevi tamamlayın",
+                typeText: "Kutudaki metni yazın",
+                cancel: "İptal",
+                vote: "Oyla",
+                countrySearch: "Ülke ara...",
+                enterAllDigits: "⚠️ Lütfen tüm rakamları girin",
+                alreadyVoted: "✓ Bu numara için zaten oy kullandınız",
+                votedSafe: "🟢 Güvenli olarak işaretlendi",
+                votedSpam: "🔴 Şüpheli olarak işaretlendi",
+                error: "❌ Bir hata oluştu",
+                otherProjects: "Bizim Diğer Projelerimiz",
+                scenicLocations: "Güzel manzaralı yerlerin konum bilgileri",
+                travelTools: "Seyahat araçları"
+            },
+            en: {
+                title: "AciBiber - Phone Security Check",
+                subtitle: "Check suspicious numbers, stay safe",
+                redBadge: "Hot Pepper: Suspicious",
+                greenBadge: "Green Pepper: Safe",
+                countrySelect: "Country Selection",
+                phoneNumber: "Phone Number",
+                searchBtn: "Check",
+                searchingBtn: "Checking...",
+                warning: "⚠️ This is a fictional number. It doesn't belong to anyone. As a community, we evaluate numbers ending with X.",
+                verified: "✓ Verified",
+                communityRating: "Community Rating 🏆",
+                greenPepper: "🟢 Green Pepper",
+                redPepper: "Hot Pepper 🔴",
+                totalVotes: "Total {count} reviews",
+                voteInvite: "Rate it yourself!",
+                safeBtn: "Safe",
+                spamBtn: "Suspicious",
+                refreshBtn: "Refresh Page",
+                botCheck: "🔐 Bot Check",
+                botCheckDesc: "To verify you're not a robot, type the texts in the boxes paying attention to uppercase and lowercase letters",
+                completeTask: "Complete the task",
+                typeText: "Type the text in the box",
+                cancel: "Cancel",
+                vote: "Vote",
+                countrySearch: "Search country...",
+                enterAllDigits: "⚠️ Please enter all digits",
+                alreadyVoted: "✓ You have already voted for this number",
+                votedSafe: "🟢 Marked as safe",
+                votedSpam: "🔴 Marked as suspicious",
+                error: "❌ An error occurred",
+                otherProjects: "Our Other Projects",
+                scenicLocations: "Location information of scenic places",
+                travelTools: "Travel tools"
+            },
+            zh: {
+                title: "AciBiber - 电话安全检查",
+                subtitle: "检查可疑号码，保持安全",
+                redBadge: "红辣椒：可疑",
+                greenBadge: "绿辣椒：安全",
+                countrySelect: "国家选择",
+                phoneNumber: "电话号码",
+                searchBtn: "检查",
+                searchingBtn: "检查中...",
+                warning: "⚠️ 这是一个虚构的号码。它不属于任何人。作为社区，我们评估以X结尾的号码。",
+                verified: "✓ 已验证",
+                communityRating: "社区评分 🏆",
+                greenPepper: "🟢 绿辣椒",
+                redPepper: "红辣椒 🔴",
+                totalVotes: "共 {count} 条评价",
+                voteInvite: "您也来评价！",
+                safeBtn: "安全",
+                spamBtn: "可疑",
+                refreshBtn: "刷新页面",
+                botCheck: "🔐 机器人检查",
+                botCheckDesc: "为了验证您不是机器人，请注意大小写字母输入框中的文本",
+                completeTask: "完成任务",
+                typeText: "输入框中的文本",
+                cancel: "取消",
+                vote: "投票",
+                countrySearch: "搜索国家...",
+                enterAllDigits: "⚠️ 请输入所有数字",
+                alreadyVoted: "✓ 您已经为此号码投票",
+                votedSafe: "🟢 标记为安全",
+                votedSpam: "🔴 标记为可疑",
+                error: "❌ 发生错误",
+                otherProjects: "我们的其他项目",
+                scenicLocations: "风景名胜的位置信息",
+                travelTools: "旅行工具"
+            },
+            hi: {
+                title: "AciBiber - फोन सुरक्षा जांच",
+                subtitle: "संदिग्ध नंबरों की जांच करें, सुरक्षित रहें",
+                redBadge: "लाल मिर्च: संदिग्ध",
+                greenBadge: "हरी मिर्च: सुरक्षित",
+                countrySelect: "देश चयन",
+                phoneNumber: "फोन नंबर",
+                searchBtn: "जांच करें",
+                searchingBtn: "जांच हो रही है...",
+                warning: "⚠️ यह एक काल्पनिक नंबर है। यह किसी का नहीं है। समुदाय के रूप में, हम X से समाप्त होने वाले नंबरों का मूल्यांकन करते हैं।",
+                verified: "✓ सत्यापित",
+                communityRating: "समुदाय रेटिंग 🏆",
+                greenPepper: "🟢 हरी मिर्च",
+                redPepper: "लाल मिर्च 🔴",
+                totalVotes: "कुल {count} समीक्षाएं",
+                voteInvite: "आप भी रेट करें!",
+                safeBtn: "सुरक्षित",
+                spamBtn: "संदिग्ध",
+                refreshBtn: "पेज रीफ्रेश करें",
+                botCheck: "🔐 बॉट जांच",
+                botCheckDesc: "यह सत्यापित करने के लिए कि आप रोबोट नहीं हैं, बॉक्स में टेक्स्ट टाइप करें",
+                completeTask: "कार्य पूरा करें",
+                typeText: "बॉक्स में टेक्स्ट टाइप करें",
+                cancel: "रद्द करें",
+                vote: "वोट",
+                countrySearch: "देश खोजें...",
+                enterAllDigits: "⚠️ कृपया सभी अंक दर्ज करें",
+                alreadyVoted: "✓ आपने इस नंबर के लिए पहले ही वोट कर दिया है",
+                votedSafe: "🟢 सुरक्षित के रूप में चिह्नित",
+                votedSpam: "🔴 संदिग्ध के रूप में चिह्नित",
+                error: "❌ एक त्रुटि हुई",
+                otherProjects: "हमारे अन्य प्रोजेक्ट",
+                scenicLocations: "सुंदर स्थानों की स्थान जानकारी",
+                travelTools: "यात्रा उपकरण"
+            },
+            es: {
+                title: "AciBiber - Control de Seguridad Telefónica",
+                subtitle: "Verifica números sospechosos, mantente seguro",
+                redBadge: "Pimiento Picante: Sospechoso",
+                greenBadge: "Pimiento Verde: Seguro",
+                countrySelect: "Selección de País",
+                phoneNumber: "Número de Teléfono",
+                searchBtn: "Verificar",
+                searchingBtn: "Verificando...",
+                warning: "⚠️ Este es un número ficticio. No pertenece a nadie. Como comunidad, evaluamos números que terminan en X.",
+                verified: "✓ Verificado",
+                communityRating: "Calificación de la Comunidad 🏆",
+                greenPepper: "🟢 Pimiento Verde",
+                redPepper: "Pimiento Picante 🔴",
+                totalVotes: "Total {count} reseñas",
+                voteInvite: "¡Califícalo tú también!",
+                safeBtn: "Seguro",
+                spamBtn: "Sospechoso",
+                refreshBtn: "Actualizar Página",
+                botCheck: "🔐 Verificación de Bot",
+                botCheckDesc: "Para verificar que no eres un robot, escribe los textos en las casillas",
+                completeTask: "Completa la tarea",
+                typeText: "Escribe el texto en la casilla",
+                cancel: "Cancelar",
+                vote: "Votar",
+                countrySearch: "Buscar país...",
+                enterAllDigits: "⚠️ Por favor ingrese todos los dígitos",
+                alreadyVoted: "✓ Ya has votado por este número",
+                votedSafe: "🟢 Marcado como seguro",
+                votedSpam: "🔴 Marcado como sospechoso",
+                error: "❌ Ocurrió un error",
+                otherProjects: "Nuestros Otros Proyectos",
+                scenicLocations: "Información de ubicación de lugares pintorescos",
+                travelTools: "Herramientas de viaje"
+            },
+            ar: {
+                title: "AciBiber - فحص أمان الهاتف",
+                subtitle: "تحقق من الأرقام المشبوهة، ابق آمناً",
+                redBadge: "فلفل حار: مشبوه",
+                greenBadge: "فلفل أخضر: آمن",
+                countrySelect: "اختيار الدولة",
+                phoneNumber: "رقم الهاتف",
+                searchBtn: "فحص",
+                searchingBtn: "جاري الفحص...",
+                warning: "⚠️ هذا رقم وهمي. لا ينتمي لأحد. كمجتمع، نقيم الأرقام المنتهية بـ X.",
+                verified: "✓ تم التحقق",
+                communityRating: "تقييم المجتمع 🏆",
+                greenPepper: "🟢 فلفل أخضر",
+                redPepper: "فلفل حار 🔴",
+                totalVotes: "إجمالي {count} تقييمات",
+                voteInvite: "قيّم أنت أيضاً!",
+                safeBtn: "آمن",
+                spamBtn: "مشبوه",
+                refreshBtn: "تحديث الصفحة",
+                botCheck: "🔐 فحص البوت",
+                botCheckDesc: "للتحقق من أنك لست روبوت، اكتب النصوص في المربعات",
+                completeTask: "أكمل المهمة",
+                typeText: "اكتب النص في المربع",
+                cancel: "إلغاء",
+                vote: "تصويت",
+                countrySearch: "البحث عن دولة...",
+                enterAllDigits: "⚠️ الرجاء إدخال جميع الأرقام",
+                alreadyVoted: "✓ لقد صوتت بالفعل لهذا الرقم",
+                votedSafe: "🟢 تم وضع علامة آمن",
+                votedSpam: "🔴 تم وضع علامة مشبوه",
+                error: "❌ حدث خطأ",
+                otherProjects: "مشاريعنا الأخرى",
+                scenicLocations: "معلومات موقع الأماكن الخلابة",
+                travelTools: "أدوات السفر"
+            },
+            fr: {
+                title: "AciBiber - Vérification de Sécurité Téléphonique",
+                subtitle: "Vérifiez les numéros suspects, restez en sécurité",
+                redBadge: "Piment Rouge: Suspect",
+                greenBadge: "Piment Vert: Sûr",
+                countrySelect: "Sélection du Pays",
+                phoneNumber: "Numéro de Téléphone",
+                searchBtn: "Vérifier",
+                searchingBtn: "Vérification...",
+                warning: "⚠️ Ceci est un numéro fictif. Il n'appartient à personne. En tant que communauté, nous évaluons les numéros se terminant par X.",
+                verified: "✓ Vérifié",
+                communityRating: "Évaluation de la Communauté 🏆",
+                greenPepper: "🟢 Piment Vert",
+                redPepper: "Piment Rouge 🔴",
+                totalVotes: "Total {count} avis",
+                voteInvite: "Évaluez aussi!",
+                safeBtn: "Sûr",
+                spamBtn: "Suspect",
+                refreshBtn: "Actualiser la Page",
+                botCheck: "🔐 Vérification Anti-Bot",
+                botCheckDesc: "Pour vérifier que vous n'êtes pas un robot, tapez les textes dans les cases",
+                completeTask: "Terminez la tâche",
+                typeText: "Tapez le texte dans la case",
+                cancel: "Annuler",
+                vote: "Voter",
+                countrySearch: "Rechercher un pays...",
+                enterAllDigits: "⚠️ Veuillez entrer tous les chiffres",
+                alreadyVoted: "✓ Vous avez déjà voté pour ce numéro",
+                votedSafe: "🟢 Marqué comme sûr",
+                votedSpam: "🔴 Marqué comme suspect",
+                error: "❌ Une erreur s'est produite",
+                otherProjects: "Nos Autres Projets",
+                scenicLocations: "Informations de localisation des lieux pittoresques",
+                travelTools: "Outils de voyage"
+            },
+            pt: {
+                title: "AciBiber - Verificação de Segurança Telefônica",
+                subtitle: "Verifique números suspeitos, fique seguro",
+                redBadge: "Pimenta Vermelha: Suspeito",
+                greenBadge: "Pimenta Verde: Seguro",
+                countrySelect: "Seleção de País",
+                phoneNumber: "Número de Telefone",
+                searchBtn: "Verificar",
+                searchingBtn: "Verificando...",
+                warning: "⚠️ Este é um número fictício. Não pertence a ninguém. Como comunidade, avaliamos números terminados em X.",
+                verified: "✓ Verificado",
+                communityRating: "Avaliação da Comunidade 🏆",
+                greenPepper: "🟢 Pimenta Verde",
+                redPepper: "Pimenta Vermelha 🔴",
+                totalVotes: "Total {count} avaliações",
+                voteInvite: "Avalie você também!",
+                safeBtn: "Seguro",
+                spamBtn: "Suspeito",
+                refreshBtn: "Atualizar Página",
+                botCheck: "🔐 Verificação de Bot",
+                botCheckDesc: "Para verificar que você não é um robô, digite os textos nas caixas",
+                completeTask: "Complete a tarefa",
+                typeText: "Digite o texto na caixa",
+                cancel: "Cancelar",
+                vote: "Votar",
+                countrySearch: "Buscar país...",
+                enterAllDigits: "⚠️ Por favor, insira todos os dígitos",
+                alreadyVoted: "✓ Você já votou neste número",
+                votedSafe: "🟢 Marcado como seguro",
+                votedSpam: "🔴 Marcado como suspeito",
+                error: "❌ Ocorreu um erro",
+                otherProjects: "Nossos Outros Projetos",
+                scenicLocations: "Informações de localização de lugares pitorescos",
+                travelTools: "Ferramentas de viagem"
+            },
+            bn: {
+                title: "AciBiber - ফোন নিরাপত্তা পরীক্ষা",
+                subtitle: "সন্দেহজনক নম্বর পরীক্ষা করুন, নিরাপদ থাকুন",
+                redBadge: "লাল মরিচ: সন্দেহজনক",
+                greenBadge: "সবুজ মরিচ: নিরাপদ",
+                countrySelect: "দেশ নির্বাচন",
+                phoneNumber: "ফোন নম্বর",
+                searchBtn: "পরীক্ষা করুন",
+                searchingBtn: "পরীক্ষা করা হচ্ছে...",
+                warning: "⚠️ এটি একটি কাল্পনিক নম্বর। এটি কারও নয়। সম্প্রদায় হিসাবে, আমরা X দিয়ে শেষ হওয়া নম্বরগুলি মূল্যায়ন করি।",
+                verified: "✓ যাচাইকৃত",
+                communityRating: "সম্প্রদায় রেটিং 🏆",
+                greenPepper: "🟢 সবুজ মরিচ",
+                redPepper: "লাল মরিচ 🔴",
+                totalVotes: "মোট {count} পর্যালোচনা",
+                voteInvite: "আপনিও রেট করুন!",
+                safeBtn: "নিরাপদ",
+                spamBtn: "সন্দেহজনক",
+                refreshBtn: "পৃষ্ঠা রিফ্রেশ করুন",
+                botCheck: "🔐 বট পরীক্ষা",
+                botCheckDesc: "আপনি রোবট নন তা যাচাই করতে, বক্সে পাঠ্য টাইপ করুন",
+                completeTask: "কাজটি সম্পূর্ণ করুন",
+                typeText: "বক্সে পাঠ্য টাইপ করুন",
+                cancel: "বাতিল",
+                vote: "ভোট",
+                countrySearch: "দেশ খুঁজুন...",
+                enterAllDigits: "⚠️ সব অঙ্ক লিখুন",
+                alreadyVoted: "✓ আপনি ইতিমধ্যে এই নম্বরের জন্য ভোট দিয়েছেন",
+                votedSafe: "🟢 নিরাপদ হিসাবে চিহ্নিত",
+                votedSpam: "🔴 সন্দেহজনক হিসাবে চিহ্নিত",
+                error: "❌ একটি ত্রুটি ঘটেছে",
+                otherProjects: "আমাদের অন্যান্য প্রকল্প",
+                scenicLocations: "সুন্দর স্থানের অবস্থান তথ্য",
+                travelTools: "ভ্রমণ সরঞ্জাম"
+            },
+            ru: {
+                title: "AciBiber - Проверка безопасности телефона",
+                subtitle: "Проверяйте подозрительные номера, будьте в безопасности",
+                redBadge: "Красный перец: Подозрительный",
+                greenBadge: "Зеленый перец: Безопасный",
+                countrySelect: "Выбор страны",
+                phoneNumber: "Номер телефона",
+                searchBtn: "Проверить",
+                searchingBtn: "Проверка...",
+                warning: "⚠️ Это вымышленный номер. Он никому не принадлежит. Как сообщество, мы оцениваем номера, заканчивающиеся на X.",
+                verified: "✓ Проверено",
+                communityRating: "Рейтинг сообщества 🏆",
+                greenPepper: "🟢 Зеленый перец",
+                redPepper: "Красный перец 🔴",
+                totalVotes: "Всего {count} отзывов",
+                voteInvite: "Оцените тоже!",
+                safeBtn: "Безопасный",
+                spamBtn: "Подозрительный",
+                refreshBtn: "Обновить страницу",
+                botCheck: "🔐 Проверка на бота",
+                botCheckDesc: "Чтобы подтвердить, что вы не робот, введите тексты в поля",
+                completeTask: "Выполните задание",
+                typeText: "Введите текст в поле",
+                cancel: "Отмена",
+                vote: "Голосовать",
+                countrySearch: "Поиск страны...",
+                enterAllDigits: "⚠️ Пожалуйста, введите все цифры",
+                alreadyVoted: "✓ Вы уже проголосовали за этот номер",
+                votedSafe: "🟢 Отмечен как безопасный",
+                votedSpam: "🔴 Отмечен как подозрительный",
+                error: "❌ Произошла ошибка",
+                otherProjects: "Наши Другие Проекты",
+                scenicLocations: "Информация о местоположении живописных мест",
+                travelTools: "Инструменты для путешествий"
+            },
+            id: {
+                title: "AciBiber - Pemeriksaan Keamanan Telepon",
+                subtitle: "Periksa nomor mencurigakan, tetap aman",
+                redBadge: "Cabai Merah: Mencurigakan",
+                greenBadge: "Cabai Hijau: Aman",
+                countrySelect: "Pilihan Negara",
+                phoneNumber: "Nomor Telepon",
+                searchBtn: "Periksa",
+                searchingBtn: "Memeriksa...",
+                warning: "⚠️ Ini adalah nomor fiktif. Bukan milik siapa pun. Sebagai komunitas, kami mengevaluasi nomor yang berakhir dengan X.",
+                verified: "✓ Terverifikasi",
+                communityRating: "Peringkat Komunitas 🏆",
+                greenPepper: "🟢 Cabai Hijau",
+                redPepper: "Cabai Merah 🔴",
+                totalVotes: "Total {count} ulasan",
+                voteInvite: "Beri nilai juga!",
+                safeBtn: "Aman",
+                spamBtn: "Mencurigakan",
+                refreshBtn: "Segarkan Halaman",
+                botCheck: "🔐 Pemeriksaan Bot",
+                botCheckDesc: "Untuk memverifikasi Anda bukan robot, ketik teks di kotak",
+                completeTask: "Selesaikan tugas",
+                typeText: "Ketik teks di kotak",
+                cancel: "Batal",
+                vote: "Pilih",
+                countrySearch: "Cari negara...",
+                enterAllDigits: "⚠️ Silakan masukkan semua digit",
+                alreadyVoted: "✓ Anda sudah memilih untuk nomor ini",
+                votedSafe: "🟢 Ditandai sebagai aman",
+                votedSpam: "🔴 Ditandai sebagai mencurigakan",
+                error: "❌ Terjadi kesalahan",
+                otherProjects: "Proyek Kami Lainnya",
+                scenicLocations: "Informasi lokasi tempat indah",
+                travelTools: "Alat perjalanan"
+            },
+            de: {
+                title: "AciBiber - Telefon-Sicherheitsprüfung",
+                subtitle: "Verdächtige Nummern prüfen, sicher bleiben",
+                redBadge: "Rote Paprika: Verdächtig",
+                greenBadge: "Grüne Paprika: Sicher",
+                countrySelect: "Länderauswahl",
+                phoneNumber: "Telefonnummer",
+                searchBtn: "Prüfen",
+                searchingBtn: "Prüfung läuft...",
+                warning: "⚠️ Dies ist eine fiktive Nummer. Sie gehört niemandem. Als Gemeinschaft bewerten wir Nummern, die mit X enden.",
+                verified: "✓ Verifiziert",
+                communityRating: "Community-Bewertung 🏆",
+                greenPepper: "🟢 Grüne Paprika",
+                redPepper: "Rote Paprika 🔴",
+                totalVotes: "Gesamt {count} Bewertungen",
+                voteInvite: "Bewerten Sie auch!",
+                safeBtn: "Sicher",
+                spamBtn: "Verdächtig",
+                refreshBtn: "Seite aktualisieren",
+                botCheck: "🔐 Bot-Prüfung",
+                botCheckDesc: "Um zu bestätigen, dass Sie kein Roboter sind, geben Sie die Texte in die Felder ein",
+                completeTask: "Aufgabe abschließen",
+                typeText: "Text im Feld eingeben",
+                cancel: "Abbrechen",
+                vote: "Abstimmen",
+                countrySearch: "Land suchen...",
+                enterAllDigits: "⚠️ Bitte alle Ziffern eingeben",
+                alreadyVoted: "✓ Sie haben bereits für diese Nummer abgestimmt",
+                votedSafe: "🟢 Als sicher markiert",
+                votedSpam: "🔴 Als verdächtig markiert",
+                error: "❌ Ein Fehler ist aufgetreten",
+                otherProjects: "Unsere Anderen Projekte",
+                scenicLocations: "Standortinformationen malerischer Orte",
+                travelTools: "Reisewerkzeuge"
+            },
+            ja: {
+                title: "AciBiber - 電話セキュリティチェック",
+                subtitle: "疑わしい番号をチェック、安全を保つ",
+                redBadge: "赤唐辛子：疑わしい",
+                greenBadge: "緑唐辛子：安全",
+                countrySelect: "国選択",
+                phoneNumber: "電話番号",
+                searchBtn: "チェック",
+                searchingBtn: "チェック中...",
+                warning: "⚠️ これは架空の番号です。誰のものでもありません。コミュニティとして、Xで終わる番号を評価しています。",
+                verified: "✓ 確認済み",
+                communityRating: "コミュニティ評価 🏆",
+                greenPepper: "🟢 緑唐辛子",
+                redPepper: "赤唐辛子 🔴",
+                totalVotes: "合計 {count} レビュー",
+                voteInvite: "あなたも評価してください！",
+                safeBtn: "安全",
+                spamBtn: "疑わしい",
+                refreshBtn: "ページを更新",
+                botCheck: "🔐 ボットチェック",
+                botCheckDesc: "ロボットでないことを確認するため、ボックスにテキストを入力してください",
+                completeTask: "タスクを完了",
+                typeText: "ボックスにテキストを入力",
+                cancel: "キャンセル",
+                vote: "投票",
+                countrySearch: "国を検索...",
+                enterAllDigits: "⚠️ すべての数字を入力してください",
+                alreadyVoted: "✓ この番号にすでに投票しています",
+                votedSafe: "🟢 安全としてマーク",
+                votedSpam: "🔴 疑わしいとしてマーク",
+                error: "❌ エラーが発生しました",
+                otherProjects: "私たちの他のプロジェクト",
+                scenicLocations: "絶景スポットの位置情報",
+                travelTools: "旅行ツール"
+            },
+            pa: {
+                title: "AciBiber - ਫੋਨ ਸੁਰੱਖਿਆ ਜਾਂਚ",
+                subtitle: "ਸ਼ੱਕੀ ਨੰਬਰਾਂ ਦੀ ਜਾਂਚ ਕਰੋ, ਸੁਰੱਖਿਅਤ ਰਹੋ",
+                redBadge: "ਲਾਲ ਮਿਰਚ: ਸ਼ੱਕੀ",
+                greenBadge: "ਹਰੀ ਮਿਰਚ: ਸੁਰੱਖਿਅਤ",
+                countrySelect: "ਦੇਸ਼ ਚੋਣ",
+                phoneNumber: "ਫੋਨ ਨੰਬਰ",
+                searchBtn: "ਜਾਂਚ ਕਰੋ",
+                searchingBtn: "ਜਾਂਚ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ...",
+                warning: "⚠️ ਇਹ ਇੱਕ ਕਾਲਪਨਿਕ ਨੰਬਰ ਹੈ। ਇਹ ਕਿਸੇ ਦਾ ਨਹੀਂ ਹੈ। ਭਾਈਚਾਰੇ ਵਜੋਂ, ਅਸੀਂ X ਨਾਲ ਖਤਮ ਹੋਣ ਵਾਲੇ ਨੰਬਰਾਂ ਦਾ ਮੁਲਾਂਕਣ ਕਰਦੇ ਹਾਂ।",
+                verified: "✓ ਪ੍ਰਮਾਣਿਤ",
+                communityRating: "ਭਾਈਚਾਰਾ ਰੇਟਿੰਗ 🏆",
+                greenPepper: "🟢 ਹਰੀ ਮਿਰਚ",
+                redPepper: "ਲਾਲ ਮਿਰਚ 🔴",
+                totalVotes: "ਕੁੱਲ {count} ਸਮੀਖਿਆਵਾਂ",
+                voteInvite: "ਤੁਸੀਂ ਵੀ ਰੇਟ ਕਰੋ!",
+                safeBtn: "ਸੁਰੱਖਿਅਤ",
+                spamBtn: "ਸ਼ੱਕੀ",
+                refreshBtn: "ਪੇਜ ਰੀਫ੍ਰੈਸ਼ ਕਰੋ",
+                botCheck: "🔐 ਬੋਟ ਜਾਂਚ",
+                botCheckDesc: "ਇਹ ਪੁਸ਼ਟੀ ਕਰਨ ਲਈ ਕਿ ਤੁਸੀਂ ਰੋਬੋਟ ਨਹੀਂ ਹੋ, ਬਕਸਿਆਂ ਵਿੱਚ ਟੈਕਸਟ ਟਾਈਪ ਕਰੋ",
+                completeTask: "ਕਾਰਜ ਪੂਰਾ ਕਰੋ",
+                typeText: "ਬਕਸੇ ਵਿੱਚ ਟੈਕਸਟ ਟਾਈਪ ਕਰੋ",
+                cancel: "ਰੱਦ ਕਰੋ",
+                vote: "ਵੋਟ",
+                countrySearch: "ਦੇਸ਼ ਖੋਜੋ...",
+                enterAllDigits: "⚠️ ਕਿਰਪਾ ਕਰਕੇ ਸਾਰੇ ਅੰਕ ਦਾਖਲ ਕਰੋ",
+                alreadyVoted: "✓ ਤੁਸੀਂ ਇਸ ਨੰਬਰ ਲਈ ਪਹਿਲਾਂ ਹੀ ਵੋਟ ਕਰ ਚੁੱਕੇ ਹੋ",
+                votedSafe: "🟢 ਸੁਰੱਖਿਅਤ ਵਜੋਂ ਚਿੰਨ੍ਹਿਤ",
+                votedSpam: "🔴 ਸ਼ੱਕੀ ਵਜੋਂ ਚਿੰਨ੍ਹਿਤ",
+                error: "❌ ਇੱਕ ਗਲਤੀ ਹੋਈ",
+                otherProjects: "ਸਾਡੇ ਹੋਰ ਪ੍ਰੋਜੈਕਟ",
+                scenicLocations: "ਸੁੰਦਰ ਸਥਾਨਾਂ ਦੀ ਸਥਿਤੀ ਜਾਣਕਾਰੀ",
+                travelTools: "ਯਾਤਰਾ ਸੰਦ"
+            },
+            vi: {
+                title: "AciBiber - Kiểm tra An toàn Điện thoại",
+                subtitle: "Kiểm tra số đáng ngờ, giữ an toàn",
+                redBadge: "Ớt Đỏ: Đáng ngờ",
+                greenBadge: "Ớt Xanh: An toàn",
+                countrySelect: "Chọn Quốc gia",
+                phoneNumber: "Số Điện thoại",
+                searchBtn: "Kiểm tra",
+                searchingBtn: "Đang kiểm tra...",
+                warning: "⚠️ Đây là số giả tưởng. Không thuộc về ai. Là cộng đồng, chúng tôi đánh giá các số kết thúc bằng X.",
+                verified: "✓ Đã xác minh",
+                communityRating: "Đánh giá Cộng đồng 🏆",
+                greenPepper: "🟢 Ớt Xanh",
+                redPepper: "Ớt Đỏ 🔴",
+                totalVotes: "Tổng cộng {count} đánh giá",
+                voteInvite: "Bạn cũng đánh giá nhé!",
+                safeBtn: "An toàn",
+                spamBtn: "Đáng ngờ",
+                refreshBtn: "Làm mới Trang",
+                botCheck: "🔐 Kiểm tra Bot",
+                botCheckDesc: "Để xác minh bạn không phải robot, nhập văn bản vào ô",
+                completeTask: "Hoàn thành nhiệm vụ",
+                typeText: "Nhập văn bản vào ô",
+                cancel: "Hủy",
+                vote: "Bình chọn",
+                countrySearch: "Tìm quốc gia...",
+                enterAllDigits: "⚠️ Vui lòng nhập tất cả các chữ số",
+                alreadyVoted: "✓ Bạn đã bình chọn cho số này",
+                votedSafe: "🟢 Đã đánh dấu an toàn",
+                votedSpam: "🔴 Đã đánh dấu đáng ngờ",
+                error: "❌ Đã xảy ra lỗi",
+                otherProjects: "Các Dự Án Khác Của Chúng Tôi",
+                scenicLocations: "Thông tin vị trí các địa điểm đẹp",
+                travelTools: "Công cụ du lịch"
+            },
+            ko: {
+                title: "AciBiber - 전화 보안 확인",
+                subtitle: "의심스러운 번호 확인, 안전 유지",
+                redBadge: "빨간 고추: 의심스러움",
+                greenBadge: "녹색 고추: 안전",
+                countrySelect: "국가 선택",
+                phoneNumber: "전화번호",
+                searchBtn: "확인",
+                searchingBtn: "확인 중...",
+                warning: "⚠️ 이것은 가상의 번호입니다. 누구의 것도 아닙니다. 커뮤니티로서 X로 끝나는 번호를 평가합니다.",
+                verified: "✓ 확인됨",
+                communityRating: "커뮤니티 평가 🏆",
+                greenPepper: "🟢 녹색 고추",
+                redPepper: "빨간 고추 🔴",
+                totalVotes: "총 {count}개 리뷰",
+                voteInvite: "당신도 평가하세요!",
+                safeBtn: "안전",
+                spamBtn: "의심스러움",
+                refreshBtn: "페이지 새로고침",
+                botCheck: "🔐 봇 확인",
+                botCheckDesc: "로봇이 아님을 확인하려면 상자에 텍스트를 입력하세요",
+                completeTask: "작업 완료",
+                typeText: "상자에 텍스트 입력",
+                cancel: "취소",
+                vote: "투표",
+                countrySearch: "국가 검색...",
+                enterAllDigits: "⚠️ 모든 숫자를 입력하세요",
+                alreadyVoted: "✓ 이미 이 번호에 투표했습니다",
+                votedSafe: "🟢 안전으로 표시됨",
+                votedSpam: "🔴 의심스러움으로 표시됨",
+                error: "❌ 오류가 발생했습니다",
+                otherProjects: "우리의 다른 프로젝트",
+                scenicLocations: "경치 좋은 장소의 위치 정보",
+                travelTools: "여행 도구"
+            },
+            fa: {
+                title: "AciBiber - بررسی امنیت تلفن",
+                subtitle: "شماره‌های مشکوک را بررسی کنید، ایمن بمانید",
+                redBadge: "فلفل قرمز: مشکوک",
+                greenBadge: "فلفل سبز: ایمن",
+                countrySelect: "انتخاب کشور",
+                phoneNumber: "شماره تلفن",
+                searchBtn: "بررسی",
+                searchingBtn: "در حال بررسی...",
+                warning: "⚠️ این یک شماره خیالی است. متعلق به کسی نیست. به عنوان جامعه، ما شماره‌هایی که با X تمام می‌شوند را ارزیابی می‌کنیم.",
+                verified: "✓ تایید شده",
+                communityRating: "رتبه‌بندی جامعه 🏆",
+                greenPepper: "🟢 فلفل سبز",
+                redPepper: "فلفل قرمز 🔴",
+                totalVotes: "مجموع {count} بررسی",
+                voteInvite: "شما هم امتیاز دهید!",
+                safeBtn: "ایمن",
+                spamBtn: "مشکوک",
+                refreshBtn: "بازخوانی صفحه",
+                botCheck: "🔐 بررسی ربات",
+                botCheckDesc: "برای تایید اینکه ربات نیستید، متن‌ها را در جعبه‌ها تایپ کنید",
+                completeTask: "کار را کامل کنید",
+                typeText: "متن را در جعبه تایپ کنید",
+                cancel: "لغو",
+                vote: "رای",
+                countrySearch: "جستجوی کشور...",
+                enterAllDigits: "⚠️ لطفا همه ارقام را وارد کنید",
+                alreadyVoted: "✓ شما قبلا به این شماره رای داده‌اید",
+                votedSafe: "🟢 به عنوان ایمن علامت‌گذاری شد",
+                votedSpam: "🔴 به عنوان مشکوک علامت‌گذاری شد",
+                error: "❌ خطایی رخ داد",
+                otherProjects: "پروژه‌های دیگر ما",
+                scenicLocations: "اطلاعات مکان مناظر زیبا",
+                travelTools: "ابزارهای سفر"
+            },
+            it: {
+                title: "AciBiber - Controllo Sicurezza Telefono",
+                subtitle: "Controlla numeri sospetti, resta al sicuro",
+                redBadge: "Peperoncino Rosso: Sospetto",
+                greenBadge: "Peperoncino Verde: Sicuro",
+                countrySelect: "Selezione Paese",
+                phoneNumber: "Numero di Telefono",
+                searchBtn: "Controlla",
+                searchingBtn: "Controllo in corso...",
+                warning: "⚠️ Questo è un numero fittizio. Non appartiene a nessuno. Come comunità, valutiamo i numeri che terminano con X.",
+                verified: "✓ Verificato",
+                communityRating: "Valutazione della Comunità 🏆",
+                greenPepper: "🟢 Peperoncino Verde",
+                redPepper: "Peperoncino Rosso 🔴",
+                totalVotes: "Totale {count} recensioni",
+                voteInvite: "Vota anche tu!",
+                safeBtn: "Sicuro",
+                spamBtn: "Sospetto",
+                refreshBtn: "Aggiorna Pagina",
+                botCheck: "🔐 Controllo Bot",
+                botCheckDesc: "Per verificare che non sei un robot, digita i testi nelle caselle",
+                completeTask: "Completa l'attività",
+                typeText: "Digita il testo nella casella",
+                cancel: "Annulla",
+                vote: "Vota",
+                countrySearch: "Cerca paese...",
+                enterAllDigits: "⚠️ Inserisci tutte le cifre",
+                alreadyVoted: "✓ Hai già votato per questo numero",
+                votedSafe: "🟢 Segnato come sicuro",
+                votedSpam: "🔴 Segnato come sospetto",
+                error: "❌ Si è verificato un errore",
+                otherProjects: "I Nostri Altri Progetti",
+                scenicLocations: "Informazioni sulla posizione di luoghi panoramici",
+                travelTools: "Strumenti di viaggio"
+            },
+            ur: {
+                title: "AciBiber - فون سیکیورٹی چیک",
+                subtitle: "مشکوک نمبرز چیک کریں، محفوظ رہیں",
+                redBadge: "لال مرچ: مشکوک",
+                greenBadge: "سبز مرچ: محفوظ",
+                countrySelect: "ملک کا انتخاب",
+                phoneNumber: "فون نمبر",
+                searchBtn: "چیک کریں",
+                searchingBtn: "چیک ہو رہا ہے...",
+                warning: "⚠️ یہ ایک فرضی نمبر ہے۔ یہ کسی کا نہیں ہے۔ کمیونٹی کے طور پر، ہم X پر ختم ہونے والے نمبروں کا جائزہ لیتے ہیں۔",
+                verified: "✓ تصدیق شدہ",
+                communityRating: "کمیونٹی ریٹنگ 🏆",
+                greenPepper: "🟢 سبز مرچ",
+                redPepper: "لال مرچ 🔴",
+                totalVotes: "کل {count} جائزے",
+                voteInvite: "آپ بھی ریٹ کریں!",
+                safeBtn: "محفوظ",
+                spamBtn: "مشکوک",
+                refreshBtn: "صفحہ ریفریش کریں",
+                botCheck: "🔐 بوٹ چیک",
+                botCheckDesc: "یہ تصدیق کرنے کے لیے کہ آپ روبوٹ نہیں ہیں، باکسز میں ٹیکسٹ ٹائپ کریں",
+                completeTask: "کام مکمل کریں",
+                typeText: "باکس میں ٹیکسٹ ٹائپ کریں",
+                cancel: "منسوخ",
+                vote: "ووٹ",
+                countrySearch: "ملک تلاش کریں...",
+                enterAllDigits: "⚠️ تمام ہندسے درج کریں",
+                alreadyVoted: "✓ آپ نے پہلے ہی اس نمبر کے لیے ووٹ دیا ہے",
+                votedSafe: "🟢 محفوظ کے طور پر نشان زد",
+                votedSpam: "🔴 مشکوک کے طور پر نشان زد",
+                error: "❌ ایک خرابی پیش آئی",
+                otherProjects: "ہمارے دیگر پروجیکٹس",
+                scenicLocations: "خوبصورت مقامات کی جگہ کی معلومات",
+                travelTools: "سفری آلات"
+            },
+            th: {
+                title: "AciBiber - ตรวจสอบความปลอดภัยโทรศัพท์",
+                subtitle: "ตรวจสอบหมายเลขที่น่าสงสัย รักษาความปลอดภัย",
+                redBadge: "พริกแดง: น่าสงสัย",
+                greenBadge: "พริกเขียว: ปลอดภัย",
+                countrySelect: "เลือกประเทศ",
+                phoneNumber: "หมายเลขโทรศัพท์",
+                searchBtn: "ตรวจสอบ",
+                searchingBtn: "กำลังตรวจสอบ...",
+                warning: "⚠️ นี่เป็นหมายเลขสมมติ ไม่ได้เป็นของใคร ในฐานะชุมชน เราประเมินหมายเลขที่ลงท้ายด้วย X",
+                verified: "✓ ตรวจสอบแล้ว",
+                communityRating: "การให้คะแนนชุมชน 🏆",
+                greenPepper: "🟢 พริกเขียว",
+                redPepper: "พริกแดง 🔴",
+                totalVotes: "รวม {count} รีวิว",
+                voteInvite: "คุณก็ให้คะแนนได้!",
+                safeBtn: "ปลอดภัย",
+                spamBtn: "น่าสงสัย",
+                refreshBtn: "รีเฟรชหน้า",
+                botCheck: "🔐 ตรวจสอบบอท",
+                botCheckDesc: "เพื่อยืนยันว่าคุณไม่ใช่หุ่นยนต์ พิมพ์ข้อความในกล่อง",
+                completeTask: "ทำภารกิจให้เสร็จ",
+                typeText: "พิมพ์ข้อความในกล่อง",
+                cancel: "ยกเลิก",
+                vote: "โหวต",
+                countrySearch: "ค้นหาประเทศ...",
+                enterAllDigits: "⚠️ กรุณาใส่ตัวเลขทั้งหมด",
+                alreadyVoted: "✓ คุณได้โหวตสำหรับหมายเลขนี้แล้ว",
+                votedSafe: "🟢 ทำเครื่องหมายว่าปลอดภัย",
+                votedSpam: "🔴 ทำเครื่องหมายว่าน่าสงสัย",
+                error: "❌ เกิดข้อผิดพลาด",
+                otherProjects: "โครงการอื่นๆ ของเรา",
+                scenicLocations: "ข้อมูลสถานที่ของสถานที่สวยงาม",
+                travelTools: "เครื่องมือการเดินทาง"
+            },
+            pl: {
+                title: "AciBiber - Sprawdzanie Bezpieczeństwa Telefonu",
+                subtitle: "Sprawdź podejrzane numery, bądź bezpieczny",
+                redBadge: "Czerwona Papryka: Podejrzany",
+                greenBadge: "Zielona Papryka: Bezpieczny",
+                countrySelect: "Wybór Kraju",
+                phoneNumber: "Numer Telefonu",
+                searchBtn: "Sprawdź",
+                searchingBtn: "Sprawdzanie...",
+                warning: "⚠️ To fikcyjny numer. Nie należy do nikogo. Jako społeczność oceniamy numery kończące się na X.",
+                verified: "✓ Zweryfikowano",
+                communityRating: "Ocena Społeczności 🏆",
+                greenPepper: "🟢 Zielona Papryka",
+                redPepper: "Czerwona Papryka 🔴",
+                totalVotes: "Łącznie {count} opinii",
+                voteInvite: "Oceń również!",
+                safeBtn: "Bezpieczny",
+                spamBtn: "Podejrzany",
+                refreshBtn: "Odśwież Stronę",
+                botCheck: "🔐 Sprawdzanie Bota",
+                botCheckDesc: "Aby potwierdzić, że nie jesteś robotem, wpisz teksty w polach",
+                completeTask: "Ukończ zadanie",
+                typeText: "Wpisz tekst w polu",
+                cancel: "Anuluj",
+                vote: "Głosuj",
+                countrySearch: "Szukaj kraju...",
+                enterAllDigits: "⚠️ Proszę wprowadzić wszystkie cyfry",
+                alreadyVoted: "✓ Już głosowałeś na ten numer",
+                votedSafe: "🟢 Oznaczono jako bezpieczny",
+                votedSpam: "🔴 Oznaczono jako podejrzany",
+                error: "❌ Wystąpił błąd",
+                otherProjects: "Nasze Inne Projekty",
+                scenicLocations: "Informacje o lokalizacji malowniczych miejsc",
+                travelTools: "Narzędzia podróżnicze"
+            },
+            nl: {
+                title: "AciBiber - Telefoon Veiligheidscontrole",
+                subtitle: "Controleer verdachte nummers, blijf veilig",
+                redBadge: "Rode Peper: Verdacht",
+                greenBadge: "Groene Peper: Veilig",
+                countrySelect: "Land Selectie",
+                phoneNumber: "Telefoonnummer",
+                searchBtn: "Controleren",
+                searchingBtn: "Controleren...",
+                warning: "⚠️ Dit is een fictief nummer. Het is van niemand. Als gemeenschap evalueren we nummers die eindigen op X.",
+                verified: "✓ Geverifieerd",
+                communityRating: "Community Beoordeling 🏆",
+                greenPepper: "🟢 Groene Peper",
+                redPepper: "Rode Peper 🔴",
+                totalVotes: "Totaal {count} beoordelingen",
+                voteInvite: "Beoordeel ook!",
+                safeBtn: "Veilig",
+                spamBtn: "Verdacht",
+                refreshBtn: "Pagina Vernieuwen",
+                botCheck: "🔐 Bot Controle",
+                botCheckDesc: "Om te verifiëren dat u geen robot bent, typ de teksten in de vakken",
+                completeTask: "Voltooi de taak",
+                typeText: "Typ de tekst in het vak",
+                cancel: "Annuleren",
+                vote: "Stem",
+                countrySearch: "Zoek land...",
+                enterAllDigits: "⚠️ Voer alle cijfers in",
+                alreadyVoted: "✓ U heeft al gestemd voor dit nummer",
+                votedSafe: "🟢 Gemarkeerd als veilig",
+                votedSpam: "🔴 Gemarkeerd als verdacht",
+                error: "❌ Er is een fout opgetreden",
+                otherProjects: "Onze Andere Projecten",
+                scenicLocations: "Locatie-informatie van schilderachtige plaatsen",
+                travelTools: "Reisgereedschap"
+            },
+            ro: {
+                title: "AciBiber - Verificare Securitate Telefon",
+                subtitle: "Verifică numerele suspecte, rămâi în siguranță",
+                redBadge: "Ardei Roșu: Suspect",
+                greenBadge: "Ardei Verde: Sigur",
+                countrySelect: "Selectare Țară",
+                phoneNumber: "Număr de Telefon",
+                searchBtn: "Verifică",
+                searchingBtn: "Se verifică...",
+                warning: "⚠️ Acesta este un număr fictiv. Nu aparține nimănui. Ca și comunitate, evaluăm numerele care se termină cu X.",
+                verified: "✓ Verificat",
+                communityRating: "Evaluare Comunitate 🏆",
+                greenPepper: "🟢 Ardei Verde",
+                redPepper: "Ardei Roșu 🔴",
+                totalVotes: "Total {count} recenzii",
+                voteInvite: "Evaluează și tu!",
+                safeBtn: "Sigur",
+                spamBtn: "Suspect",
+                refreshBtn: "Reîmprospătează Pagina",
+                botCheck: "🔐 Verificare Bot",
+                botCheckDesc: "Pentru a verifica că nu ești un robot, tastează textele în căsuțe",
+                completeTask: "Finalizează sarcina",
+                typeText: "Tastează textul în căsuță",
+                cancel: "Anulează",
+                vote: "Votează",
+                countrySearch: "Caută țară...",
+                enterAllDigits: "⚠️ Te rog introdu toate cifrele",
+                alreadyVoted: "✓ Ai votat deja pentru acest număr",
+                votedSafe: "🟢 Marcat ca sigur",
+                votedSpam: "🔴 Marcat ca suspect",
+                error: "❌ A apărut o eroare",
+                otherProjects: "Celelalte Proiecte ale Noastre",
+                scenicLocations: "Informații despre locații pitorești",
+                travelTools: "Instrumente de călătorie"
+            },
+            sv: {
+                title: "AciBiber - Telefonsäkerhetskontroll",
+                subtitle: "Kontrollera misstänkta nummer, håll dig säker",
+                redBadge: "Röd Peppar: Misstänkt",
+                greenBadge: "Grön Peppar: Säker",
+                countrySelect: "Välj Land",
+                phoneNumber: "Telefonnummer",
+                searchBtn: "Kontrollera",
+                searchingBtn: "Kontrollerar...",
+                warning: "⚠️ Detta är ett fiktivt nummer. Det tillhör ingen. Som gemenskap utvärderar vi nummer som slutar med X.",
+                verified: "✓ Verifierad",
+                communityRating: "Gemenskapsbetyg 🏆",
+                greenPepper: "🟢 Grön Peppar",
+                redPepper: "Röd Peppar 🔴",
+                totalVotes: "Totalt {count} recensioner",
+                voteInvite: "Betygsätt också!",
+                safeBtn: "Säker",
+                spamBtn: "Misstänkt",
+                refreshBtn: "Uppdatera Sida",
+                botCheck: "🔐 Botkontroll",
+                botCheckDesc: "För att verifiera att du inte är en robot, skriv texterna i rutorna",
+                completeTask: "Slutför uppgiften",
+                typeText: "Skriv texten i rutan",
+                cancel: "Avbryt",
+                vote: "Rösta",
+                countrySearch: "Sök land...",
+                enterAllDigits: "⚠️ Vänligen ange alla siffror",
+                alreadyVoted: "✓ Du har redan röstat för detta nummer",
+                votedSafe: "🟢 Markerad som säker",
+                votedSpam: "🔴 Markerad som misstänkt",
+                error: "❌ Ett fel uppstod",
+                otherProjects: "Våra Andra Projekt",
+                scenicLocations: "Platsinformation för natursköna platser",
+                travelTools: "Reseverktyg"
+            },
+            yue: {
+                title: "AciBiber - 電話安全檢查",
+                subtitle: "檢查可疑號碼，保持安全",
+                redBadge: "紅辣椒：可疑",
+                greenBadge: "綠辣椒：安全",
+                countrySelect: "國家選擇",
+                phoneNumber: "電話號碼",
+                searchBtn: "檢查",
+                searchingBtn: "檢查緊...",
+                warning: "⚠️ 呢個係虛構嘅號碼。唔屬於任何人。作為社區，我哋評估以X結尾嘅號碼。",
+                verified: "✓ 已驗證",
+                communityRating: "社區評分 🏆",
+                greenPepper: "🟢 綠辣椒",
+                redPepper: "紅辣椒 🔴",
+                totalVotes: "共 {count} 條評價",
+                voteInvite: "你都嚟評價啦！",
+                safeBtn: "安全",
+                spamBtn: "可疑",
+                refreshBtn: "刷新頁面",
+                botCheck: "🔐 機械人檢查",
+                botCheckDesc: "為咗驗證你唔係機械人，請注意大細楷輸入框入面嘅文字",
+                completeTask: "完成任務",
+                typeText: "輸入框入面嘅文字",
+                cancel: "取消",
+                vote: "投票",
+                countrySearch: "搵國家...",
+                enterAllDigits: "⚠️ 請輸入所有數字",
+                alreadyVoted: "✓ 你已經為呢個號碼投票",
+                votedSafe: "🟢 標記為安全",
+                votedSpam: "🔴 標記為可疑",
+                error: "❌ 發生錯誤",
+                otherProjects: "我哋嘅其他項目",
+                scenicLocations: "風景名勝嘅位置信息",
+                travelTools: "旅行工具"
+            }
+        };
+        
+        // Get translation
+        window.t = function(key) {
+            return window.translations[window.userLang][key] || window.translations['en'][key] || key;
+        };
+        
+        // Update document title
+        document.title = window.t('title');
+    })();
+    </script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow-x: hidden;
+            position: relative;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #fff5f5 0%, #ffffff 50%, #fff0f0 100%);
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 40px 20px;
+            position: relative;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            touch-action: pan-y;
+        }
+
+        /* Background decoration */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -200px;
+            right: -200px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -150px;
+            left: -150px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 600px;
+            position: relative;
+            z-index: 1;
+            -webkit-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        /* Logo Section */
+        .logo-section {
+            text-align: center;
+            margin-bottom: 24px;
+            padding-top: 10px;
+        }
+
+        .logo-wrapper {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            padding: 12px 24px;
+            border-radius: 100px;
+            box-shadow: 0 10px 40px rgba(239, 68, 68, 0.15),
+                        0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 14px;
+            border: 2px solid rgba(239, 68, 68, 0.1);
+        }
+
+        .logo-icon {
+            font-size: 24px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: var(--font-weight-bold);
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: #6b7280;
+            font-size: var(--font-size-medium);
+            margin-bottom: 16px;
+            font-weight: var(--font-weight-regular);
+        }
+
+        .badges {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            background: white;
+            border-radius: 50px;
+            font-size: var(--font-size-small);
+            font-weight: var(--font-weight-semibold);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .badge.red {
+            color: #dc2626;
+            border: 1px solid rgba(220, 38, 38, 0.2);
+        }
+
+        .badge.green {
+            color: #16a34a;
+            border: 1px solid rgba(22, 163, 74, 0.2);
+        }
+
+        /* Card Container */
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 20px 60px rgba(239, 68, 68, 0.1),
+                        0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 28px;
+            -webkit-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            will-change: transform;
+        }
+
+        /* Input Section */
+        .input-section {
+            margin-bottom: 26px;
+        }
+
+        /* Country Selector */
+        .country-container {
+            margin-bottom: 22px;
+            position: relative;
+        }
+
+        .input-label {
+            color: #374151;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .country-selector {
+            width: 100%;
+            height: 56px;
+            background: #fef2f2;
+            border: 2px solid #fecaca;
+            border-radius: 14px;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            z-index: 10;
+        }
+
+        .country-selector:hover {
+            background: #fee2e2;
+            border-color: #fca5a5;
+            transform: translateY(-1px);
+        }
+
+        .country-selector:focus-within {
+            border-color: #ef4444;
+            box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+        }
+
+        .country-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .country-flag {
+            font-size: 28px;
+        }
+
+        .country-name {
+            color: #1f2937;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .dropdown-arrow {
+            color: #ef4444;
+            font-size: 24px;
+            transition: transform 0.3s;
+        }
+
+        .country-selector.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Country Dropdown */
+        .country-dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            right: 0;
+            background: white;
+            border: 2px solid #fecaca;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+        }
+
+        .country-dropdown.show {
+            display: block;
+        }
+
+        .country-search {
+            padding: 16px;
+            border-bottom: 1px solid #fee2e2;
+            position: sticky;
+            top: 0;
+            background: white;
+        }
+
+        .country-search input {
+            width: 100%;
+            padding: 10px 16px;
+            background: #fef2f2;
+            border: 2px solid #fecaca;
+            border-radius: 10px;
+            color: #1f2937;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .country-search input::placeholder {
+            color: #9ca3af;
+        }
+
+        .country-search input:focus {
+            outline: none;
+            border-color: #ef4444;
+            background: white;
+        }
+
+        .country-list {
+            padding: 8px;
+        }
+
+        .country-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .country-item:hover {
+            background: #fef2f2;
+        }
+
+        .country-item-flag {
+            font-size: 24px;
+        }
+
+        .country-item-name {
+            color: #1f2937;
+            flex: 1;
+            font-weight: 500;
+        }
+
+        .country-item-code {
+            color: #ef4444;
+            font-weight: 700;
+        }
+
+        /* Phone Input */
+        .phone-container {
+            position: relative;
+        }
+
+        .phone-input-wrapper {
+            position: relative;
+            width: 100%;
+            height: 56px;
+            background: #fef2f2;
+            border: 2px solid #fecaca;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+            overflow: hidden;
+        }
+
+        .phone-input-wrapper:hover {
+            background: #fee2e2;
+            border-color: #fca5a5;
+            transform: translateY(-1px);
+        }
+
+        .phone-input-wrapper.focused {
+            border-color: #ef4444;
+            box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+        }
+
+        .country-code {
+            padding: 0 20px;
+            color: #ef4444;
+            font-size: 18px;
+            font-weight: 700;
+            border-right: 2px solid #fecaca;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            background: white;
+        }
+
+        .phone-digits {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            gap: 4px;
+            overflow: hidden;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .phone-digits::-webkit-scrollbar {
+            display: none;
+        }
+
+        .digit-input {
+            flex-shrink: 0;
+            width: 38px;
+            height: 38px;
+            background: white;
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            color: #1f2937;
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            font-family: 'SF Mono', 'Monaco', monospace;
+            letter-spacing: 2px;
+            transition: all 0.2s;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        .digit-input:focus {
+            outline: none;
+            border-color: #ef4444;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        }
+
+        .digit-input::placeholder {
+            color: #d1d5db;
+        }
+
+        .digit-input.disabled {
+            background: #f3f4f6;
+            color: #9ca3af;
+            cursor: not-allowed;
+            border-color: #e5e7eb;
+        }
+
+        /* Search Button */
+        .search-btn {
+            width: 100%;
+            height: 56px;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 10px 30px rgba(239, 68, 68, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 32px;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(239, 68, 68, 0.4);
+        }
+
+        .search-btn:active {
+            transform: translateY(0);
+        }
+
+        .search-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Results Section */
+        .results-section {
+            display: none;
+            animation: slideUp 0.4s ease;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 2px solid #fee2e2;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-header {
+            text-align: center;
+            margin-bottom: 36px;
+            padding-bottom: 36px;
+            border-bottom: 2px solid #fee2e2;
+        }
+
+        .result-number {
+            font-size: 26px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 20px;
+        }
+
+        .verified-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #fef2f2, #fee2e2);
+            color: #dc2626;
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 700;
+            border: 2px solid #fecaca;
+        }
+
+        /* Score Section */
+        .score-container {
+            margin-bottom: 28px;
+        }
+
+        .score-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .score-label-green {
+            color: #16a34a;
+        }
+
+        .score-label-red {
+            color: #dc2626;
+        }
+
+        .score-bar {
+            height: 48px;
+            background: #f3f4f6;
+            border-radius: 24px;
+            overflow: hidden;
+            display: flex;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+        }
+
+        .score-green {
+            background: linear-gradient(90deg, #16a34a, #22c55e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+            transition: width 0.6s ease;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .score-red {
+            background: linear-gradient(90deg, #dc2626, #ef4444);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+            transition: width 0.6s ease;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .vote-count {
+            text-align: center;
+            font-size: 14px;
+            color: #6b7280;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .vote-invite {
+            text-align: center;
+            font-size: 15px;
+            color: #ef4444;
+            margin-top: 20px;
+            margin-bottom: 24px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            animation: pulse-text 2s infinite;
+        }
+
+        @keyframes pulse-text {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.9;
+                transform: scale(1.02);
+            }
+        }
+
+        /* Vote Buttons */
+        .vote-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .vote-btn {
+            padding: 14px;
+            border: 2px solid;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: white;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .vote-btn.safe {
+            border-color: #16a34a;
+            color: #16a34a;
+            background: #dcfce7;
+        }
+
+        .vote-btn.safe:hover:not(:disabled) {
+            background: #16a34a;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(22, 163, 74, 0.3);
+        }
+
+        .vote-btn.spam {
+            border-color: #dc2626;
+            color: #dc2626;
+            background: #fee2e2;
+        }
+
+        .vote-btn.spam:hover:not(:disabled) {
+            background: #dc2626;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(220, 38, 38, 0.3);
+        }
+
+        .vote-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* Other Projects Section */
+        .other-projects {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 20px 60px rgba(239, 68, 68, 0.1),
+                        0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+
+        .other-projects-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #1f2937;
+            text-align: center;
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .project-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, #fef2f2, #ffffff);
+            border: 2px solid #fecaca;
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: block;
+        }
+
+        .project-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(239, 68, 68, 0.2);
+            border-color: #ef4444;
+        }
+
+        .project-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .project-icon {
+            font-size: 32px;
+        }
+
+        .project-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .project-desc {
+            color: #6b7280;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Blinking animation for input focus hint */
+        @keyframes blinkBorder {
+            0%, 100% {
+                border-color: #ef4444;
+                box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+            }
+            50% {
+                border-color: #fca5a5;
+                box-shadow: 0 0 0 5px rgba(239, 68, 68, 0.1);
+            }
+        }
+
+        .verify-input.blink-hint {
+            animation: blinkBorder 1s ease-in-out infinite;
+            background: #fff5f5;
+        }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            max-width: 420px;
+            width: 100%;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            animation: modalSlide 0.3s ease;
+        }
+
+        @keyframes modalSlide {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #1f2937;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .modal-subtitle {
+            font-size: 14px;
+            color: #6b7280;
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .verify-item {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .verify-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #374151;
+        }
+
+        .verify-code {
+            background: #fef2f2;
+            color: #dc2626;
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-family: monospace;
+            border: 1px solid #fecaca;
+            font-weight: 600;
+        }
+
+        .verify-input {
+            width: 100%;
+            padding: 12px 16px;
+            padding-right: 40px;
+            background: #fef2f2;
+            border: 2px solid #fecaca;
+            border-radius: 10px;
+            color: #1f2937;
+            font-size: 15px;
+            font-family: monospace;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .verify-input:focus {
+            outline: none;
+            border-color: #ef4444;
+            background: white;
+        }
+
+        .verify-input.correct {
+            border-color: #16a34a;
+            background: #f0fdf4;
+        }
+
+        .verify-check {
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            width: 24px;
+            height: 24px;
+            background: #16a34a;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            animation: checkPop 0.3s ease;
+        }
+
+        .verify-check.show {
+            display: flex;
+        }
+
+        @keyframes checkPop {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+
+        .modal-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 28px;
+        }
+
+        .modal-btn {
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .modal-btn-cancel {
+            background: #f3f4f6;
+            color: #6b7280;
+            border: 2px solid #e5e7eb;
+        }
+
+        .modal-btn-cancel:hover {
+            background: #e5e7eb;
+            color: #4b5563;
+        }
+
+        .modal-btn-confirm {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            border: 2px solid transparent;
+        }
+
+        .modal-btn-confirm:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(239, 68, 68, 0.3);
+        }
+
+        .modal-btn-confirm:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: white;
+            border: 2px solid #fecaca;
+            color: #1f2937;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            z-index: 2000;
+            transition: transform 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-bottom: 20px;
+        }
+
+        .refresh-btn {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 14px 28px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.25);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .refresh-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(239, 68, 68, 0.35);
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+        }
+
+        .refresh-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.25);
+        }
+
+        .refresh-icon {
+            font-size: 18px;
+            display: inline-block;
+            transition: transform 0.5s ease;
+        }
+
+        .refresh-btn:hover .refresh-icon {
+            transform: rotate(360deg);
+        }
+
+        /* Typography System with Dynamic Scaling */
+        :root {
+            /* Dynamic scale factor (set by JavaScript) */
+            --dynamic-scale: 1;
+            
+            /* Desktop Font Sizes */
+            --font-size-large: calc(24px * var(--dynamic-scale));
+            --font-size-medium: calc(16px * var(--dynamic-scale));
+            --font-size-small: calc(14px * var(--dynamic-scale));
+            
+            /* Mobile Font Sizes */
+            --mobile-font-size-large: calc(20px * var(--dynamic-scale));
+            --mobile-font-size-medium: calc(15px * var(--dynamic-scale));
+            --mobile-font-size-small: calc(13px * var(--dynamic-scale));
+            
+            /* Font Weights */
+            --font-weight-bold: 700;
+            --font-weight-semibold: 600;
+            --font-weight-regular: 500;
+        }
+
+        /* Responsive viewport units for better scaling */
+        @supports (width: 100vw) {
+            .app-container {
+                width: min(100%, 90vw);
+            }
+        }
+
+        /* Mobile - Enhanced Responsiveness */
+        @media (max-width: 640px) {
+            html {
+                overflow-x: hidden;
+                overflow-y: auto;
+                position: relative;
+            }
+
+            body {
+                overflow-x: hidden;
+                overflow-y: visible;
+                padding: 10px;
+                min-height: 100vh;
+                min-height: -webkit-fill-available;
+                align-items: flex-start;
+                width: 100%;
+                max-width: 100vw;
+            }
+
+            /* Prevent horizontal overflow */
+            body > * {
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+
+            body::before,
+            body::after {
+                display: none; /* Hide decorative elements on mobile */
+            }
+
+            .app-container {
+                width: 100%;
+                max-width: 100%;
+                margin-top: 20px;
+                padding: 0;
+                overflow-x: hidden;
+            }
+
+            .card {
+                padding: 18px;
+                border-radius: 20px;
+                box-shadow: 0 10px 30px rgba(239, 68, 68, 0.08),
+                            0 5px 15px rgba(0, 0, 0, 0.04);
+                margin-left: 0;
+                margin-right: 0;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+
+            /* Logo adjustments */
+            .logo-wrapper {
+                padding: 12px 20px;
+                margin-bottom: 16px;
+            }
+
+            .logo-text {
+                font-size: clamp(20px, 5.5vw, 24px);
+            }
+
+            .logo-icon {
+                font-size: 28px;
+            }
+
+            .subtitle {
+                font-size: clamp(13px, 3.5vw, 15px);
+                margin-bottom: 16px;
+            }
+
+            .badges {
+                flex-direction: row;
+                gap: 12px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .badge {
+                font-size: 12px;
+                padding: 6px 12px;
+                white-space: nowrap;
+            }
+
+            /* Input sections - Better mobile UX */
+            .input-label {
+                font-size: 12px;
+                margin-bottom: 8px;
+            }
+
+            .country-container {
+                margin-bottom: 20px;
+            }
+
+            .country-selector {
+                height: 52px;
+                padding: 0 16px;
+                border-radius: 12px;
+                -webkit-appearance: none;
+                appearance: none;
+            }
+
+            .country-name {
+                font-size: clamp(14px, 3.8vw, 16px);
+            }
+
+            .country-flag {
+                font-size: 24px;
+            }
+
+            .dropdown-arrow {
+                font-size: 20px;
+            }
+
+            /* Country dropdown mobile optimization */
+            .country-dropdown {
+                max-height: 60vh;
+                border-radius: 14px;
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+                position: fixed;
+                top: 80px;
+                left: 10px;
+                right: 10px;
+                max-width: calc(100% - 20px);
+                z-index: 1001;
+            }
+
+            .country-search {
+                padding: 12px;
+                position: sticky;
+                top: 0;
+                background: white;
+                z-index: 10;
+            }
+
+            .country-search input {
+                padding: 10px 14px;
+                font-size: 14px;
+                border-radius: 8px;
+            }
+
+            .country-item {
+                padding: 12px 14px;
+                -webkit-tap-highlight-color: rgba(239, 68, 68, 0.1);
+            }
+
+            .country-item:active {
+                background: #fef2f2;
+            }
+
+            .country-item-flag {
+                font-size: 22px;
+            }
+
+            .country-item-name {
+                font-size: 14px;
+            }
+
+            .country-item-code {
+                font-size: 13px;
+            }
+
+            /* Phone input optimization */
+            .phone-input-wrapper {
+                height: 52px;
+                border-radius: 12px;
+            }
+
+            .country-code {
+                padding: 0 12px;
+                font-size: clamp(14px, 3.8vw, 16px);
+                min-width: 50px;
+            }
+
+            .phone-digits {
+                padding: 0 6px;
+                gap: 2px;
+                min-width: 0;
+                overflow-x: auto;
+                scroll-behavior: smooth;
+            }
+
+            .digit-input {
+                flex-shrink: 0;
+                width: calc((100vw - 140px) / 11);
+                max-width: 32px;
+                min-width: 24px;
+                height: 32px;
+                font-size: clamp(14px, 4vw, 16px);
+                border-radius: 6px;
+            }
+
+            /* Button adjustments */
+            .search-btn {
+                height: 52px;
+                font-size: 15px;
+                margin-top: 24px;
+                border-radius: 12px;
+                letter-spacing: 0.3px;
+                -webkit-appearance: none;
+                appearance: none;
+            }
+
+            .search-btn:active {
+                transform: scale(0.98);
+            }
+
+            /* Results section */
+            .results-section {
+                margin-top: 32px;
+                padding-top: 32px;
+            }
+
+            .result-header {
+                margin-bottom: 24px;
+                padding-bottom: 24px;
+            }
+
+            .result-number {
+                font-size: clamp(18px, 5vw, 22px);
+                margin-bottom: 16px;
+                word-break: break-all;
+            }
+
+            .verified-badge {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+
+            /* Score section optimization */
+            .score-container {
+                margin-bottom: 24px;
+            }
+
+            .score-labels {
+                font-size: 12px;
+                margin-bottom: 10px;
+            }
+
+            .score-bar {
+                height: 40px;
+                border-radius: 20px;
+            }
+
+            .score-green, .score-red {
+                font-size: 15px;
+            }
+
+            .vote-count {
+                font-size: 13px;
+                margin-top: 8px;
+            }
+
+            .vote-invite {
+                font-size: 14px;
+                margin-top: 16px;
+                margin-bottom: 20px;
+                letter-spacing: 0.3px;
+            }
+
+            .vote-buttons {
+                gap: 12px;
+            }
+
+            .vote-btn {
+                padding: 12px;
+                font-size: 13px;
+                border-radius: 10px;
+                letter-spacing: 0.3px;
+                -webkit-appearance: none;
+                appearance: none;
+            }
+
+            .vote-btn.safe {
+                border-color: #16a34a;
+                color: #16a34a;
+                background: #dcfce7;
+            }
+
+            .vote-btn.safe:active:not(:disabled) {
+                transform: scale(0.98);
+                background: #16a34a;
+                color: white;
+            }
+
+            .vote-btn.spam {
+                border-color: #dc2626;
+                color: #dc2626;
+                background: #fee2e2;
+            }
+
+            .vote-btn.spam:active:not(:disabled) {
+                transform: scale(0.98);
+                background: #dc2626;
+                color: white;
+            }
+
+            /* Other Projects mobile */
+            .other-projects {
+                padding: 24px 18px;
+                margin-top: 32px;
+            }
+
+            .other-projects-title {
+                font-size: 18px;
+                margin-bottom: 20px;
+            }
+
+            .project-card {
+                padding: 16px;
+            }
+
+            .project-icon {
+                font-size: 28px;
+            }
+
+            .project-name {
+                font-size: 16px;
+            }
+
+            .project-desc {
+                font-size: 13px;
+            }
+
+            /* Modal adjustments */
+            .modal-overlay {
+                padding: 10px;
+                align-items: center;
+                justify-content: center;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            .modal {
+                padding: 20px;
+                margin: 0;
+                width: calc(100% - 20px);
+                max-width: 400px;
+                border-radius: 16px;
+                max-height: 90vh;
+                overflow-y: auto;
+                position: relative;
+            }
+
+            .modal-title {
+                font-size: 18px;
+            }
+
+            .modal-subtitle {
+                font-size: 13px;
+                margin-bottom: 20px;
+                line-height: 1.4;
+                padding: 10px;
+            }
+
+            .verify-item {
+                margin-bottom: 16px;
+            }
+
+            .verify-label {
+                font-size: 12px;
+                margin-bottom: 8px;
+            }
+
+            .verify-code {
+                padding: 4px 10px;
+                font-size: 13px;
+                border-radius: 6px;
+                border-width: 1.5px;
+            }
+
+            .verify-input {
+                padding: 10px 14px;
+                padding-right: 36px;
+                font-size: 14px;
+                border-radius: 8px;
+            }
+
+            .verify-input::placeholder {
+                font-size: 12px;
+            }
+
+            .verify-check {
+                right: 10px;
+                bottom: 10px;
+                width: 20px;
+                height: 20px;
+            }
+
+            .modal-buttons {
+                gap: 12px;
+                margin-top: 20px;
+            }
+
+            .modal-btn {
+                padding: 11px;
+                font-size: 13px;
+                border-radius: 8px;
+                letter-spacing: 0.3px;
+            }
+
+            /* Footer optimization */
+            .footer {
+                margin-top: 32px;
+                padding-bottom: 20px;
+            }
+
+            .refresh-btn {
+                padding: 12px 24px;
+                font-size: 14px;
+                border-radius: 40px;
+                gap: 8px;
+                box-shadow: 0 6px 20px rgba(239, 68, 68, 0.2);
+            }
+
+            .refresh-btn:active {
+                transform: scale(0.98);
+            }
+
+            .refresh-icon {
+                font-size: 16px;
+            }
+
+            /* Toast mobile position */
+            .toast {
+                bottom: 20px;
+                padding: 14px 18px;
+                border-radius: 10px;
+                font-size: 13px;
+                max-width: calc(100vw - 32px);
+            }
+        }
+
+        /* Very small phones (iPhone SE, etc) */
+        @media (max-width: 380px) {
+            body {
+                padding: 8px;
+            }
+
+            .card {
+                padding: 16px;
+            }
+
+            .digit-input {
+                width: calc((100% - 16px) / 10);
+                max-width: 28px;
+                min-width: 20px;
+                height: 30px;
+                font-size: 14px;
+            }
+
+            .phone-digits {
+                gap: 1px;
+                padding: 0 4px;
+            }
+
+            .badges {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .badge {
+                padding: 5px 10px;
+                font-size: 11px;
+                width: fit-content;
+                margin: 0 auto;
+            }
+
+            .logo-text {
+                font-size: 18px;
+            }
+
+            .logo-icon {
+                font-size: 24px;
+            }
+
+            .logo-wrapper {
+                padding: 10px 16px;
+            }
+
+            .country-code {
+                padding: 0 8px;
+                font-size: 14px;
+                min-width: 45px;
+            }
+
+            .search-btn {
+                height: 48px;
+                font-size: 14px;
+            }
+
+            .vote-btn {
+                font-size: 12px;
+                padding: 11px;
+            }
+        }
+
+        /* Tablet adjustments */
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .app-container {
+                max-width: 580px;
+            }
+
+            .card {
+                padding: 28px;
+            }
+
+            .digit-input {
+                width: 36px;
+                height: 36px;
+            }
+
+            .logo-wrapper {
+                padding: 14px 28px;
+            }
+        }
+
+        /* Desktop specific optimizations */
+        @media (min-width: 1024px) {
+            body {
+                padding: 30px 20px;
+                align-items: flex-start;
+                padding-top: 40px;
+            }
+
+            .app-container {
+                max-width: 580px;
+            }
+
+            .logo-section {
+                margin-bottom: 28px;
+            }
+
+            .logo-wrapper {
+                padding: 12px 24px;
+                gap: 10px;
+            }
+
+            .logo-icon {
+                font-size: 26px;
+            }
+
+            .logo-text {
+                font-size: 22px;
+            }
+
+            .subtitle {
+                font-size: 15px;
+                margin-bottom: 16px;
+            }
+
+            .badges {
+                gap: 16px;
+            }
+
+            .badge {
+                font-size: 13px;
+                padding: 6px 12px;
+            }
+
+            .card {
+                padding: 26px;
+            }
+
+            .input-section {
+                margin-bottom: 22px;
+            }
+
+            .country-container {
+                margin-bottom: 20px;
+            }
+
+            .input-label {
+                font-size: 13px;
+                margin-bottom: 8px;
+            }
+
+            .country-selector {
+                height: 52px;
+                padding: 0 18px;
+            }
+
+            .country-name {
+                font-size: 15px;
+            }
+
+            .country-flag {
+                font-size: 24px;
+            }
+
+            .dropdown-arrow {
+                font-size: 20px;
+            }
+
+            .phone-input-wrapper {
+                height: 52px;
+            }
+
+            .country-code {
+                font-size: 17px;
+                padding: 0 18px;
+            }
+
+            .digit-input {
+                width: 36px;
+                height: 36px;
+                font-size: 17px;
+            }
+
+            .search-btn {
+                height: 52px;
+                font-size: 15px;
+                margin-top: 26px;
+            }
+
+            .results-section {
+                margin-top: 34px;
+                padding-top: 34px;
+            }
+
+            .result-number {
+                font-size: 24px;
+            }
+
+            .score-bar {
+                height: 44px;
+            }
+
+            .score-green, .score-red {
+                font-size: 17px;
+            }
+
+            .vote-btn {
+                font-size: 14px;
+                padding: 12px;
+            }
+
+            .other-projects {
+                padding: 30px;
+            }
+
+            .other-projects-title {
+                font-size: 20px;
+            }
+
+            .project-name {
+                font-size: 17px;
+            }
+
+            .project-icon {
+                font-size: 28px;
+            }
+
+            .project-desc {
+                font-size: 14px;
+            }
+
+            .refresh-btn {
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+        }
+
+        /* Large Desktop */
+        @media (min-width: 1440px) {
+            .app-container {
+                max-width: 600px;
+            }
+
+            .card {
+                padding: 28px;
+            }
+
+            .logo-wrapper {
+                padding: 13px 26px;
+            }
+
+            .logo-text {
+                font-size: 23px;
+            }
+
+            .logo-icon {
+                font-size: 28px;
+            }
+
+            .country-selector {
+                height: 54px;
+            }
+
+            .phone-input-wrapper {
+                height: 54px;
+            }
+
+            .search-btn {
+                height: 54px;
+                font-size: 16px;
+            }
+        }
+
+        /* Extra Large Desktop */
+        @media (min-width: 1920px) {
+            .app-container {
+                max-width: 620px;
+            }
+
+            .card {
+                padding: 30px;
+            }
+
+            .logo-text {
+                font-size: 24px;
+            }
+
+            .logo-icon {
+                font-size: 30px;
+            }
+
+            .digit-input {
+                width: 38px;
+                height: 38px;
+                font-size: 18px;
+            }
+        }
+
+        /* Landscape mode adjustments */
+        @media (max-height: 600px) and (orientation: landscape) {
+            body {
+                padding: 8px;
+            }
+
+            .logo-section {
+                margin-bottom: 20px;
+            }
+
+            .card {
+                padding: 16px;
+            }
+
+            .input-section {
+                margin-bottom: 16px;
+            }
+
+            .search-btn {
+                margin-top: 16px;
+            }
+        }
+
+        /* iOS specific fixes */
+        @supports (-webkit-touch-callout: none) {
+            .digit-input {
+                font-size: 16px !important; /* Prevent zoom on iOS */
+            }
+
+            .country-search input,
+            .verify-input {
+                font-size: 16px !important; /* Prevent zoom on iOS */
+            }
+        }
+
+        /* Smooth animations for mobile */
+        @media (prefers-reduced-motion: no-preference) {
+            * {
+                scroll-behavior: smooth;
+            }
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            /* Optional: Add dark mode styles if needed */
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Logo Section -->
+        <div class="logo-section">
+            <div class="logo-wrapper">
+                <span class="logo-icon">🌶️</span>
+                <span class="logo-text">AciBiber.net</span>
+            </div>
+            <div class="subtitle" id="subtitle">Şüpheli numaraları sorgula, güvende kal</div>
+            <div class="badges">
+                <div class="badge red">
+                    <span>🔴</span>
+                    <span id="redBadgeText">Acı Biber: Şüpheli</span>
+                </div>
+                <div class="badge green">
+                    <span>🟢</span>
+                    <span id="greenBadgeText">Yeşil Biber: Güvenli</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Card -->
+        <div class="card">
+            <!-- Input Section -->
+            <div class="input-section">
+                <!-- Country Selector -->
+                <div class="country-container">
+                    <label class="input-label" id="countryLabel">Ülke Seçimi</label>
+                    <div class="country-selector" id="countrySelector" onclick="toggleCountryDropdown()">
+                        <div class="country-info">
+                            <span class="country-flag" id="selectedFlag">🇹🇷</span>
+                            <span class="country-name" id="selectedName">Türkiye</span>
+                        </div>
+                        <span class="dropdown-arrow">▼</span>
+                    </div>
+                    <div class="country-dropdown" id="countryDropdown">
+                        <div class="country-search">
+                            <input type="text" placeholder="Ülke ara..." id="countrySearch" onkeyup="filterCountries()">
+                        </div>
+                        <div class="country-list" id="countryList"></div>
+                    </div>
+                </div>
+
+                <!-- Phone Input -->
+                <div class="phone-container">
+                    <label class="input-label" id="phoneLabel">Telefon Numarası</label>
+                    <div class="phone-input-wrapper" id="phoneWrapper">
+                        <div class="country-code" id="countryCode">+90</div>
+                        <div class="phone-digits" id="phoneDigits">
+                            <!-- Digits will be generated -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search Button -->
+            <button class="search-btn" id="searchBtn" onclick="searchNumber()">
+                <span>🔍</span>
+                <span id="searchBtnText">Kontrol Et</span>
+            </button>
+
+            <!-- Results Section -->
+            <div class="results-section" id="resultsSection">
+                <div style="background: #fef3c7; border: 2px solid #fbbf24; border-radius: 12px; padding: 16px; margin-bottom: 24px; text-align: center;">
+                    <div style="color: #92400e; font-size: 14px; font-weight: 600; line-height: 1.5;" id="warningText">
+                        ⚠️ Bu bir hayali numaradır. Kimseye ait değildir. Topluluk olarak X ile biten numaraları değerlendiriyoruz.
+                    </div>
+                </div>
+                
+                <div class="result-header">
+                    <div class="result-number" id="resultNumber"></div>
+                    <span class="verified-badge" id="verifiedBadge">✓ Kontrol Edildi</span>
+                </div>
+
+                <div class="score-container">
+                    <div style="text-align: center; font-size: 16px; font-weight: 700; color: #1f2937; margin-bottom: 20px;" id="communityRating">
+                        Topluluk değerlendirmesi 🏆
+                    </div>
+                    <div class="score-labels">
+                        <span class="score-label-green" id="greenLabel">🟢 Yeşil Biber</span>
+                        <span class="score-label-red" id="redLabel">Acı Biber 🔴</span>
+                    </div>
+                    <div class="score-bar">
+                        <div class="score-green" id="scoreGreen" style="width: 0%">
+                            <span id="percentGreen">0%</span>
+                        </div>
+                        <div class="score-red" id="scoreRed" style="width: 0%">
+                            <span id="percentRed">0%</span>
+                        </div>
+                    </div>
+                    <div class="vote-count" id="voteCount">Toplam 0 değerlendirme</div>
+                    <div class="vote-invite" id="voteInvite">Sen de değerlendir!</div>
+                </div>
+
+                <div class="vote-buttons">
+                    <button class="vote-btn safe" id="btnSafe" onclick="showVerify('safe')">
+                        <span>🟢</span>
+                        <span id="safeBtnText">Güvenli</span>
+                    </button>
+                    <button class="vote-btn spam" id="btnSpam" onclick="showVerify('spam')">
+                        <span>🔴</span>
+                        <span id="spamBtnText">Şüpheli</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <button class="refresh-btn" onclick="location.reload()">
+                <span class="refresh-icon">🔄</span>
+                <span id="refreshBtnText">Sayfayı Yenile</span>
+            </button>
+        </div>
+
+        <!-- Separator Line -->
+        <div style="border-top: 2px solid #fee2e2; margin-top: 40px; margin-bottom: 60px;"></div>
+
+        <!-- Other Projects Section -->
+        <div class="other-projects">
+            <h2 class="other-projects-title">
+                <span>🚀</span>
+                <span id="otherProjectsTitle">Bizim Diğer Projelerimiz</span>
+            </h2>
+            <div class="project-grid">
+                <a href="https://www.tr81.tr" target="_blank" class="project-card">
+                    <div class="project-header">
+                        <span class="project-icon">🏔️</span>
+                        <span class="project-name">TR81.tr</span>
+                    </div>
+                    <div class="project-desc" id="scenicDesc">Güzel manzaralı yerlerin konum bilgileri</div>
+                </a>
+                <a href="https://duflat.com" target="_blank" class="project-card">
+                    <div class="project-header">
+                        <span class="project-icon">✈️</span>
+                        <span class="project-name">Seyahat</span>
+                    </div>
+                    <div class="project-desc" id="travelDesc">Seyahat araçları</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Verification Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-title" id="modalTitle">🔐 Bot Kontrolü</div>
+            <div class="modal-subtitle" id="modalSubtitle">Robot olmadığınızı doğrulamak için kutulardaki metinleri büyük-küçük harfe dikkat ederek yazınız</div>
+
+            <div class="verify-item">
+                <div class="verify-label">
+                    <span><span class="task-number">1.</span> <span class="task-text">Görevi tamamlayın</span></span>
+                    <span class="verify-code">TR</span>
+                </div>
+                <input type="text" class="verify-input correct" id="v1" data-correct="TR" placeholder="Kutudaki metni yazın" value="TR">
+                <div class="verify-check show" id="c1">✓</div>
+            </div>
+
+            <div class="verify-item">
+                <div class="verify-label">
+                    <span><span class="task-number">2.</span> <span class="task-text">Görevi tamamlayın</span></span>
+                    <span class="verify-code">Tr</span>
+                </div>
+                <input type="text" class="verify-input" id="v2" data-correct="Tr" placeholder="Kutudaki metni yazın">
+                <div class="verify-check" id="c2">✓</div>
+            </div>
+
+            <div class="verify-item">
+                <div class="verify-label">
+                    <span><span class="task-number">3.</span> <span class="task-text">Görevi tamamlayın</span></span>
+                    <span class="verify-code">Tr81.tr</span>
+                </div>
+                <input type="text" class="verify-input" id="v3" data-correct="Tr81.tr" placeholder="Kutudaki metni yazın">
+                <div class="verify-check" id="c3">✓</div>
+            </div>
+
+            <div class="verify-item">
+                <div class="verify-label">
+                    <span><span class="task-number">4.</span> <span class="task-text">Görevi tamamlayın</span></span>
+                    <span class="verify-code">TR81.TR</span>
+                </div>
+                <input type="text" class="verify-input" id="v4" data-correct="TR81.TR" placeholder="Kutudaki metni yazın">
+                <div class="verify-check" id="c4">✓</div>
+            </div>
+
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-cancel" id="cancelBtn" onclick="closeModal()">İptal</button>
+                <button class="modal-btn modal-btn-confirm" id="confirmBtn" onclick="confirmVote()" disabled>Oyla</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Supabase Config
+        const SUPABASE_URL = 'https://oxwgeetqhkopnwfikdpj.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im94d2dlZXRxaGtvcG53ZmlrZHBqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU2OTQzODAsImV4cCI6MjA3MTI3MDM4MH0.APLnnqfbTZnF3xdh9805vQoww9ZmuoV3p4YABxretv8';
+        
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        // Countries
+        const countries = [
+            { name: "Türkiye", code: "+90", flag: "🇹🇷", digits: 10 },
+            { name: "United States", code: "+1", flag: "🇺🇸", digits: 10 },
+            { name: "France", code: "+33", flag: "🇫🇷", digits: 9 },
+            { name: "Spain", code: "+34", flag: "🇪🇸", digits: 9 },
+            { name: "Italy", code: "+39", flag: "🇮🇹", digits: 10 },
+            { name: "Mexico", code: "+52", flag: "🇲🇽", digits: 10 },
+            { name: "United Kingdom", code: "+44", flag: "🇬🇧", digits: 10 },
+            { name: "Germany", code: "+49", flag: "🇩🇪", digits: 11 },
+            { name: "Greece", code: "+30", flag: "🇬🇷", digits: 10 },
+            { name: "Austria", code: "+43", flag: "🇦🇹", digits: 10 },
+            { name: "Japan", code: "+81", flag: "🇯🇵", digits: 10 },
+            { name: "Malaysia", code: "+60", flag: "🇲🇾", digits: 9 },
+            { name: "Thailand", code: "+66", flag: "🇹🇭", digits: 9 },
+            { name: "Saudi Arabia", code: "+966", flag: "🇸🇦", digits: 9 },
+            { name: "United Arab Emirates", code: "+971", flag: "🇦🇪", digits: 9 },
+            { name: "Portugal", code: "+351", flag: "🇵🇹", digits: 9 },
+            { name: "China", code: "+86", flag: "🇨🇳", digits: 11 },
+            { name: "Croatia", code: "+385", flag: "🇭🇷", digits: 9 },
+            { name: "Poland", code: "+48", flag: "🇵🇱", digits: 9 },
+            { name: "Netherlands", code: "+31", flag: "🇳🇱", digits: 9 },
+            { name: "Hungary", code: "+36", flag: "🇭🇺", digits: 9 },
+            { name: "Bahrain", code: "+973", flag: "🇧🇭", digits: 8 },
+            { name: "Canada", code: "+1", flag: "🇨🇦", digits: 10 },
+            { name: "South Korea", code: "+82", flag: "🇰🇷", digits: 10 },
+            { name: "Morocco", code: "+212", flag: "🇲🇦", digits: 9 },
+            { name: "Vietnam", code: "+84", flag: "🇻🇳", digits: 9 },
+            { name: "Czech Republic", code: "+420", flag: "🇨🇿", digits: 9 },
+            { name: "Singapore", code: "+65", flag: "🇸🇬", digits: 8 },
+            { name: "Romania", code: "+40", flag: "🇷🇴", digits: 9 },
+            { name: "Indonesia", code: "+62", flag: "🇮🇩", digits: 11 },
+            { name: "Egypt", code: "+20", flag: "🇪🇬", digits: 10 },
+            { name: "Denmark", code: "+45", flag: "🇩🇰", digits: 8 },
+            { name: "Switzerland", code: "+41", flag: "🇨🇭", digits: 9 },
+            { name: "Belgium", code: "+32", flag: "🇧🇪", digits: 9 },
+            { name: "Albania", code: "+355", flag: "🇦🇱", digits: 9 },
+            { name: "Kazakhstan", code: "+7", flag: "🇰🇿", digits: 10 },
+            { name: "Dominican Republic", code: "+1", flag: "🇩🇴", digits: 10 },
+            { name: "Sweden", code: "+46", flag: "🇸🇪", digits: 9 },
+            { name: "Ireland", code: "+353", flag: "🇮🇪", digits: 9 },
+            { name: "Philippines", code: "+63", flag: "🇵🇭", digits: 10 },
+            { name: "India", code: "+91", flag: "🇮🇳", digits: 10 },
+            { name: "Bahamas", code: "+1", flag: "🇧🇸", digits: 10 },
+            { name: "Australia", code: "+61", flag: "🇦🇺", digits: 9 },
+            { name: "Bulgaria", code: "+359", flag: "🇧🇬", digits: 9 },
+            { name: "Taiwan", code: "+886", flag: "🇹🇼", digits: 9 },
+            { name: "Brazil", code: "+55", flag: "🇧🇷", digits: 11 },
+            { name: "Tunisia", code: "+216", flag: "🇹🇳", digits: 8 },
+            { name: "Russia", code: "+7", flag: "🇷🇺", digits: 10 },
+            { name: "Uzbekistan", code: "+998", flag: "🇺🇿", digits: 9 },
+            { name: "Argentina", code: "+54", flag: "🇦🇷", digits: 10 },
+            { name: "Qatar", code: "+974", flag: "🇶🇦", digits: 8 },
+            { name: "Colombia", code: "+57", flag: "🇨🇴", digits: 10 },
+            { name: "South Africa", code: "+27", flag: "🇿🇦", digits: 9 },
+            { name: "Norway", code: "+47", flag: "🇳🇴", digits: 8 },
+            { name: "New Zealand", code: "+64", flag: "🇳🇿", digits: 9 },
+            { name: "Peru", code: "+51", flag: "🇵🇪", digits: 9 },
+            { name: "Moldova", code: "+373", flag: "🇲🇩", digits: 8 },
+            { name: "Slovakia", code: "+421", flag: "🇸🇰", digits: 9 },
+            { name: "Cambodia", code: "+855", flag: "🇰🇭", digits: 9 },
+            { name: "Andorra", code: "+376", flag: "🇦🇩", digits: 6 },
+            { name: "Georgia", code: "+995", flag: "🇬🇪", digits: 9 },
+            { name: "Jordan", code: "+962", flag: "🇯🇴", digits: 9 },
+            { name: "Slovenia", code: "+386", flag: "🇸🇮", digits: 8 },
+            { name: "Serbia", code: "+381", flag: "🇷🇸", digits: 9 },
+            { name: "Jamaica", code: "+1", flag: "🇯🇲", digits: 10 },
+            { name: "Oman", code: "+968", flag: "🇴🇲", digits: 8 },
+            { name: "Cyprus", code: "+357", flag: "🇨🇾", digits: 8 },
+            { name: "Uruguay", code: "+598", flag: "🇺🇾", digits: 9 },
+            { name: "Chile", code: "+56", flag: "🇨🇱", digits: 9 },
+            { name: "Hong Kong", code: "+852", flag: "🇭🇰", digits: 8 },
+            { name: "Macau", code: "+853", flag: "🇲🇴", digits: 8 },
+            { name: "Laos", code: "+856", flag: "🇱🇦", digits: 9 },
+            { name: "El Salvador", code: "+503", flag: "🇸🇻", digits: 8 },
+            { name: "Algeria", code: "+213", flag: "🇩🇿", digits: 9 },
+            { name: "Israel", code: "+972", flag: "🇮🇱", digits: 9 },
+            { name: "Kuwait", code: "+965", flag: "🇰🇼", digits: 8 },
+            { name: "Malta", code: "+356", flag: "🇲🇹", digits: 8 },
+            { name: "Kyrgyzstan", code: "+996", flag: "🇰🇬", digits: 9 },
+            { name: "Lebanon", code: "+961", flag: "🇱🇧", digits: 8 },
+            { name: "Pakistan", code: "+92", flag: "🇵🇰", digits: 10 },
+            { name: "Finland", code: "+358", flag: "🇫🇮", digits: 9 },
+            { name: "Panama", code: "+507", flag: "🇵🇦", digits: 8 },
+            { name: "Montenegro", code: "+382", flag: "🇲🇪", digits: 8 },
+            { name: "Puerto Rico", code: "+1", flag: "🇵🇷", digits: 10 },
+            { name: "Costa Rica", code: "+506", flag: "🇨🇷", digits: 8 },
+            { name: "Cuba", code: "+53", flag: "🇨🇺", digits: 8 },
+            { name: "Azerbaijan", code: "+994", flag: "🇦🇿", digits: 9 },
+            { name: "Kenya", code: "+254", flag: "🇰🇪", digits: 9 },
+            { name: "Armenia", code: "+374", flag: "🇦🇲", digits: 8 },
+            { name: "Iceland", code: "+354", flag: "🇮🇸", digits: 7 },
+            { name: "Zambia", code: "+260", flag: "🇿🇲", digits: 9 },
+            { name: "Sri Lanka", code: "+94", flag: "🇱🇰", digits: 9 },
+            { name: "Maldives", code: "+960", flag: "🇲🇻", digits: 7 },
+            { name: "Mozambique", code: "+258", flag: "🇲🇿", digits: 9 },
+            { name: "Tanzania", code: "+255", flag: "🇹🇿", digits: 9 },
+            { name: "San Marino", code: "+378", flag: "🇸🇲", digits: 8 },
+            { name: "Guatemala", code: "+502", flag: "🇬🇹", digits: 8 },
+            { name: "Estonia", code: "+372", flag: "🇪🇪", digits: 8 },
+            { name: "Zimbabwe", code: "+263", flag: "🇿🇼", digits: 9 },
+            { name: "Bolivia", code: "+591", flag: "🇧🇴", digits: 8 },
+            { name: "Luxembourg", code: "+352", flag: "🇱🇺", digits: 9 },
+            { name: "Ecuador", code: "+593", flag: "🇪🇨", digits: 9 },
+            { name: "Aruba", code: "+297", flag: "🇦🇼", digits: 7 },
+            { name: "Rwanda", code: "+250", flag: "🇷🇼", digits: 9 },
+            { name: "Latvia", code: "+371", flag: "🇱🇻", digits: 8 },
+            { name: "Senegal", code: "+221", flag: "🇸🇳", digits: 9 },
+            { name: "Uganda", code: "+256", flag: "🇺🇬", digits: 9 },
+            { name: "Tajikistan", code: "+992", flag: "🇹🇯", digits: 9 },
+            { name: "Mauritius", code: "+230", flag: "🇲🇺", digits: 8 },
+            { name: "Myanmar", code: "+95", flag: "🇲🇲", digits: 9 },
+            { name: "Venezuela", code: "+58", flag: "🇻🇪", digits: 10 },
+            { name: "Nicaragua", code: "+505", flag: "🇳🇮", digits: 8 },
+            { name: "Nigeria", code: "+234", flag: "🇳🇬", digits: 10 },
+            { name: "Bosnia and Herzegovina", code: "+387", flag: "🇧🇦", digits: 8 },
+            { name: "Ethiopia", code: "+251", flag: "🇪🇹", digits: 9 },
+            { name: "Nepal", code: "+977", flag: "🇳🇵", digits: 10 },
+            { name: "Lesotho", code: "+266", flag: "🇱🇸", digits: 8 },
+            { name: "Ghana", code: "+233", flag: "🇬🇭", digits: 9 },
+            { name: "Lithuania", code: "+370", flag: "🇱🇹", digits: 8 },
+            { name: "Kosovo", code: "+383", flag: "🇽🇰", digits: 8 },
+            { name: "DR Congo", code: "+243", flag: "🇨🇩", digits: 9 },
+            { name: "Mongolia", code: "+976", flag: "🇲🇳", digits: 8 },
+            { name: "Iran", code: "+98", flag: "🇮🇷", digits: 10 },
+            { name: "Bangladesh", code: "+880", flag: "🇧🇩", digits: 10 },
+            { name: "Sudan", code: "+249", flag: "🇸🇩", digits: 9 },
+            { name: "Iraq", code: "+964", flag: "🇮🇶", digits: 10 },
+            { name: "Afghanistan", code: "+93", flag: "🇦🇫", digits: 9 },
+            { name: "Angola", code: "+244", flag: "🇦🇴", digits: 9 },
+            { name: "Ukraine", code: "+380", flag: "🇺🇦", digits: 9 },
+            { name: "Yemen", code: "+967", flag: "🇾🇪", digits: 9 },
+            { name: "Madagascar", code: "+261", flag: "🇲🇬", digits: 9 },
+            { name: "Ivory Coast", code: "+225", flag: "🇨🇮", digits: 10 },
+            { name: "Cameroon", code: "+237", flag: "🇨🇲", digits: 9 },
+            { name: "Niger", code: "+227", flag: "🇳🇪", digits: 8 },
+            { name: "Mali", code: "+223", flag: "🇲🇱", digits: 8 },
+            { name: "Burkina Faso", code: "+226", flag: "🇧🇫", digits: 8 },
+            { name: "Malawi", code: "+265", flag: "🇲🇼", digits: 9 },
+            { name: "Chad", code: "+235", flag: "🇹🇩", digits: 8 },
+            { name: "Somalia", code: "+252", flag: "🇸🇴", digits: 8 },
+            { name: "Benin", code: "+229", flag: "🇧🇯", digits: 8 },
+            { name: "Guinea", code: "+224", flag: "🇬🇳", digits: 9 },
+            { name: "Burundi", code: "+257", flag: "🇧🇮", digits: 8 },
+            { name: "South Sudan", code: "+211", flag: "🇸🇸", digits: 9 },
+            { name: "Haiti", code: "+509", flag: "🇭🇹", digits: 8 },
+            { name: "Honduras", code: "+504", flag: "🇭🇳", digits: 8 },
+            { name: "Papua New Guinea", code: "+675", flag: "🇵🇬", digits: 8 },
+            { name: "Togo", code: "+228", flag: "🇹🇬", digits: 8 },
+            { name: "Sierra Leone", code: "+232", flag: "🇸🇱", digits: 8 },
+            { name: "Belarus", code: "+375", flag: "🇧🇾", digits: 9 },
+            { name: "Paraguay", code: "+595", flag: "🇵🇾", digits: 9 }
+        ];
+
+        let selectedCountry = countries[0];
+        let digitInputs = [];
+        let currentNumber = '';
+        let hasVoted = false;
+        let pendingVoteType = '';
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Detect device and adjust viewport
+            detectAndAdjustViewport();
+            
+            // Load saved country preference
+            const savedCountryCode = localStorage.getItem('selectedCountryCode');
+            if (savedCountryCode) {
+                const savedCountry = countries.find(c => c.code === savedCountryCode);
+                if (savedCountry) {
+                    selectedCountry = savedCountry;
+                    document.getElementById('selectedFlag').textContent = savedCountry.flag;
+                    document.getElementById('selectedName').textContent = savedCountry.name;
+                }
+            }
+            
+            // Apply translations
+            applyTranslations();
+            
+            initializePhoneInput();
+            renderCountries();
+            setupVerification();
+        });
+
+        // Detect device and adjust viewport for optimal display
+        function detectAndAdjustViewport() {
+            const screenWidth = window.screen.width;
+            const screenHeight = window.screen.height;
+            const devicePixelRatio = window.devicePixelRatio || 1;
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+            
+            // Detect device type
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            const isTablet = /iPad|Android/i.test(navigator.userAgent) && screenWidth >= 768;
+            const isDesktop = !isMobile || screenWidth >= 1024;
+            
+            // Log device info for debugging
+            console.log('Device Info:', {
+                screenWidth,
+                screenHeight,
+                viewportWidth,
+                viewportHeight,
+                devicePixelRatio,
+                isMobile,
+                isTablet,
+                isDesktop
+            });
+            
+            // Adjust styles based on device
+            const appContainer = document.querySelector('.app-container');
+            const body = document.body;
+            
+            if (isMobile && screenWidth < 768) {
+                // Mobile optimization
+                body.style.zoom = '1';
+                if (screenWidth <= 375) {
+                    // Small phones (iPhone SE, etc)
+                    appContainer.style.maxWidth = '100%';
+                    body.style.padding = '8px';
+                } else if (screenWidth <= 414) {
+                    // Standard phones
+                    appContainer.style.maxWidth = '100%';
+                    body.style.padding = '10px';
+                } else {
+                    // Large phones
+                    appContainer.style.maxWidth = '100%';
+                    body.style.padding = '15px';
+                }
+            } else if (isTablet) {
+                // Tablet optimization
+                appContainer.style.maxWidth = '580px';
+                body.style.padding = '20px';
+            } else if (isDesktop) {
+                // Desktop optimization based on screen size
+                if (screenWidth >= 1920) {
+                    // Full HD and above
+                    appContainer.style.maxWidth = '620px';
+                    if (devicePixelRatio > 1) {
+                        // High DPI screens (Retina, etc)
+                        body.style.zoom = '1.1';
+                    }
+                } else if (screenWidth >= 1440) {
+                    // Large desktop
+                    appContainer.style.maxWidth = '600px';
+                } else if (screenWidth >= 1366) {
+                    // Standard laptop
+                    appContainer.style.maxWidth = '580px';
+                } else {
+                    // Small desktop/laptop
+                    appContainer.style.maxWidth = '560px';
+                }
+                
+                // Adjust zoom for very large screens
+                if (screenWidth >= 2560) {
+                    // 4K screens
+                    body.style.zoom = '1.25';
+                }
+            }
+            
+            // Adjust font sizes based on viewport
+            adjustFontSizes(viewportWidth);
+        }
+
+        // Adjust font sizes dynamically
+        function adjustFontSizes(viewportWidth) {
+            const root = document.documentElement;
+            
+            if (viewportWidth <= 375) {
+                // Very small screens
+                root.style.setProperty('--dynamic-scale', '0.9');
+            } else if (viewportWidth <= 768) {
+                // Mobile
+                root.style.setProperty('--dynamic-scale', '1');
+            } else if (viewportWidth <= 1024) {
+                // Tablet
+                root.style.setProperty('--dynamic-scale', '1.05');
+            } else if (viewportWidth <= 1440) {
+                // Desktop
+                root.style.setProperty('--dynamic-scale', '1.1');
+            } else if (viewportWidth <= 1920) {
+                // Large desktop
+                root.style.setProperty('--dynamic-scale', '1.15');
+            } else {
+                // Very large screens
+                root.style.setProperty('--dynamic-scale', '1.2');
+            }
+        }
+
+        // Listen for window resize
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                detectAndAdjustViewport();
+            }, 250);
+        });
+
+        // Listen for orientation change (mobile)
+        window.addEventListener('orientationchange', () => {
+            setTimeout(() => {
+                detectAndAdjustViewport();
+            }, 100);
+        });
+
+        // Apply translations to the page
+        function applyTranslations() {
+            // Header
+            document.getElementById('subtitle').textContent = t('subtitle');
+            document.getElementById('redBadgeText').textContent = t('redBadge');
+            document.getElementById('greenBadgeText').textContent = t('greenBadge');
+            
+            // Input labels
+            document.getElementById('countryLabel').textContent = t('countrySelect');
+            document.getElementById('phoneLabel').textContent = t('phoneNumber');
+            document.getElementById('countrySearch').placeholder = t('countrySearch');
+            
+            // Buttons
+            document.getElementById('searchBtnText').textContent = t('searchBtn');
+            document.getElementById('refreshBtnText').textContent = t('refreshBtn');
+            
+            // Results section
+            document.getElementById('warningText').textContent = t('warning');
+            document.getElementById('verifiedBadge').textContent = t('verified');
+            document.getElementById('communityRating').textContent = t('communityRating');
+            document.getElementById('greenLabel').textContent = t('greenPepper');
+            document.getElementById('redLabel').textContent = t('redPepper');
+            document.getElementById('voteInvite').textContent = t('voteInvite');
+            document.getElementById('safeBtnText').textContent = t('safeBtn');
+            document.getElementById('spamBtnText').textContent = t('spamBtn');
+            
+            // Other Projects
+            document.getElementById('otherProjectsTitle').textContent = t('otherProjects');
+            document.getElementById('scenicDesc').textContent = t('scenicLocations');
+            document.getElementById('travelDesc').textContent = t('travelTools');
+            
+            // Modal
+            document.getElementById('modalTitle').textContent = t('botCheck');
+            document.getElementById('modalSubtitle').textContent = t('botCheckDesc');
+            document.getElementById('cancelBtn').textContent = t('cancel');
+            document.getElementById('confirmBtn').textContent = t('vote');
+            
+            // Update task texts and placeholders
+            document.querySelectorAll('.task-text').forEach(el => {
+                el.textContent = t('completeTask');
+            });
+            
+            document.querySelectorAll('.verify-input').forEach(el => {
+                el.placeholder = t('typeText');
+            });
+        }
+
+        // Initialize phone input
+        function initializePhoneInput() {
+            const container = document.getElementById('phoneDigits');
+            container.innerHTML = '';
+            digitInputs = [];
+            
+            // Calculate optimal width based on digit count
+            const digitCount = selectedCountry.digits;
+            let digitWidth = 38;
+            
+            // Adjust for more digits
+            if (digitCount > 10) {
+                digitWidth = 32;
+            }
+            
+            // Create placeholder format based on country
+            let placeholder = '';
+            if (selectedCountry.code === '+90') {
+                placeholder = '5XX XXX XX XX';
+            } else if (selectedCountry.code === '+86') {
+                placeholder = '1XX XXXX XXXX';
+            } else {
+                placeholder = '000 000 0000';
+            }
+            
+            // Create input for each digit
+            for (let i = 0; i < selectedCountry.digits; i++) {
+                const input = document.createElement('input');
+                input.type = 'tel';
+                input.className = 'digit-input';
+                input.maxLength = 1;
+                input.dataset.index = i;
+                input.inputMode = 'numeric';
+                input.pattern = '[0-9]*';
+                
+                // Adjust width for many digits
+                if (window.innerWidth <= 640 && digitCount > 10) {
+                    input.style.width = '26px';
+                } else if (digitCount > 10) {
+                    input.style.width = digitWidth + 'px';
+                }
+                
+                // Set placeholder
+                if (placeholder[i] && placeholder[i] !== ' ') {
+                    input.placeholder = placeholder[i];
+                }
+                
+                // Last digit is always X
+                if (i === selectedCountry.digits - 1) {
+                    input.className += ' disabled';
+                    input.value = 'X';
+                    input.readOnly = true;
+                    input.placeholder = '';
+                } else {
+                    input.addEventListener('input', e => handleDigitInput(e, i));
+                    input.addEventListener('keydown', e => handleKeydown(e, i));
+                    input.addEventListener('paste', e => handlePaste(e, i));
+                    input.addEventListener('focus', () => {
+                        document.getElementById('phoneWrapper').classList.add('focused');
+                        // Removed scrollIntoView to prevent unwanted scrolling
+                    });
+                    input.addEventListener('blur', () => {
+                        document.getElementById('phoneWrapper').classList.remove('focused');
+                    });
+                }
+                
+                container.appendChild(input);
+                digitInputs.push(input);
+            }
+            
+            // Update country code
+            document.getElementById('countryCode').textContent = selectedCountry.code;
+        }
+
+        // Handle digit input
+        function handleDigitInput(e, index) {
+            const value = e.target.value;
+            
+            if (!/^\d$/.test(value) && value !== '') {
+                e.target.value = '';
+                return;
+            }
+            
+            if (value) {
+                // Check if this is the last input (before X)
+                if (index === selectedCountry.digits - 2) {
+                    // Last digit entered, blur to close keyboard
+                    e.target.blur();
+                } else if (index < selectedCountry.digits - 2) {
+                    // Auto-focus next input
+                    digitInputs[index + 1].focus();
+                }
+            }
+        }
+
+        // Handle keydown
+        function handleKeydown(e, index) {
+            if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                e.preventDefault();
+                digitInputs[index - 1].focus();
+                digitInputs[index - 1].value = '';
+            } else if (e.key === 'ArrowLeft' && index > 0) {
+                digitInputs[index - 1].focus();
+            } else if (e.key === 'ArrowRight' && index < selectedCountry.digits - 2) {
+                digitInputs[index + 1].focus();
+            } else if (e.key === 'Enter') {
+                // Close keyboard on Enter key
+                e.target.blur();
+                searchNumber();
+            }
+        }
+
+        // Handle paste
+        function handlePaste(e, startIndex) {
+            e.preventDefault();
+            const data = e.clipboardData.getData('text').replace(/\D/g, '');
+            
+            let lastFilledIndex = startIndex;
+            for (let i = 0; i < data.length && startIndex + i < selectedCountry.digits - 1; i++) {
+                digitInputs[startIndex + i].value = data[i];
+                lastFilledIndex = startIndex + i;
+            }
+            
+            // If all digits are filled after paste, close keyboard
+            if (lastFilledIndex === selectedCountry.digits - 2) {
+                setTimeout(() => {
+                    digitInputs[lastFilledIndex].blur();
+                }, 100);
+            }
+        }
+
+        // Toggle country dropdown
+        function toggleCountryDropdown() {
+            const dropdown = document.getElementById('countryDropdown');
+            const selector = document.getElementById('countrySelector');
+            const searchInput = document.getElementById('countrySearch');
+            
+            if (dropdown.classList.contains('show')) {
+                dropdown.classList.remove('show');
+                selector.classList.remove('active');
+            } else {
+                dropdown.classList.add('show');
+                selector.classList.add('active');
+                
+                // Pre-fill search with "+" for easy country code search
+                searchInput.value = '+';
+                searchInput.focus();
+                
+                // Move cursor to end of input
+                searchInput.setSelectionRange(1, 1);
+                
+                // On mobile, scroll the dropdown to top for better visibility
+                if (window.innerWidth <= 640) {
+                    setTimeout(() => {
+                        dropdown.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                }
+            }
+        }
+
+        // Render countries
+        function renderCountries() {
+            const list = document.getElementById('countryList');
+            list.innerHTML = '';
+            
+            countries.forEach(country => {
+                const item = document.createElement('div');
+                item.className = 'country-item';
+                item.innerHTML = `
+                    <span class="country-item-flag">${country.flag}</span>
+                    <span class="country-item-name">${country.name}</span>
+                    <span class="country-item-code">${country.code}</span>
+                `;
+                item.onclick = () => selectCountry(country);
+                list.appendChild(item);
+            });
+        }
+
+        // Filter countries
+        function filterCountries() {
+            const search = document.getElementById('countrySearch').value.toLowerCase();
+            const list = document.getElementById('countryList');
+            list.innerHTML = '';
+            
+            const filtered = countries.filter(c => 
+                c.name.toLowerCase().includes(search) || 
+                c.code.includes(search)
+            );
+            
+            filtered.forEach(country => {
+                const item = document.createElement('div');
+                item.className = 'country-item';
+                item.innerHTML = `
+                    <span class="country-item-flag">${country.flag}</span>
+                    <span class="country-item-name">${country.name}</span>
+                    <span class="country-item-code">${country.code}</span>
+                `;
+                item.onclick = () => selectCountry(country);
+                list.appendChild(item);
+            });
+        }
+
+        // Select country
+        function selectCountry(country) {
+            selectedCountry = country;
+            document.getElementById('selectedFlag').textContent = country.flag;
+            document.getElementById('selectedName').textContent = country.name;
+            document.getElementById('countryDropdown').classList.remove('show');
+            document.getElementById('countrySelector').classList.remove('active');
+            document.getElementById('countrySearch').value = '';
+            
+            // Save selected country to localStorage
+            localStorage.setItem('selectedCountryCode', country.code);
+            localStorage.setItem('selectedCountryName', country.name);
+            localStorage.setItem('selectedCountryFlag', country.flag);
+            localStorage.setItem('selectedCountryDigits', country.digits);
+            
+            initializePhoneInput();
+        }
+
+        // Close dropdown on outside click
+        document.addEventListener('click', e => {
+            if (!e.target.closest('.country-container')) {
+                document.getElementById('countryDropdown').classList.remove('show');
+                document.getElementById('countrySelector').classList.remove('active');
+            }
+        });
+
+        // Search number
+        async function searchNumber() {
+            let number = '';
+            for (let i = 0; i < selectedCountry.digits - 1; i++) {
+                number += digitInputs[i].value || '';
+            }
+            
+            if (number.length < selectedCountry.digits - 1) {
+                showToast(t('enterAllDigits'));
+                return;
+            }
+            
+            setLoading(true);
+            
+            currentNumber = selectedCountry.code.replace('+', '') + number;
+            
+            // Format display
+            let display = selectedCountry.code + ' ';
+            if (selectedCountry.code === '+90') {
+                display += number.slice(0, 3) + ' ';
+                display += number.slice(3, 6) + ' ';
+                display += number.slice(6, 8) + ' ';
+                display += number.slice(8, 9) + 'X';
+            } else {
+                for (let i = 0; i < number.length; i++) {
+                    if (i > 0 && i % 3 === 0) display += ' ';
+                    display += i === number.length - 1 ? number[i] + 'X' : number[i];
+                }
+            }
+            
+            document.getElementById('resultNumber').textContent = display;
+            document.getElementById('resultsSection').style.display = 'block';
+            
+            await loadData();
+            setLoading(false);
+            
+            document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Set loading state
+        function setLoading(loading) {
+            const btn = document.getElementById('searchBtn');
+            if (loading) {
+                btn.disabled = true;
+                btn.innerHTML = '<span class="spinner"></span><span>' + t('searchingBtn') + '</span>';
+            } else {
+                btn.disabled = false;
+                btn.innerHTML = '<span>🔍</span><span>' + t('searchBtn') + '</span>';
+            }
+        }
+
+        // Load data
+        async function loadData() {
+            try {
+                const hash = await hashPhone(currentNumber);
+                
+                const { data, error } = await supabase
+                    .from('phone_votes')
+                    .select('*')
+                    .eq('phone_hash', hash)
+                    .single();
+                
+                const votes = data ? {
+                    safe: data.total_safe || 0,
+                    spam: data.total_spam || 0
+                } : { safe: 0, spam: 0 };
+                
+                updateScore(votes);
+                
+                hasVoted = localStorage.getItem(`voted_${currentNumber}`) === 'true';
+                updateVoteButtons();
+                
+                // Show or hide invite text based on vote status
+                const inviteElement = document.getElementById('voteInvite');
+                if (inviteElement) {
+                    inviteElement.style.display = hasVoted ? 'none' : 'block';
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                updateScore({ safe: 0, spam: 0 });
+                
+                // Check vote status even on error
+                hasVoted = localStorage.getItem(`voted_${currentNumber}`) === 'true';
+                updateVoteButtons();
+                
+                const inviteElement = document.getElementById('voteInvite');
+                if (inviteElement) {
+                    inviteElement.style.display = hasVoted ? 'none' : 'block';
+                }
+            }
+        }
+
+        // Update score display
+        function updateScore(votes) {
+            const total = votes.safe + votes.spam;
+            let safePercent = 0;
+            let spamPercent = 0;
+            
+            if (total > 0) {
+                safePercent = Math.round((votes.safe / total) * 100);
+                spamPercent = Math.round((votes.spam / total) * 100);
+            }
+            
+            setTimeout(() => {
+                document.getElementById('scoreGreen').style.width = safePercent + '%';
+                document.getElementById('scoreRed').style.width = spamPercent + '%';
+                document.getElementById('percentGreen').textContent = safePercent + '%';
+                document.getElementById('percentRed').textContent = spamPercent + '%';
+                document.getElementById('percentGreen').style.display = safePercent > 0 ? 'block' : 'none';
+                document.getElementById('percentRed').style.display = spamPercent > 0 ? 'block' : 'none';
+            }, 100);
+            
+            document.getElementById('voteCount').textContent = t('totalVotes').replace('{count}', total);
+        }
+
+        // Update vote buttons
+        function updateVoteButtons() {
+            document.getElementById('btnSafe').disabled = hasVoted;
+            document.getElementById('btnSpam').disabled = hasVoted;
+        }
+
+        // Hash phone
+        async function hashPhone(phone) {
+            const msgBuffer = new TextEncoder().encode(phone);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        // Show verification modal
+        function showVerify(type) {
+            if (hasVoted) {
+                showToast(t('alreadyVoted'));
+                return;
+            }
+            
+            pendingVoteType = type;
+            
+            // First input is pre-filled as example
+            const firstInput = document.getElementById('v1');
+            firstInput.value = 'TR';
+            firstInput.classList.add('correct');
+            document.getElementById('c1').classList.add('show');
+            
+            // Clear other inputs
+            for (let i = 2; i <= 4; i++) {
+                const input = document.getElementById(`v${i}`);
+                const check = document.getElementById(`c${i}`);
+                input.value = '';
+                input.classList.remove('correct');
+                check.classList.remove('show');
+            }
+            
+            // Check if form is ready
+            checkVerify();
+            
+            document.getElementById('modalOverlay').classList.add('show');
+            
+            // Instead of auto-focus, add blinking animation to second input
+            setTimeout(() => {
+                const secondInput = document.getElementById('v2');
+                secondInput.classList.add('blink-hint');
+                
+                // Remove blinking when clicked
+                secondInput.addEventListener('click', function() {
+                    this.classList.remove('blink-hint');
+                    this.focus();
+                }, { once: true });
+                
+                // Also remove blinking on focus
+                secondInput.addEventListener('focus', function() {
+                    this.classList.remove('blink-hint');
+                }, { once: true });
+            }, 300);
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('show');
+            
+            // Remove all blinking hints when closing
+            for (let i = 2; i <= 4; i++) {
+                const input = document.getElementById(`v${i}`);
+                if (input) {
+                    input.classList.remove('blink-hint');
+                }
+            }
+        }
+
+        // Setup verification
+        function setupVerification() {
+            // First input is pre-filled, start from second
+            for (let i = 2; i <= 4; i++) {
+                const input = document.getElementById(`v${i}`);
+                input.addEventListener('input', checkVerify);
+                
+                input.addEventListener('input', function() {
+                    // Remove blinking from current input when typing
+                    this.classList.remove('blink-hint');
+                    
+                    if (this.value === this.getAttribute('data-correct')) {
+                        if (i < 4) {
+                            // Add blinking to next input instead of auto-focus
+                            setTimeout(() => {
+                                const nextInput = document.getElementById(`v${i + 1}`);
+                                nextInput.classList.add('blink-hint');
+                                
+                                // Remove blinking when clicked
+                                nextInput.addEventListener('click', function() {
+                                    this.classList.remove('blink-hint');
+                                    this.focus();
+                                }, { once: true });
+                                
+                                // Also remove blinking on focus
+                                nextInput.addEventListener('focus', function() {
+                                    this.classList.remove('blink-hint');
+                                }, { once: true });
+                            }, 200);
+                        }
+                    }
+                });
+            }
+            
+            // First input should also trigger check but not need typing
+            const firstInput = document.getElementById('v1');
+            firstInput.addEventListener('input', checkVerify);
+            
+            document.getElementById('modalOverlay').addEventListener('click', e => {
+                if (e.target === document.getElementById('modalOverlay')) {
+                    closeModal();
+                }
+            });
+        }
+
+        // Check verification
+        function checkVerify() {
+            let allCorrect = true;
+            
+            for (let i = 1; i <= 4; i++) {
+                const input = document.getElementById(`v${i}`);
+                const check = document.getElementById(`c${i}`);
+                const correct = input.getAttribute('data-correct');
+                
+                if (input.value === correct) {
+                    input.classList.add('correct');
+                    check.classList.add('show');
+                } else {
+                    input.classList.remove('correct');
+                    check.classList.remove('show');
+                    if (input.value) allCorrect = false;
+                    else allCorrect = false;
+                }
+            }
+            
+            document.getElementById('confirmBtn').disabled = !allCorrect;
+        }
+
+        // Confirm vote
+        async function confirmVote() {
+            closeModal();
+            await vote(pendingVoteType);
+        }
+
+        // Vote
+        async function vote(type) {
+            if (hasVoted) return;
+            
+            document.getElementById('btnSafe').disabled = true;
+            document.getElementById('btnSpam').disabled = true;
+            
+            try {
+                const hash = await hashPhone(currentNumber);
+                
+                const { data: existing } = await supabase
+                    .from('phone_votes')
+                    .select('*')
+                    .eq('phone_hash', hash)
+                    .single();
+                
+                let result;
+                
+                if (existing) {
+                    const updates = type === 'safe' 
+                        ? { total_safe: existing.total_safe + 1 }
+                        : { total_spam: existing.total_spam + 1 };
+                    
+                    result = await supabase
+                        .from('phone_votes')
+                        .update(updates)
+                        .eq('phone_hash', hash)
+                        .select()
+                        .single();
+                } else {
+                    const newVote = {
+                        phone_hash: hash,
+                        total_safe: type === 'safe' ? 1 : 0,
+                        total_spam: type === 'spam' ? 1 : 0
+                    };
+                    
+                    result = await supabase
+                        .from('phone_votes')
+                        .insert([newVote])
+                        .select()
+                        .single();
+                }
+                
+                localStorage.setItem(`voted_${currentNumber}`, 'true');
+                hasVoted = true;
+                
+                updateScore({
+                    safe: result.data.total_safe || 0,
+                    spam: result.data.total_spam || 0
+                });
+                
+                updateVoteButtons();
+                
+                // Hide invite text after voting
+                const inviteElement = document.getElementById('voteInvite');
+                if (inviteElement) {
+                    inviteElement.style.display = 'none';
+                }
+                
+                showToast(type === 'safe' ? t('votedSafe') : t('votedSpam'));
+                
+            } catch (error) {
+                console.error('Error:', error);
+                showToast(t('error'));
+                updateVoteButtons();
+            }
+        }
+
+        // Show toast
+        function showToast(message) {
+            const existing = document.querySelector('.toast');
+            if (existing) existing.remove();
+            
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => toast.classList.add('show'), 100);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
