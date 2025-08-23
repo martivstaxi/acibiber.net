@@ -3568,7 +3568,7 @@
             }
             
             // Create input for each digit
-            for (let i = 0; i < selectedCountry.digits; i++) {
+            for (let i = 0; i <= selectedCountry.digits; i++) {
                 const input = document.createElement('input');
                 input.type = 'tel';
                 input.className = 'digit-input';
@@ -3590,7 +3590,7 @@
                 }
                 
                 // Last digit is always X
-                if (i === selectedCountry.digits - 1) {
+                if (i === selectedCountry.digits) {
                     input.className += ' disabled';
                     input.value = 'X';
                     input.readOnly = true;
@@ -3627,10 +3627,10 @@
             
             if (value) {
                 // Check if this is the last input (before X)
-                if (index === selectedCountry.digits - 2) {
+                if (index === selectedCountry.digits - 1) {
                     // Last digit entered, blur to close keyboard
                     e.target.blur();
-                } else if (index < selectedCountry.digits - 2) {
+                } else if (index < selectedCountry.digits - 1) {
                     // Auto-focus next input
                     digitInputs[index + 1].focus();
                 }
@@ -3645,7 +3645,7 @@
                 digitInputs[index - 1].value = '';
             } else if (e.key === 'ArrowLeft' && index > 0) {
                 digitInputs[index - 1].focus();
-            } else if (e.key === 'ArrowRight' && index < selectedCountry.digits - 2) {
+            } else if (e.key === 'ArrowRight' && index < selectedCountry.digits - 1) {
                 digitInputs[index + 1].focus();
             } else if (e.key === 'Enter') {
                 // Close keyboard on Enter key
@@ -3660,13 +3660,13 @@
             const data = e.clipboardData.getData('text').replace(/\D/g, '');
             
             let lastFilledIndex = startIndex;
-            for (let i = 0; i < data.length && startIndex + i < selectedCountry.digits - 1; i++) {
+            for (let i = 0; i < data.length && startIndex + i < selectedCountry.digits; i++) {
                 digitInputs[startIndex + i].value = data[i];
                 lastFilledIndex = startIndex + i;
             }
             
             // If all digits are filled after paste, close keyboard
-            if (lastFilledIndex === selectedCountry.digits - 2) {
+            if (lastFilledIndex === selectedCountry.digits - 1) {
                 setTimeout(() => {
                     digitInputs[lastFilledIndex].blur();
                 }, 100);
@@ -3773,11 +3773,11 @@
         // Search number
         async function searchNumber() {
             let number = '';
-            for (let i = 0; i < selectedCountry.digits - 1; i++) {
+            for (let i = 0; i < selectedCountry.digits; i++) {
                 number += digitInputs[i].value || '';
             }
             
-            if (number.length < selectedCountry.digits - 1) {
+            if (number.length < selectedCountry.digits) {
                 showToast(t('enterAllDigits'));
                 return;
             }
@@ -3792,12 +3792,13 @@
                 display += number.slice(0, 3) + ' ';
                 display += number.slice(3, 6) + ' ';
                 display += number.slice(6, 8) + ' ';
-                display += number.slice(8, 9) + 'X';
+                display += number.slice(8, 10) + 'X';
             } else {
                 for (let i = 0; i < number.length; i++) {
                     if (i > 0 && i % 3 === 0) display += ' ';
-                    display += i === number.length - 1 ? number[i] + 'X' : number[i];
+                    display += number[i];
                 }
+                display += 'X';
             }
             
             document.getElementById('resultNumber').textContent = display;
